@@ -1,540 +1,310 @@
 import { useState, useRef } from "react";
 
-const PASS_DATA = [
-  {
-    id: "ep", name: "Employment Pass", abbr: "EP", category: "professional",
-    tagline: "For foreign PMETs sponsored by a Singapore employer",
-    badge: { label: "Professional", color: "#e8a03c", bg: "rgba(232,160,60,0.12)", border: "rgba(232,160,60,0.25)" },
-    levy: "None", quota: "None (COMPASS-assessed)", validity: "2 yrs (new) / 3 yrs (renewal)", nations: "All nationalities",
-    fields: [
-      { label: "Min. Salary (General)", value: "S$5,600/month (from 1 Jan 2025)", hi: true },
-      { label: "Min. Salary (Financial Services)", value: "S$6,200/month (from 1 Jan 2025)", hi: true },
-      { label: "Age-Progressive Max", value: "Up to S$10,700 (general) / S$11,800 (finance) for mid-40s" },
-      { label: "Key Framework", value: "COMPASS — must score ≥ 40 points" },
-      { label: "Dependent Pass", value: "DP for spouse/children; LTVP for parents (if salary ≥ S$12,000/mth)" },
-      { label: "Who Applies", value: "Employer or licensed employment agency" },
-      { label: "Processing Time", value: "~10 business days" },
-      { label: "Application Fee", value: "S$105 (application) + S$225 (issuance)" },
-    ],
-    notes: "Employer must advertise on MyCareersFuture for 28 days (FCF). All qualifications verified by MOM-approved agency. Renewal salary thresholds effective 1 Jan 2026.",
-  },
-  {
-    id: "pep", name: "Personalised Employment Pass", abbr: "PEP", category: "professional",
-    tagline: "Employer-independent pass for high-earning EP holders and overseas professionals",
-    badge: { label: "Professional", color: "#e8a03c", bg: "rgba(232,160,60,0.12)", border: "rgba(232,160,60,0.25)" },
-    levy: "None", quota: "None", validity: "3 years (NOT renewable)", nations: "All nationalities",
-    fields: [
-      { label: "Min. Salary (EP Holders)", value: "Last drawn fixed salary ≥ S$22,500/month", hi: true },
-      { label: "Min. Salary (Overseas)", value: "Fixed salary ≥ S$22,500/month or S$270,000/year", hi: true },
-      { label: "Key Flexibility", value: "Switch employers freely; stay in SG between jobs up to 6 months" },
-      { label: "Who Applies", value: "Pass candidate (self-sponsored)" },
-    ],
-    notes: "Non-renewable — must transition to EP or ONE Pass at end of 3-year validity. COMPASS does not apply. One-time pass only.",
-  },
-  {
-    id: "onepass", name: "Overseas Networks & Expertise Pass", abbr: "ONE Pass", category: "elite",
-    tagline: "World-class talent — simultaneous multi-employer work permitted",
-    badge: { label: "Elite", color: "#b07fe0", bg: "rgba(176,127,224,0.12)", border: "rgba(176,127,224,0.25)" },
-    levy: "None", quota: "None", validity: "5 years, renewable", nations: "All nationalities",
-    fields: [
-      { label: "Salary Route", value: "Fixed monthly salary ≥ S$30,000 for last 12 consecutive months", hi: true },
-      { label: "Achievements Route", value: "Outstanding track record in business, arts, sports, science or academia — salary waived" },
-      { label: "Overseas Employer", value: "Market cap ≥ USD 500M or annual revenue ≥ USD 200M" },
-      { label: "Renewal Criteria", value: "Avg salary ≥ S$30,000/mth over 5 yrs OR SG company with ≥5 locals each earning ≥ S$5,000/mth" },
-      { label: "Multi-Employer", value: "Yes — can work for multiple companies simultaneously and start/operate a business" },
-      { label: "Processing Time", value: "~4–8 weeks" },
-    ],
-    notes: "No COMPASS, no quota, no levy. Ideal for senior global executives, world-class athletes, top researchers, and artists.",
-  },
-  {
-    id: "entrepass", name: "EntrePass", abbr: "EntrePass", category: "elite",
-    tagline: "For founders building innovative or venture-backed businesses in Singapore",
-    badge: { label: "Entrepreneur", color: "#b07fe0", bg: "rgba(176,127,224,0.12)", border: "rgba(176,127,224,0.25)" },
-    levy: "None", quota: "None", validity: "1 yr (new) / 2 yrs (subsequent renewals)", nations: "All nationalities",
-    fields: [
-      { label: "Min. Salary", value: "None — must meet innovation/funding criteria instead" },
-      { label: "Eligibility (meet ≥1)", value: "Funding ≥ S$100K from MAS-licensed VC/angel; IP with SG institution; R&D collaboration; Startup SG recognition" },
-      { label: "Company Requirement", value: "Must be ACRA-registered in Singapore" },
-      { label: "Who Applies", value: "Candidate (self-sponsored)" },
-      { label: "Processing Time", value: "~4–8 weeks (holistic assessment)" },
-    ],
-    notes: "Renewal requires demonstrated business traction — employees hired, revenue generated, investments raised. Provides a pathway to Permanent Residency.",
-  },
-  {
-    id: "spass", name: "S Pass", abbr: "S Pass", category: "skilled",
-    tagline: "For Associate Professionals and Technicians — quota and levy apply",
-    badge: { label: "Mid-Skilled", color: "#4ea3d4", bg: "rgba(78,163,212,0.12)", border: "rgba(78,163,212,0.25)" },
-    levy: "S$650/month (flat, all sectors — from Sep 2025)", quota: "10% (Services) / 15–18% (other sectors)", validity: "Up to 2 years, renewable", nations: "All nationalities",
-    fields: [
-      { label: "Min. Salary (General)", value: "S$3,300/month (from 1 Sep 2025)", hi: true },
-      { label: "Min. Salary (Financial Services)", value: "S$3,800/month (from 1 Sep 2025)", hi: true },
-      { label: "Age-Progressive Max", value: "Up to ~S$4,800+ (general) / ~S$5,650+ (finance) for older workers" },
-      { label: "Levy (Flat Rate from Sep 2025)", value: "S$650/month uniform across all sectors — previous tiered structure abolished" },
-      { label: "Quota", value: "10% of workforce (Services) / 15–18% (Manufacturing, Construction, Marine, Process)" },
-      { label: "Dependent Pass", value: "DP for spouse/children if salary ≥ S$6,000/month" },
-      { label: "Typical Roles", value: "Technicians, supervisors, designers, cooks, specialists, coordinators" },
-    ],
-    notes: "Use Self-Assessment Tool (SAT) before applying — 90% approval rate with positive SAT. Declaring qualifications is optional but must be verified if declared. Renewal thresholds effective 1 Sep 2026.",
-  },
-  {
-    id: "wp", name: "Work Permit (Migrant Worker)", abbr: "WP", category: "workpermit",
-    tagline: "Semi-skilled workers in construction, manufacturing, marine, process and services",
-    badge: { label: "Work Permit", color: "#6ec98f", bg: "rgba(110,201,143,0.12)", border: "rgba(110,201,143,0.25)" },
-    levy: "S$250–S$950/month (varies by sector & skill level)", quota: "Sector-specific DRC limits apply", validity: "Up to 2 years (no max period from Jul 2025)", nations: "Malaysia, NAS, NTS countries, PRC (varies by sector)",
-    fields: [
-      { label: "Eligible Sectors", value: "Construction, Manufacturing, Marine Shipyard, Process (petroleum/petrochemical), Services" },
-      { label: "Min. Salary", value: "No fixed minimum — sector norms apply" },
-      { label: "Age Limit", value: "Min 18; from Jul 2025: max 60 at application, max working age 63" },
-      { label: "Skill Tiers", value: "R1 (Higher-Skilled) = lower levy | R2 (Basic-Skilled) = higher levy" },
-      { label: "Security Bond", value: "S$5,000 per non-Malaysian worker" },
-      { label: "Medical Insurance", value: "Employer must provide ≥ S$60,000 inpatient/day-surgery coverage" },
-      { label: "Application Fee", value: "S$35 per application" },
-      { label: "Dependent Pass", value: "Generally not eligible" },
-    ],
-    notes: "Mandatory safety courses for construction, marine, and process workers. From Jul 2025: maximum employment period removed — workers can stay indefinitely if criteria met. MYE system being phased out.",
-    levyTable: [
-      { sector: "Manufacturing — R1 (Higher-Skilled)", t1: "S$250", t2: "S$370", drc: "Max 60%" },
-      { sector: "Manufacturing — R2 (Basic-Skilled)", t1: "S$370", t2: "S$650", drc: "Max 60%" },
-      { sector: "Services — R1 (Higher-Skilled)", t1: "S$300", t2: "S$450 / S$650", drc: "Max 35%" },
-      { sector: "Services — R2 (Basic-Skilled)", t1: "S$450", t2: "S$650 / S$800", drc: "Max 35%" },
-      { sector: "Construction — R1 (NTS/PRC)", t1: "S$600", t2: "—", drc: "Up to 7:1" },
-      { sector: "Construction — R2 (NTS/PRC)", t1: "S$950", t2: "—", drc: "Up to 7:1" },
-      { sector: "Construction — Malaysia/NAS", t1: "S$300", t2: "—", drc: "Up to 7:1" },
-      { sector: "Marine Shipyard — R1", t1: "S$300", t2: "—", drc: "Sector quota" },
-      { sector: "Marine Shipyard — R2", t1: "S$400 (→S$500 from 2026)", t2: "—", drc: "Sector quota" },
-      { sector: "Process — R1", t1: "S$300", t2: "—", drc: "Max 87%" },
-      { sector: "Process — R2", t1: "S$750 (→~S$900 from 2026)", t2: "—", drc: "Max 87%" },
-    ],
-  },
-  {
-    id: "mdw", name: "Work Permit — Migrant Domestic Worker", abbr: "MDW", category: "workpermit",
-    tagline: "For foreign domestic helpers working in Singapore households",
-    badge: { label: "Work Permit", color: "#6ec98f", bg: "rgba(110,201,143,0.12)", border: "rgba(110,201,143,0.25)" },
-    levy: "S$300/month (S$60 concession for qualifying households)", quota: "None", validity: "Up to 2 years, renewable",
-    nations: "Bangladesh, Cambodia, Hong Kong, India, Indonesia, Macau, Malaysia, Myanmar, Philippines, South Korea, Sri Lanka, Taiwan, Thailand",
-    fields: [
-      { label: "Standard Monthly Levy", value: "S$300/month", hi: true },
-      { label: "Concessionary Levy", value: "S$60/month — SC child <16, elderly SC aged 67+, or PWD (max 2 MDWs)", hi: true },
-      { label: "Min. Age", value: "23 years old" },
-      { label: "Settling-In Programme (SIP)", value: "Mandatory for first-timers; within 7 days of arrival; S$75.70 (incl. GST) borne by employer" },
-      { label: "Medical Exams", value: "6-monthly medical examination required" },
-      { label: "Rest Days", value: "Entitled to 1 rest day per week" },
-      { label: "Processing Time", value: "~1 week" },
-    ],
-    notes: "MDW's work is restricted to the address on the permit — cannot work at other residences. Employer must provide accommodation, food, and pay salary within 7 days. MDW levy income tax relief removed from YA2025.",
-  },
-  {
-    id: "cn", name: "Work Permit — Confinement Nanny", abbr: "CN", category: "workpermit",
-    tagline: "Short-term postnatal care for mother and newborn — Malaysia only",
-    badge: { label: "Work Permit", color: "#6ec98f", bg: "rgba(110,201,143,0.12)", border: "rgba(110,201,143,0.25)" },
-    levy: "None", quota: "None", validity: "Up to 16 weeks from birth", nations: "Malaysia only",
-    fields: [
-      { label: "Duration", value: "Up to 16 weeks from birth of employer's child" },
-      { label: "Purpose", value: "Traditional confinement care for mother and newborn" },
-      { label: "Source Country", value: "Malaysia ONLY", hi: true },
-    ],
-    notes: "Strictly limited to Malaysian nationals. No levy, no quota. Only one confinement nanny per household per birth event.",
-  },
-  {
-    id: "pa", name: "Work Permit — Performing Artiste", abbr: "PA", category: "workpermit",
-    tagline: "For foreign performers in licensed entertainment outlets — scheme ending Jun 2026",
-    badge: { label: "Work Permit", color: "#6ec98f", bg: "rgba(110,201,143,0.12)", border: "rgba(110,201,143,0.25)" },
-    levy: "Applicable (sector rates)", quota: "Applicable", validity: "Up to 1 year",
-    nations: "Approved countries — check MOM",
-    fields: [
-      { label: "Applicable Venues", value: "Bars, hotels, nightclubs, licensed public entertainment outlets" },
-      { label: "⚠️ Scheme Ending", value: "Firm applications CEASE on 1 June 2026", hi: true },
-    ],
-    notes: "The scheme for firms to apply for Work Permit (Performing Artiste) will cease on 1 June 2026. Employers should plan alternative arrangements.",
-  },
-  {
-    id: "tep", name: "Training Employment Pass", abbr: "TEP", category: "training",
-    tagline: "For foreign professionals undergoing practical training in Singapore",
-    badge: { label: "Training", color: "#e07575", bg: "rgba(224,117,117,0.12)", border: "rgba(224,117,117,0.25)" },
-    levy: "None", quota: "None", validity: "Up to 3 months (renewable up to 1 year)", nations: "All nationalities",
-    fields: [
-      { label: "Min. Salary", value: "S$3,000/month", hi: true },
-      { label: "Who Applies", value: "Employer or training institution" },
-      { label: "Purpose", value: "Practical training attachment in Singapore" },
-    ],
-    notes: "Cannot be used for productive work beyond training purposes. Not convertible to a regular EP without a fresh application.",
-  },
-  {
-    id: "twp", name: "Training Work Permit", abbr: "TWP", category: "training",
-    tagline: "For semi-skilled foreign trainees or students undergoing practical training",
-    badge: { label: "Training", color: "#e07575", bg: "rgba(224,117,117,0.12)", border: "rgba(224,117,117,0.25)" },
-    levy: "None", quota: "None", validity: "Up to 6 months", nations: "Approved source countries",
-    fields: [
-      { label: "Duration", value: "Up to 6 months" },
-      { label: "Target", value: "Semi-skilled foreign students or trainees" },
-      { label: "Min. Salary", value: "No fixed minimum" },
-    ],
-    notes: "For practical training only. Cannot be converted to a regular Work Permit.",
-  },
-  {
-    id: "whp1", name: "Work Holiday Pass (Work Holiday Programme)", abbr: "WHP", category: "training",
-    tagline: "For students and graduates aged 18–25 to work and holiday in Singapore",
-    badge: { label: "Holiday", color: "#e07575", bg: "rgba(224,117,117,0.12)", border: "rgba(224,117,117,0.25)" },
-    levy: "None", quota: "None", validity: "6 months", nations: "Selected bilateral agreement countries",
-    fields: [
-      { label: "Age Eligibility", value: "18–25 years old" },
-      { label: "Duration", value: "6 months" },
-      { label: "Who Applies", value: "Pass candidate (self-sponsored)" },
-    ],
-    notes: "Allows students and graduates to work and holiday in Singapore for up to 6 months.",
-  },
-  {
-    id: "whp2", name: "Work Holiday Pass (Work & Holiday Visa Programme)", abbr: "WHP (AU/NZ)", category: "training",
-    tagline: "Bilateral 12-month programme for Australian and New Zealand nationals",
-    badge: { label: "Holiday", color: "#e07575", bg: "rgba(224,117,117,0.12)", border: "rgba(224,117,117,0.25)" },
-    levy: "None", quota: "None", validity: "12 months", nations: "Australia and New Zealand ONLY",
-    fields: [
-      { label: "Age Eligibility", value: "18–30 years old" },
-      { label: "Duration", value: "12 months" },
-      { label: "Source Countries", value: "Australia and New Zealand only", hi: true },
-    ],
-    notes: "Bilateral arrangement under the Work and Holiday Visa Programme. Only available to Australian and New Zealand passport holders.",
-  },
-  {
-    id: "dp", name: "Dependant's Pass", abbr: "DP", category: "family",
-    tagline: "For spouses and unmarried children of eligible EP or S Pass holders",
-    badge: { label: "Family", color: "#7dcfcf", bg: "rgba(130,200,200,0.12)", border: "rgba(130,200,200,0.25)" },
-    levy: "None", quota: "None", validity: "Tied to primary pass holder's validity", nations: "All nationalities",
-    fields: [
-      { label: "Sponsor (EP Holder)", value: "Any EP holder — no minimum salary for EP sponsor" },
-      { label: "Sponsor (S Pass)", value: "S Pass holder earning ≥ S$6,000/month", hi: true },
-      { label: "Who Qualifies", value: "Legally married spouse, unmarried children under 21" },
-      { label: "Work Rights", value: "May work with Letter of Consent (LOC) — no levy or quota applies" },
-      { label: "Application Fee", value: "S$105 (application) + S$60 (issuance)" },
-      { label: "Processing Time", value: "~3 weeks" },
-    ],
-    notes: "DP holders need a Letter of Consent (LOC) from their employer to work. No levy or quota applies to DP+LOC holders.",
-  },
-  {
-    id: "ltvp", name: "Long-Term Visit Pass", abbr: "LTVP", category: "family",
-    tagline: "For extended family members of eligible EP and S Pass holders",
-    badge: { label: "Family", color: "#7dcfcf", bg: "rgba(130,200,200,0.12)", border: "rgba(130,200,200,0.25)" },
-    levy: "None", quota: "None", validity: "Tied to primary pass holder's validity", nations: "All nationalities",
-    fields: [
-      { label: "Who Qualifies", value: "Parents, common-law spouse, stepchildren, or handicapped children" },
-      { label: "Parent Sponsorship", value: "EP holder must earn ≥ S$12,000/month to sponsor parents", hi: true },
-      { label: "Work Rights", value: "May work with Letter of Consent (LOC)" },
-      { label: "Application Fee", value: "S$105 (application) + S$60 (issuance)" },
-    ],
-    notes: "LTVP holders wishing to work must obtain a Letter of Consent through MOM from their employer.",
-  },
-  {
-    id: "mwp", name: "Miscellaneous Work Pass", abbr: "MWP", category: "special",
-    tagline: "For foreign speakers, religious workers, and journalists on short assignments",
-    badge: { label: "Special", color: "#c8c860", bg: "rgba(200,200,100,0.12)", border: "rgba(200,200,100,0.25)" },
-    levy: "None", quota: "None", validity: "Up to 60 days", nations: "All nationalities",
-    fields: [
-      { label: "Duration", value: "Up to 60 days" },
-      { label: "Eligible Activities", value: "Public speaking, religious work, journalism, other short-term assignments" },
-    ],
-    notes: "For short-term work activities only. Cannot be used for regular employment.",
-  },
+const K = { bg:"#0d1117",bg2:"#141b24",bg3:"#1c2634",bd:"#243040",accent:"#e8a03c",blue:"#4ea3d4",green:"#6ec98f",red:"#e07575",purple:"#b07fe0",muted:"#7a8fa6",text:"#d4dde8",head:"#eef3f8" };
+
+const PASSES = [
+  { id:"ep", name:"Employment Pass", abbr:"EP", cat:"pro", tagline:"Foreign PMETs sponsored by a SG employer",
+    levy:"None", quota:"None (COMPASS)", validity:"2 yrs / 3 yrs renewal", nations:"All nationalities",
+    badge:{l:"Professional",c:"#e8a03c",bg:"rgba(232,160,60,0.12)",bd:"rgba(232,160,60,0.25)"},
+    fields:[{l:"Min Salary (General)",v:"S$5,600/month",hi:true},{l:"Min Salary (Fin Services)",v:"S$6,200/month",hi:true},{l:"Age-Progressive Max",v:"Up to S$10,700 / S$11,800 (fin) for mid-40s"},{l:"Framework",v:"COMPASS — must score ≥ 40 pts"},{l:"Dependants",v:"DP for spouse/children; LTVP for parents (≥S$12K/mth)"},{l:"Processing",v:"~10 business days"},{l:"Who Applies",v:"Employer or licensed agency"}],
+    notes:"Employer must advertise on MyCareersFuture 28 days (FCF). Qualifications verified by MOM-approved agency. Renewal thresholds from 1 Jan 2026." },
+  { id:"pep", name:"Personalised Employment Pass", abbr:"PEP", cat:"pro", tagline:"Employer-independent for high-earning professionals",
+    levy:"None", quota:"None", validity:"3 years (NOT renewable)", nations:"All nationalities",
+    badge:{l:"Professional",c:"#e8a03c",bg:"rgba(232,160,60,0.12)",bd:"rgba(232,160,60,0.25)"},
+    fields:[{l:"Min Salary",v:"≥ S$22,500/month last drawn or secured",hi:true},{l:"Flexibility",v:"Switch employers freely; stay in SG up to 6 months between jobs"},{l:"Who Applies",v:"Candidate (self-sponsored)"}],
+    notes:"Non-renewable — must move to EP or ONE Pass after 3 years. COMPASS does not apply." },
+  { id:"one", name:"Overseas Networks & Expertise Pass", abbr:"ONE Pass", cat:"elite", tagline:"World-class talent — multi-employer work permitted",
+    levy:"None", quota:"None", validity:"5 years, renewable", nations:"All nationalities",
+    badge:{l:"Elite",c:"#b07fe0",bg:"rgba(176,127,224,0.12)",bd:"rgba(176,127,224,0.25)"},
+    fields:[{l:"Salary Route",v:"≥ S$30,000/month fixed for last 12 months",hi:true},{l:"Achievements Route",v:"Outstanding track record in business, arts, sports, science or academia"},{l:"Overseas Employer",v:"Market cap ≥ USD 500M or revenue ≥ USD 200M"},{l:"Renewal",v:"Avg S$30K/mth over 5 yrs OR SG co. with ≥5 locals earning ≥S$5K/mth"},{l:"Multi-Employer",v:"Yes — work for multiple companies simultaneously"},{l:"Processing",v:"4–8 weeks"}],
+    notes:"No COMPASS, no quota, no levy. Ideal for global executives, world-class athletes, top researchers, artists." },
+  { id:"entre", name:"EntrePass", abbr:"EntrePass", cat:"elite", tagline:"For founders building innovative or venture-backed businesses",
+    levy:"None", quota:"None", validity:"1 yr (new) / 2 yrs (renewals)", nations:"All nationalities",
+    badge:{l:"Entrepreneur",c:"#b07fe0",bg:"rgba(176,127,224,0.12)",bd:"rgba(176,127,224,0.25)"},
+    fields:[{l:"Min Salary",v:"None — must meet innovation/funding criteria"},{l:"Eligibility (meet ≥1)",v:"Funding ≥S$100K from MAS-licensed VC/angel; IP with SG institution; R&D collab; Startup SG recognition"},{l:"Company",v:"Must be ACRA-registered"},{l:"Processing",v:"4–8 weeks (holistic)"}],
+    notes:"Renewal requires demonstrated traction: employees hired, revenue, investments. Pathway to PR." },
+  { id:"spass", name:"S Pass", abbr:"S Pass", cat:"skilled", tagline:"Associate Professionals & Technicians — quota & levy apply",
+    levy:"S$650/month flat (all sectors, from Sep 2025)", quota:"10% (Services) / 15–18% (others)", validity:"Up to 2 years, renewable", nations:"All nationalities",
+    badge:{l:"Mid-Skilled",c:"#4ea3d4",bg:"rgba(78,163,212,0.12)",bd:"rgba(78,163,212,0.25)"},
+    fields:[{l:"Min Salary (General)",v:"S$3,300/month (from 1 Sep 2025)",hi:true},{l:"Min Salary (Fin Services)",v:"S$3,800/month (from 1 Sep 2025)",hi:true},{l:"Age-Progressive Max",v:"Up to ~S$4,800+ (general) / ~S$5,650+ (fin) for older workers"},{l:"Levy",v:"S$650/month flat — all sectors, previous tiered structure abolished"},{l:"Quota",v:"10% (Services) / 15–18% (Mfg, Construction, Marine, Process)"},{l:"Dependants",v:"DP for spouse/children if salary ≥ S$6,000/month"},{l:"Typical Roles",v:"Technicians, supervisors, designers, cooks, specialists"}],
+    notes:"Use SAT (Self-Assessment Tool) before applying — 90% approval rate with positive SAT. Renewal thresholds from 1 Sep 2026." },
+  { id:"wp", name:"Work Permit (Migrant Worker)", abbr:"WP", cat:"wp", tagline:"Semi-skilled workers in construction, manufacturing, marine, process, services",
+    levy:"S$250–S$950/month (sector & skill level)", quota:"Sector DRC limits", validity:"Up to 2 years (no max from Jul 2025)", nations:"Malaysia, NAS, NTS countries, PRC (varies by sector)",
+    badge:{l:"Work Permit",c:"#6ec98f",bg:"rgba(110,201,143,0.12)",bd:"rgba(110,201,143,0.25)"},
+    fields:[{l:"Eligible Sectors",v:"Construction, Manufacturing, Marine Shipyard, Process, Services"},{l:"Min Salary",v:"No fixed minimum — sector norms apply"},{l:"Age Limit",v:"Min 18; from Jul 2025: max 60 at application, working max age 63"},{l:"Skill Tiers",v:"R1 (Higher-Skilled) = lower levy | R2 (Basic-Skilled) = higher levy"},{l:"Security Bond",v:"S$5,000 per non-Malaysian worker"},{l:"Medical Insurance",v:"Employer must provide ≥ S$60,000 inpatient coverage"},{l:"Dependants",v:"Generally not eligible"}],
+    notes:"Safety courses mandatory for construction, marine, process workers. Max employment period removed Jul 2025. MYE system being phased out.",
+    levyRows:[
+      ["Manufacturing R1","S$250","S$370","Max 60%"],["Manufacturing R2","S$370","S$650","Max 60%"],
+      ["Services R1","S$300","S$450/S$650","Max 35%"],["Services R2","S$450","S$650/S$800","Max 35%"],
+      ["Construction R1 (NTS/PRC)","S$600","—","Up to 7:1"],["Construction R2 (NTS/PRC)","S$950","—","Up to 7:1"],
+      ["Construction Malaysia/NAS","S$300","—","Up to 7:1"],
+      ["Marine Shipyard R1","S$300","—","Sector quota"],["Marine Shipyard R2","S$400 (→S$500 2026)","—","Sector quota"],
+      ["Process R1","S$300","—","Max 87%"],["Process R2","S$750 (→~S$900 2026)","—","Max 87%"],
+    ]},
+  { id:"mdw", name:"Work Permit — Migrant Domestic Worker", abbr:"MDW", cat:"wp", tagline:"Foreign domestic helpers in Singapore households",
+    levy:"S$300/month (S$60 concession available)", quota:"None", validity:"Up to 2 years, renewable",
+    nations:"Bangladesh, Cambodia, Hong Kong, India, Indonesia, Macau, Malaysia, Myanmar, Philippines, South Korea, Sri Lanka, Taiwan, Thailand",
+    badge:{l:"Work Permit",c:"#6ec98f",bg:"rgba(110,201,143,0.12)",bd:"rgba(110,201,143,0.25)"},
+    fields:[{l:"Standard Levy",v:"S$300/month",hi:true},{l:"Concessionary Levy",v:"S$60/month — SC child <16, elderly SC 67+, or PWD (max 2 MDWs)",hi:true},{l:"Min Age",v:"23 years old"},{l:"SIP",v:"Mandatory for first-timers; within 7 days arrival; S$75.70 (incl. GST) by employer"},{l:"Medical Exams",v:"6-monthly required"},{l:"Rest Days",v:"1 rest day per week"},{l:"Processing",v:"~1 week"}],
+    notes:"Work restricted to permit address only. Employer provides accommodation, food, salary within 7 days. MDW levy tax relief removed from YA2025." },
+  { id:"cn", name:"Work Permit — Confinement Nanny", abbr:"CN", cat:"wp", tagline:"Short-term postnatal care — Malaysia only",
+    levy:"None", quota:"None", validity:"Up to 16 weeks from birth", nations:"Malaysia ONLY",
+    badge:{l:"Work Permit",c:"#6ec98f",bg:"rgba(110,201,143,0.12)",bd:"rgba(110,201,143,0.25)"},
+    fields:[{l:"Duration",v:"Up to 16 weeks from birth of employer's child"},{l:"Source Country",v:"Malaysia ONLY",hi:true},{l:"Purpose",v:"Traditional confinement care for mother and newborn"}],
+    notes:"Strictly limited to Malaysian nationals. No levy, no quota. One nanny per household per birth." },
+  { id:"pa", name:"Work Permit — Performing Artiste", abbr:"PA", cat:"wp", tagline:"Performers in licensed entertainment outlets — ending Jun 2026",
+    levy:"Applicable", quota:"Applicable", validity:"Up to 1 year", nations:"Approved countries (check MOM)",
+    badge:{l:"Work Permit",c:"#6ec98f",bg:"rgba(110,201,143,0.12)",bd:"rgba(110,201,143,0.25)"},
+    fields:[{l:"Venues",v:"Bars, hotels, nightclubs, licensed public entertainment outlets"},{l:"⚠️ Scheme Ending",v:"Firm applications CEASE on 1 June 2026",hi:true}],
+    notes:"Scheme for firms to apply ceases 1 June 2026. Employers should plan alternative arrangements." },
+  { id:"tep", name:"Training Employment Pass", abbr:"TEP", cat:"training", tagline:"Foreign professionals undergoing practical training",
+    levy:"None", quota:"None", validity:"Up to 3 months (renewable up to 1 year)", nations:"All nationalities",
+    badge:{l:"Training",c:"#e07575",bg:"rgba(224,117,117,0.12)",bd:"rgba(224,117,117,0.25)"},
+    fields:[{l:"Min Salary",v:"S$3,000/month",hi:true},{l:"Who Applies",v:"Employer or training institution"},{l:"Purpose",v:"Practical training attachment only"}],
+    notes:"Cannot be used for productive work beyond training. Not convertible to EP without fresh application." },
+  { id:"twp", name:"Training Work Permit", abbr:"TWP", cat:"training", tagline:"Semi-skilled trainees or students undergoing practical training",
+    levy:"None", quota:"None", validity:"Up to 6 months", nations:"Approved source countries",
+    badge:{l:"Training",c:"#e07575",bg:"rgba(224,117,117,0.12)",bd:"rgba(224,117,117,0.25)"},
+    fields:[{l:"Duration",v:"Up to 6 months"},{l:"Target",v:"Semi-skilled foreign students or trainees"},{l:"Min Salary",v:"No fixed minimum"}],
+    notes:"For practical training only. Cannot be converted to a regular Work Permit." },
+  { id:"whp1", name:"Work Holiday Pass (Work Holiday Programme)", abbr:"WHP", cat:"training", tagline:"Students & graduates aged 18–25 — work and holiday 6 months",
+    levy:"None", quota:"None", validity:"6 months", nations:"Selected bilateral agreement countries",
+    badge:{l:"Holiday",c:"#e07575",bg:"rgba(224,117,117,0.12)",bd:"rgba(224,117,117,0.25)"},
+    fields:[{l:"Age",v:"18–25 years old"},{l:"Duration",v:"6 months"},{l:"Who Applies",v:"Candidate (self-sponsored)"}],
+    notes:"For students and graduates to work and holiday in Singapore." },
+  { id:"whp2", name:"Work Holiday Pass (Work & Holiday Visa Programme)", abbr:"WHP AU/NZ", cat:"training", tagline:"Australian & New Zealand nationals — 12 months",
+    levy:"None", quota:"None", validity:"12 months", nations:"Australia and New Zealand ONLY",
+    badge:{l:"Holiday",c:"#e07575",bg:"rgba(224,117,117,0.12)",bd:"rgba(224,117,117,0.25)"},
+    fields:[{l:"Age",v:"18–30 years old"},{l:"Duration",v:"12 months"},{l:"Countries",v:"Australia and New Zealand ONLY",hi:true}],
+    notes:"Bilateral arrangement. Only for Australian and New Zealand passport holders." },
+  { id:"dp", name:"Dependant's Pass", abbr:"DP", cat:"family", tagline:"Spouses and children of eligible EP or S Pass holders",
+    levy:"None", quota:"None", validity:"Tied to primary pass validity", nations:"All nationalities",
+    badge:{l:"Family",c:"#7dcfcf",bg:"rgba(130,200,200,0.12)",bd:"rgba(130,200,200,0.25)"},
+    fields:[{l:"Sponsor (EP)",v:"Any EP holder"},{l:"Sponsor (S Pass)",v:"S Pass holder earning ≥ S$6,000/month",hi:true},{l:"Who Qualifies",v:"Legally married spouse, unmarried children under 21"},{l:"Work Rights",v:"May work with Letter of Consent (LOC) — no levy/quota"},{l:"Processing",v:"~3 weeks"}],
+    notes:"DP + LOC holders are not subject to levy or quota." },
+  { id:"ltvp", name:"Long-Term Visit Pass", abbr:"LTVP", cat:"family", tagline:"Extended family members of eligible EP and S Pass holders",
+    levy:"None", quota:"None", validity:"Tied to primary pass validity", nations:"All nationalities",
+    badge:{l:"Family",c:"#7dcfcf",bg:"rgba(130,200,200,0.12)",bd:"rgba(130,200,200,0.25)"},
+    fields:[{l:"Who Qualifies",v:"Parents, common-law spouse, stepchildren, handicapped children"},{l:"Parent Sponsor",v:"EP holder must earn ≥ S$12,000/month",hi:true},{l:"Work Rights",v:"May work with Letter of Consent (LOC)"}],
+    notes:"LTVP holders must obtain LOC from employer to work in Singapore." },
+  { id:"mwp", name:"Miscellaneous Work Pass", abbr:"MWP", cat:"special", tagline:"Speakers, religious workers, journalists on short-term assignments",
+    levy:"None", quota:"None", validity:"Up to 60 days", nations:"All nationalities",
+    badge:{l:"Special",c:"#c8c860",bg:"rgba(200,200,100,0.12)",bd:"rgba(200,200,100,0.25)"},
+    fields:[{l:"Duration",v:"Up to 60 days"},{l:"Activities",v:"Public speaking, religious work, journalism, short-term assignments"}],
+    notes:"For short-term activities only. Cannot be used for regular employment." },
 ];
 
-const CATEGORIES = [
-  { id: "all",         label: "All Passes",         count: PASS_DATA.length },
-  { id: "professional",label: "Professionals",      count: PASS_DATA.filter(p=>p.category==="professional").length },
-  { id: "elite",       label: "Elite & Founders",   count: PASS_DATA.filter(p=>p.category==="elite").length },
-  { id: "skilled",     label: "S Pass",             count: PASS_DATA.filter(p=>p.category==="skilled").length },
-  { id: "workpermit",  label: "Work Permits",       count: PASS_DATA.filter(p=>p.category==="workpermit").length },
-  { id: "training",    label: "Training & Holiday", count: PASS_DATA.filter(p=>p.category==="training").length },
-  { id: "family",      label: "Family Passes",      count: PASS_DATA.filter(p=>p.category==="family").length },
-  { id: "special",     label: "Special",            count: PASS_DATA.filter(p=>p.category==="special").length },
+const CATS = [
+  {id:"all",label:"All",n:PASSES.length},{id:"pro",label:"Professionals",n:2},{id:"elite",label:"Elite & Founders",n:2},
+  {id:"skilled",label:"S Pass",n:1},{id:"wp",label:"Work Permits",n:5},{id:"training",label:"Training & Holiday",n:4},
+  {id:"family",label:"Family",n:2},{id:"special",label:"Special",n:1},
 ];
 
 const EXAMPLES = [
-  "Software engineer from Philippines, earning S$7,000/month, hired full-time by a Singapore technology company. She has a bachelor's degree from a local university.",
-  "Construction foreman from Bangladesh, semi-skilled, hired for a building project in Singapore. He will be doing on-site work and supervision.",
-  "Indonesian woman, 28 years old, applying to work as a live-in domestic helper for a family in Singapore.",
-  "British entrepreneur, 35, wants to start a fintech startup in Singapore. He has raised S$200,000 seed funding from a Singapore-based angel investor.",
-  "Indian supervisor, 32, working in a manufacturing plant, earning S$3,500/month with a diploma in mechanical engineering.",
-  "Australian former Olympian sprinter, 29, wants to join a Singapore athletics association as head coach.",
+  "Software engineer from Philippines, S$7,000/month, hired by a Singapore tech company, bachelor's degree.",
+  "Construction foreman from Bangladesh, semi-skilled, hired for a building project in Singapore.",
+  "Indonesian woman, 28, applying as a live-in domestic helper for a Singapore family.",
+  "British entrepreneur, 35, starting a fintech in Singapore with S$200K seed from a local angel investor.",
+  "Indian supervisor, 32, manufacturing plant, S$3,500/month, diploma in mechanical engineering.",
+  "Australian former Olympian, 29, joining Singapore athletics association as head coach.",
 ];
 
-const SYSTEM_PROMPT = `You are a Singapore MOM work pass expert (2025–2026). Identify the best Singapore work pass for a given candidate/role.
-Respond ONLY with valid JSON, no markdown:
-{"primary_pass":"Full name (ABBR)","primary_rationale":"2-3 sentences","alternative_passes":["name"],"alternative_rationale":"brief or empty","eligibility_status":"eligible|likely_eligible|needs_more_info|ineligible","key_requirements":[{"label":"x","value":"y"}],"levy_applicable":true,"levy_amount":"S$X/month or None","quota_applicable":false,"quota_info":"details or None","validity":"duration","warnings":["w1"],"next_steps":["s1","s2"]}
-2025 rules: EP min S$5,600/mth (S$6,200 fin), COMPASS, no levy/quota. S Pass min S$3,300/mth (S$3,800 fin), S$650/mth flat levy, 10-15% quota. WP construction/manufacturing/marine/process/services only, approved countries, levy S$250-S$950/mth. MDW 13 countries S$300/mth levy (S$60 concession). ONE Pass S$30,000/mth or achievements, 5yr multi-employer. PEP S$22,500/mth 3yr non-renewable. EntrePass innovative startup funding/IP criteria. TEP S$3,000/mth. WHP 18-25 6mths or AU/NZ 18-30 12mths. Confinement Nanny Malaysia only 16wks.`;
+const PROMPT = `You are a Singapore MOM work pass expert (2025–2026). Identify the best work pass for the described candidate.
+Return ONLY valid JSON (no markdown):
+{"primary_pass":"Name (ABBR)","primary_rationale":"2-3 sentences","alternative_passes":["name"],"alternative_rationale":"brief or empty","eligibility_status":"eligible|likely_eligible|needs_more_info|ineligible","key_requirements":[{"label":"x","value":"y"}],"levy_applicable":true,"levy_amount":"S$X/month or None","quota_applicable":false,"quota_info":"details or None","validity":"duration","warnings":["w"],"next_steps":["s"]}
+Rules: EP min S$5,600/mth (S$6,200 fin), COMPASS, no levy/quota. S Pass min S$3,300/mth (S$3,800 fin), S$650/mth flat levy, 10-15% quota. WP construction/mfg/marine/process/services, approved countries, levy S$250-S$950. MDW 13 countries S$300/mth (S$60 concession). ONE Pass S$30K/mth or achievements, 5yr multi-employer. PEP S$22,500/mth 3yr non-renewable. EntrePass startup/funding/IP. TEP S$3K/mth. WHP 18-25 6mths or AU/NZ 18-30 12mths. CN Malaysia only 16wks.`;
 
-const SC = {
-  eligible:        { label: "✓ Eligible",        color: "#6ec98f", bg: "rgba(110,201,143,0.12)", border: "rgba(110,201,143,0.3)" },
-  likely_eligible: { label: "~ Likely Eligible",  color: "#e8a03c", bg: "rgba(232,160,60,0.12)",  border: "rgba(232,160,60,0.3)"  },
-  needs_more_info: { label: "? More Info Needed", color: "#4ea3d4", bg: "rgba(78,163,212,0.12)",  border: "rgba(78,163,212,0.3)"  },
-  ineligible:      { label: "✗ Ineligible",       color: "#e07575", bg: "rgba(224,117,117,0.1)",  border: "rgba(224,117,117,0.25)"},
+const STATUS = {
+  eligible:{l:"✓ Eligible",c:"#6ec98f",bg:"rgba(110,201,143,0.12)",bd:"rgba(110,201,143,0.3)"},
+  likely_eligible:{l:"~ Likely Eligible",c:"#e8a03c",bg:"rgba(232,160,60,0.12)",bd:"rgba(232,160,60,0.3)"},
+  needs_more_info:{l:"? More Info Needed",c:"#4ea3d4",bg:"rgba(78,163,212,0.12)",bd:"rgba(78,163,212,0.3)"},
+  ineligible:{l:"✗ Ineligible",c:"#e07575",bg:"rgba(224,117,117,0.1)",bd:"rgba(224,117,117,0.25)"},
 };
 
-const K = { bg:"#0d1117", bg2:"#141b24", bg3:"#1c2634", bd:"#243040", accent:"#e8a03c", blue:"#4ea3d4", green:"#6ec98f", red:"#e07575", purple:"#b07fe0", muted:"#7a8fa6", text:"#d4dde8", head:"#eef3f8" };
-
-// ── Pass Card ──────────────────────────────────
-function PassCard({ pass }) {
-  const [open, setOpen] = useState(false);
+function PassCard({p}) {
+  const [open,setOpen]=useState(false);
   return (
-    <div style={{ background: K.bg2, border: `1px solid ${K.bd}`, borderRadius: 10, overflow: "hidden" }}
+    <div style={{background:K.bg2,border:`1px solid ${K.bd}`,borderRadius:10,overflow:"hidden",transition:"border-color 0.2s"}}
       onMouseEnter={e=>e.currentTarget.style.borderColor="rgba(232,160,60,0.3)"}
       onMouseLeave={e=>e.currentTarget.style.borderColor=K.bd}>
-
-      <div style={{ display:"flex", alignItems:"flex-start", gap:10, padding:"13px 15px", cursor:"pointer" }} onClick={()=>setOpen(o=>!o)}>
-        <span style={{ padding:"2px 8px", borderRadius:4, fontSize:10, fontWeight:700, letterSpacing:1, textTransform:"uppercase", color:pass.badge.color, background:pass.badge.bg, border:`1px solid ${pass.badge.border}`, flexShrink:0, marginTop:2 }}>{pass.badge.label}</span>
-        <div style={{ flex:1, minWidth:0 }}>
-          <div style={{ fontSize:14, fontWeight:700, color:K.head }}>{pass.name}</div>
-          <div style={{ fontSize:12, color:K.muted, marginTop:2 }}>{pass.tagline}</div>
+      <div style={{display:"flex",alignItems:"flex-start",gap:10,padding:"12px 14px",cursor:"pointer"}} onClick={()=>setOpen(o=>!o)}>
+        <span style={{padding:"2px 7px",borderRadius:4,fontSize:10,fontWeight:700,letterSpacing:1,textTransform:"uppercase",color:p.badge.c,background:p.badge.bg,border:`1px solid ${p.badge.bd}`,flexShrink:0,marginTop:2}}>{p.badge.l}</span>
+        <div style={{flex:1,minWidth:0}}>
+          <div style={{fontSize:14,fontWeight:700,color:K.head}}>{p.name}</div>
+          <div style={{fontSize:12,color:K.muted,marginTop:1}}>{p.tagline}</div>
         </div>
-        <span style={{ color:K.muted, fontSize:18, flexShrink:0, transform:open?"rotate(90deg)":"none", transition:"transform 0.2s", marginTop:1 }}>›</span>
+        <span style={{color:K.muted,fontSize:18,flexShrink:0,transform:open?"rotate(90deg)":"none",transition:"transform 0.2s"}}>›</span>
       </div>
-
-      <div style={{ display:"flex", gap:6, flexWrap:"wrap", padding:"0 15px 12px" }}>
-        {[
-          { k:"Levy",      v:pass.levy,    c:pass.levy==="None"?K.green:K.accent },
-          { k:"Quota",     v:pass.quota,   c:pass.quota==="None"?K.green:K.accent },
-          { k:"Validity",  v:pass.validity,c:K.blue },
-          { k:"Countries", v:pass.nations.length>42?"Multiple approved countries":pass.nations, c:K.muted },
-        ].map((item,i)=>(
-          <div key={i} style={{ background:K.bg3, borderRadius:6, padding:"3px 9px", display:"flex", gap:5, alignItems:"center" }}>
-            <span style={{ fontSize:10, color:K.muted }}>{item.k}:</span>
-            <span style={{ fontSize:11, fontWeight:600, color:item.c }}>{item.v}</span>
+      <div style={{display:"flex",gap:5,flexWrap:"wrap",padding:"0 14px 11px"}}>
+        {[{k:"Levy",v:p.levy,c:p.levy==="None"?K.green:K.accent},{k:"Quota",v:p.quota,c:p.quota==="None"?K.green:K.accent},{k:"Validity",v:p.validity,c:K.blue},{k:"Countries",v:p.nations.length>45?"Multiple approved":p.nations,c:K.muted}].map((x,i)=>(
+          <div key={i} style={{background:K.bg3,borderRadius:5,padding:"3px 8px",display:"flex",gap:4,alignItems:"center"}}>
+            <span style={{fontSize:10,color:K.muted}}>{x.k}:</span>
+            <span style={{fontSize:11,fontWeight:600,color:x.c}}>{x.v}</span>
           </div>
         ))}
       </div>
-
       {open && (
-        <div style={{ borderTop:`1px solid ${K.bd}`, padding:"13px 15px", background:"rgba(0,0,0,0.12)" }}>
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit, minmax(195px, 1fr))", gap:7, marginBottom:11 }}>
-            {pass.fields.map((f,i)=>(
-              <div key={i} style={{ background:K.bg2, borderRadius:7, padding:"8px 11px" }}>
-                <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1, color:K.muted, marginBottom:2 }}>{f.label}</div>
-                <div style={{ fontSize:12, color:f.hi?K.accent:K.head, fontWeight:f.hi?600:400, lineHeight:1.5 }}>{f.value}</div>
+        <div style={{borderTop:`1px solid ${K.bd}`,padding:"12px 14px",background:"rgba(0,0,0,0.12)"}}>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(190px,1fr))",gap:6,marginBottom:10}}>
+            {p.fields.map((f,i)=>(
+              <div key={i} style={{background:K.bg2,borderRadius:6,padding:"7px 10px"}}>
+                <div style={{fontSize:10,textTransform:"uppercase",letterSpacing:1,color:K.muted,marginBottom:2}}>{f.l}</div>
+                <div style={{fontSize:12,color:f.hi?K.accent:K.head,fontWeight:f.hi?600:400,lineHeight:1.5}}>{f.v}</div>
               </div>
             ))}
           </div>
-
-          {pass.levyTable && (
-            <div style={{ marginBottom:11 }}>
-              <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1, color:K.muted, marginBottom:7 }}>Levy Rates by Sector</div>
-              <div style={{ overflowX:"auto", borderRadius:7, border:`1px solid ${K.bd}` }}>
-                <table style={{ width:"100%", borderCollapse:"collapse", fontSize:12 }}>
-                  <thead>
-                    <tr style={{ background:"rgba(0,0,0,0.25)" }}>
-                      {["Sector / Skill Level","Tier 1","Tier 2","DRC Limit"].map(h=>(
-                        <th key={h} style={{ padding:"7px 11px", textAlign:"left", fontSize:10, textTransform:"uppercase", letterSpacing:1, color:K.muted, borderBottom:`1px solid ${K.bd}`, whiteSpace:"nowrap" }}>{h}</th>
-                      ))}
+          {p.levyRows && (
+            <div style={{marginBottom:10}}>
+              <div style={{fontSize:10,textTransform:"uppercase",letterSpacing:1,color:K.muted,marginBottom:6}}>Levy Rates by Sector</div>
+              <div style={{overflowX:"auto",borderRadius:6,border:`1px solid ${K.bd}`}}>
+                <table style={{width:"100%",borderCollapse:"collapse",fontSize:11}}>
+                  <thead><tr style={{background:"rgba(0,0,0,0.25)"}}>
+                    {["Sector / Skill","Tier 1","Tier 2","DRC"].map(h=><th key={h} style={{padding:"6px 10px",textAlign:"left",fontSize:10,textTransform:"uppercase",letterSpacing:0.8,color:K.muted,borderBottom:`1px solid ${K.bd}`,whiteSpace:"nowrap"}}>{h}</th>)}
+                  </tr></thead>
+                  <tbody>{p.levyRows.map((r,i)=>(
+                    <tr key={i} style={{borderBottom:i<p.levyRows.length-1?`1px solid rgba(36,48,64,0.5)`:"none"}}>
+                      <td style={{padding:"6px 10px",color:K.text}}>{r[0]}</td>
+                      <td style={{padding:"6px 10px",color:K.accent,fontWeight:700}}>{r[1]}</td>
+                      <td style={{padding:"6px 10px",color:r[2]==="—"?K.muted:K.accent,fontWeight:r[2]!=="—"?700:400}}>{r[2]}</td>
+                      <td style={{padding:"6px 10px",color:K.blue}}>{r[3]}</td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    {pass.levyTable.map((row,i)=>(
-                      <tr key={i} style={{ borderBottom:i<pass.levyTable.length-1?`1px solid rgba(36,48,64,0.5)`:"none" }}>
-                        <td style={{ padding:"7px 11px", color:K.text }}>{row.sector}</td>
-                        <td style={{ padding:"7px 11px", color:K.accent, fontWeight:700 }}>{row.t1}</td>
-                        <td style={{ padding:"7px 11px", color:row.t2==="—"?K.muted:K.accent, fontWeight:row.t2!=="—"?700:400 }}>{row.t2}</td>
-                        <td style={{ padding:"7px 11px", color:K.blue }}>{row.drc}</td>
-                      </tr>
-                    ))}
-                  </tbody>
+                  ))}</tbody>
                 </table>
               </div>
             </div>
           )}
-
-          {pass.nations.length > 42 && (
-            <div style={{ marginBottom:11 }}>
-              <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1, color:K.muted, marginBottom:7 }}>Approved Source Countries</div>
-              <div style={{ display:"flex", flexWrap:"wrap", gap:5 }}>
-                {pass.nations.split(", ").map((c,i)=>(
-                  <span key={i} style={{ background:K.bg3, border:`1px solid ${K.bd}`, borderRadius:5, padding:"3px 9px", fontSize:11, color:K.text }}>{c}</span>
-                ))}
+          {p.nations.length>45 && (
+            <div style={{marginBottom:10}}>
+              <div style={{fontSize:10,textTransform:"uppercase",letterSpacing:1,color:K.muted,marginBottom:6}}>Approved Source Countries</div>
+              <div style={{display:"flex",flexWrap:"wrap",gap:4}}>
+                {p.nations.split(", ").map((c,i)=><span key={i} style={{background:K.bg3,border:`1px solid ${K.bd}`,borderRadius:4,padding:"2px 8px",fontSize:11,color:K.text}}>{c}</span>)}
               </div>
             </div>
           )}
-
-          {pass.notes && (
-            <div style={{ background:"rgba(232,160,60,0.06)", border:"1px solid rgba(232,160,60,0.15)", borderRadius:7, padding:"8px 11px", fontSize:12, color:K.text, lineHeight:1.6 }}>
-              <span style={{ color:K.accent, fontWeight:600 }}>Note: </span>{pass.notes}
-            </div>
-          )}
+          {p.notes && <div style={{background:"rgba(232,160,60,0.06)",border:"1px solid rgba(232,160,60,0.15)",borderRadius:6,padding:"7px 10px",fontSize:12,color:K.text,lineHeight:1.6}}><span style={{color:K.accent,fontWeight:600}}>Note: </span>{p.notes}</div>}
         </div>
       )}
     </div>
   );
 }
 
-// ── Browse Tab ─────────────────────────────────
 function BrowseTab() {
-  const [cat, setCat]     = useState("all");
-  const [search, setSearch] = useState("");
-  const filtered = PASS_DATA.filter(p => {
-    const mc = cat === "all" || p.category === cat;
-    const q  = search.toLowerCase();
-    const ms = !q || p.name.toLowerCase().includes(q) || p.abbr.toLowerCase().includes(q) || p.tagline.toLowerCase().includes(q);
-    return mc && ms;
-  });
-
+  const [cat,setCat]=useState("all");
+  const [q,setQ]=useState("");
+  const list=PASSES.filter(p=>(cat==="all"||p.cat===cat)&&(!q||p.name.toLowerCase().includes(q.toLowerCase())||p.abbr.toLowerCase().includes(q.toLowerCase())||p.tagline.toLowerCase().includes(q.toLowerCase())));
   return (
-    <div style={{ padding:"22px 26px" }}>
-      <input value={search} onChange={e=>setSearch(e.target.value)}
-        placeholder="Search by pass name, abbreviation, or keyword…"
-        style={{ width:"100%", maxWidth:580, background:K.bg2, border:`1px solid ${K.bd}`, borderRadius:8, padding:"8px 13px", color:K.head, fontSize:13, fontFamily:"inherit", outline:"none", boxSizing:"border-box", marginBottom:14 }}
-      />
-      <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:18 }}>
-        {CATEGORIES.map(c=>(
-          <button key={c.id} onClick={()=>setCat(c.id)} style={{
-            padding:"4px 12px", borderRadius:20, fontSize:12, fontWeight:cat===c.id?700:400,
-            border:`1px solid ${cat===c.id?K.blue:K.bd}`,
-            background:cat===c.id?"rgba(78,163,212,0.15)":"transparent",
-            color:cat===c.id?K.blue:K.muted,
-            cursor:"pointer", fontFamily:"inherit"
-          }}>
-            {c.label} <span style={{ opacity:0.6, fontSize:10 }}>({c.count})</span>
-          </button>
-        ))}
+    <div style={{padding:"20px 24px"}}>
+      <input value={q} onChange={e=>setQ(e.target.value)} placeholder="Search passes by name, abbreviation, or keyword…"
+        style={{width:"100%",maxWidth:560,background:K.bg2,border:`1px solid ${K.bd}`,borderRadius:7,padding:"8px 12px",color:K.head,fontSize:13,fontFamily:"inherit",outline:"none",boxSizing:"border-box",marginBottom:12}}/>
+      <div style={{display:"flex",gap:5,flexWrap:"wrap",marginBottom:16}}>
+        {CATS.map(c=><button key={c.id} onClick={()=>setCat(c.id)} style={{padding:"4px 11px",borderRadius:20,fontSize:11,fontWeight:cat===c.id?700:400,border:`1px solid ${cat===c.id?K.blue:K.bd}`,background:cat===c.id?"rgba(78,163,212,0.15)":"transparent",color:cat===c.id?K.blue:K.muted,cursor:"pointer",fontFamily:"inherit"}}>{c.label} ({c.n})</button>)}
       </div>
-      <div style={{ fontSize:12, color:K.muted, marginBottom:12 }}>{filtered.length} pass{filtered.length!==1?"es":""} shown — click any card to expand full details</div>
-      <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
-        {filtered.length===0
-          ? <div style={{ color:K.muted, fontSize:13, padding:"20px 0" }}>No passes match your search.</div>
-          : filtered.map(p=><PassCard key={p.id} pass={p}/>)}
+      <div style={{fontSize:11,color:K.muted,marginBottom:10}}>{list.length} pass{list.length!==1?"es":""} — click to expand</div>
+      <div style={{display:"flex",flexDirection:"column",gap:7}}>
+        {list.length===0?<div style={{color:K.muted,fontSize:13,padding:"16px 0"}}>No passes match.</div>:list.map(p=><PassCard key={p.id} p={p}/>)}
       </div>
     </div>
   );
 }
 
-// ── Advisor Tab ────────────────────────────────
 function AdvisorTab() {
-  const [query,   setQuery]   = useState("");
-  const [result,  setResult]  = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error,   setError]   = useState("");
-  const ref = useRef(null);
+  const [query,setQuery]=useState("");
+  const [result,setResult]=useState(null);
+  const [loading,setLoading]=useState(false);
+  const [error,setError]=useState("");
+  const ref=useRef(null);
 
-  const analyse = async () => {
-    const q = query.trim();
-    if (!q || loading) return;
-    setLoading(true); setError(""); setResult(null);
+  const run=async()=>{
+    const q=query.trim();
+    if(!q||loading)return;
+    setLoading(true);setError("");setResult(null);
     try {
-      const res  = await fetch("https://api.anthropic.com/v1/messages", {
-        method:"POST", headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({ model:"claude-sonnet-4-20250514", max_tokens:1000, system:SYSTEM_PROMPT, messages:[{role:"user",content:q}] })
-      });
-      const data = await res.json();
-      const raw  = data.content?.map(b=>b.text||"").join("")||"";
+      const res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,system:PROMPT,messages:[{role:"user",content:q}]})});
+      const data=await res.json();
+      const raw=data.content?.map(b=>b.text||"").join("")||"";
       setResult(JSON.parse(raw.replace(/```json|```/g,"").trim()));
-    } catch { setError("Something went wrong. Please try again."); }
-    finally { setLoading(false); }
+    } catch{setError("Something went wrong — please try again.");}
+    finally{setLoading(false);}
   };
 
-  const sc = result ? (SC[result.eligibility_status]||SC.needs_more_info) : null;
+  const sc=result?(STATUS[result.eligibility_status]||STATUS.needs_more_info):null;
 
   return (
-    <div style={{ padding:"22px 26px" }}>
-      <p style={{ color:K.muted, fontSize:13, margin:"0 0 16px", maxWidth:600 }}>Describe the candidate's role, salary, nationality, and purpose of hire. The AI will match them against all 18 MOM-regulated pass types.</p>
-
-      <div style={{ background:K.bg2, border:`1px solid ${K.bd}`, borderRadius:12, maxWidth:740, overflow:"hidden", marginBottom:14 }}>
+    <div style={{padding:"20px 24px"}}>
+      <p style={{color:K.muted,fontSize:13,margin:"0 0 14px",maxWidth:580}}>Describe the candidate's role, salary, nationality, and purpose of hire. The AI identifies the applicable pass from all 16 MOM pass types.</p>
+      <div style={{background:K.bg2,border:`1px solid ${K.bd}`,borderRadius:11,maxWidth:720,overflow:"hidden",marginBottom:12}}>
         <textarea ref={ref} value={query} onChange={e=>setQuery(e.target.value)}
-          onKeyDown={e=>{if(e.key==="Enter"&&(e.ctrlKey||e.metaKey))analyse();}}
+          onKeyDown={e=>{if(e.key==="Enter"&&(e.ctrlKey||e.metaKey))run();}}
           placeholder={"e.g. Software engineer from India, S$7,000/month, hired by a Singapore tech firm…\n\nOr: Construction worker from Bangladesh for a project in Toa Payoh…"}
-          style={{ width:"100%", background:"transparent", border:"none", outline:"none", color:K.head, fontFamily:"inherit", fontSize:14, lineHeight:1.65, resize:"none", padding:"13px 15px 10px", minHeight:92, display:"block", boxSizing:"border-box" }}
-        />
-        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"8px 15px 12px", borderTop:`1px solid ${K.bd}` }}>
-          <span style={{ fontSize:11, color:K.muted }}>Ctrl + Enter to submit</span>
-          <button onClick={analyse} disabled={loading||!query.trim()} style={{
-            background:loading||!query.trim()?"#3a3a5a":K.purple,
-            color:loading||!query.trim()?"#555":"#fff",
-            border:"none", borderRadius:8, padding:"7px 20px", fontSize:13, fontWeight:600,
-            cursor:loading||!query.trim()?"not-allowed":"pointer", fontFamily:"inherit", whiteSpace:"nowrap"
-          }}>{loading?"Analysing…":"Analyse →"}</button>
+          style={{width:"100%",background:"transparent",border:"none",outline:"none",color:K.head,fontFamily:"inherit",fontSize:13,lineHeight:1.65,resize:"none",padding:"13px 14px 9px",minHeight:90,display:"block",boxSizing:"border-box"}}/>
+        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"8px 14px 11px",borderTop:`1px solid ${K.bd}`}}>
+          <span style={{fontSize:11,color:K.muted}}>Ctrl + Enter to submit</span>
+          <button onClick={run} disabled={loading||!query.trim()} style={{background:loading||!query.trim()?"#3a3a5a":K.purple,color:loading||!query.trim()?"#555":"#fff",border:"none",borderRadius:7,padding:"7px 18px",fontSize:13,fontWeight:600,cursor:loading||!query.trim()?"not-allowed":"pointer",fontFamily:"inherit",whiteSpace:"nowrap"}}>{loading?"Analysing…":"Analyse →"}</button>
         </div>
-        <div style={{ display:"flex", flexWrap:"wrap", gap:6, padding:"8px 15px 12px", borderTop:`1px solid ${K.bd}`, alignItems:"center" }}>
-          <span style={{ fontSize:11, color:K.muted, marginRight:2 }}>Try:</span>
-          {["Tech pro, S$6K, Filipino","Factory worker, Bangladesh","Domestic helper, Indonesian","Startup founder, British","Supervisor S$3.5K, Indian","Olympic athlete, Australian"].map((label,i)=>(
-            <button key={i} onClick={()=>{setQuery(EXAMPLES[i]);ref.current?.focus();}} style={{
-              background:"rgba(255,255,255,0.04)", border:`1px solid ${K.bd}`, borderRadius:20,
-              padding:"3px 10px", fontSize:11, color:K.muted, cursor:"pointer", fontFamily:"inherit"
-            }}
-            onMouseEnter={e=>{e.target.style.background="rgba(176,127,224,0.1)";e.target.style.color=K.text;}}
-            onMouseLeave={e=>{e.target.style.background="rgba(255,255,255,0.04)";e.target.style.color=K.muted;}}
-            >{label}</button>
+        <div style={{display:"flex",flexWrap:"wrap",gap:5,padding:"8px 14px 11px",borderTop:`1px solid ${K.bd}`,alignItems:"center"}}>
+          <span style={{fontSize:11,color:K.muted,marginRight:2}}>Try:</span>
+          {["Tech pro, S$6K, Filipino","Factory worker, Bangladesh","Domestic helper, Indonesian","Startup founder, British","Supervisor S$3.5K, Indian","Olympic athlete, Australian"].map((lbl,i)=>(
+            <button key={i} onClick={()=>{setQuery(EXAMPLES[i]);ref.current?.focus();}} style={{background:"rgba(255,255,255,0.04)",border:`1px solid ${K.bd}`,borderRadius:20,padding:"3px 9px",fontSize:11,color:K.muted,cursor:"pointer",fontFamily:"inherit"}}
+              onMouseEnter={e=>{e.target.style.background="rgba(176,127,224,0.1)";e.target.style.color=K.text;}}
+              onMouseLeave={e=>{e.target.style.background="rgba(255,255,255,0.04)";e.target.style.color=K.muted;}}>{lbl}</button>
           ))}
         </div>
       </div>
 
-      {loading && (
-        <div style={{ maxWidth:740, background:K.bg2, border:`1px solid ${K.bd}`, borderRadius:12, padding:"16px 18px", display:"flex", alignItems:"center", gap:10 }}>
-          {[0,1,2].map(i=><div key={i} style={{ width:7, height:7, borderRadius:"50%", background:K.purple, animation:"pulse 1.2s ease-in-out infinite", animationDelay:`${i*0.2}s` }}/>)}
-          <span style={{ color:K.muted, fontSize:13 }}>Analysing against all MOM pass criteria…</span>
-        </div>
-      )}
+      {loading&&<div style={{maxWidth:720,background:K.bg2,border:`1px solid ${K.bd}`,borderRadius:11,padding:"15px 16px",display:"flex",alignItems:"center",gap:9}}>
+        {[0,1,2].map(i=><div key={i} style={{width:7,height:7,borderRadius:"50%",background:K.purple,animation:"pulse 1.2s ease-in-out infinite",animationDelay:`${i*0.2}s`}}/>)}
+        <span style={{color:K.muted,fontSize:13}}>Analysing against all MOM pass criteria…</span>
+      </div>}
 
-      {error && <div style={{ maxWidth:740, background:"rgba(224,117,117,0.08)", border:"1px solid rgba(224,117,117,0.25)", borderRadius:12, padding:"13px 16px", color:K.red, fontSize:13 }}>⚠️ {error}</div>}
+      {error&&<div style={{maxWidth:720,background:"rgba(224,117,117,0.08)",border:"1px solid rgba(224,117,117,0.25)",borderRadius:11,padding:"12px 15px",color:K.red,fontSize:13}}>⚠️ {error}</div>}
 
-      {result && !loading && (
-        <div style={{ maxWidth:740, background:K.bg2, border:`1px solid ${K.bd}`, borderRadius:12, overflow:"hidden" }}>
-          <div style={{ display:"flex", alignItems:"center", gap:10, padding:"12px 16px", background:"rgba(176,127,224,0.06)", borderBottom:`1px solid ${K.bd}`, flexWrap:"wrap" }}>
-            <span style={{ fontSize:18 }}>🧠</span>
-            <div style={{ flex:1, minWidth:0 }}>
-              <div style={{ fontSize:13, fontWeight:600, color:K.head }}>AI Work Pass Analysis</div>
-              <div style={{ fontSize:11, color:K.muted, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>"{query.substring(0,80)}{query.length>80?"…":""}"</div>
+      {result&&!loading&&(
+        <div style={{maxWidth:720,background:K.bg2,border:`1px solid ${K.bd}`,borderRadius:11,overflow:"hidden"}}>
+          <div style={{display:"flex",alignItems:"center",gap:9,padding:"11px 15px",background:"rgba(176,127,224,0.06)",borderBottom:`1px solid ${K.bd}`,flexWrap:"wrap"}}>
+            <span style={{fontSize:17}}>🧠</span>
+            <div style={{flex:1,minWidth:0}}>
+              <div style={{fontSize:13,fontWeight:600,color:K.head}}>AI Work Pass Analysis</div>
+              <div style={{fontSize:11,color:K.muted,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>"{query.substring(0,75)}{query.length>75?"…":""}"</div>
             </div>
-            <span style={{ padding:"3px 10px", borderRadius:20, fontSize:12, fontWeight:700, color:sc.color, background:sc.bg, border:`1px solid ${sc.border}`, whiteSpace:"nowrap" }}>{sc.label}</span>
+            <span style={{padding:"3px 10px",borderRadius:20,fontSize:11,fontWeight:700,color:sc.c,background:sc.bg,border:`1px solid ${sc.bd}`,whiteSpace:"nowrap"}}>{sc.l}</span>
           </div>
-          <div style={{ padding:"16px 18px" }}>
-            <div style={{ marginBottom:14 }}>
-              <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1.2, color:K.muted, marginBottom:6 }}>Recommended Pass</div>
-              <div style={{ display:"inline-flex", padding:"4px 13px", borderRadius:20, background:"rgba(176,127,224,0.15)", border:"1px solid rgba(176,127,224,0.35)", color:K.purple, fontWeight:700, fontSize:13, marginBottom:8 }}>★ {result.primary_pass}</div>
-              <p style={{ color:K.text, fontSize:13, lineHeight:1.7, margin:0 }}>{result.primary_rationale}</p>
+          <div style={{padding:"15px 16px"}}>
+            <div style={{marginBottom:13}}>
+              <div style={{fontSize:10,textTransform:"uppercase",letterSpacing:1.2,color:K.muted,marginBottom:5}}>Recommended Pass</div>
+              <div style={{display:"inline-flex",padding:"4px 12px",borderRadius:20,background:"rgba(176,127,224,0.15)",border:"1px solid rgba(176,127,224,0.35)",color:K.purple,fontWeight:700,fontSize:13,marginBottom:7}}>★ {result.primary_pass}</div>
+              <p style={{color:K.text,fontSize:13,lineHeight:1.7,margin:0}}>{result.primary_rationale}</p>
             </div>
-
-            {result.key_requirements?.length>0 && (
-              <div style={{ marginBottom:12 }}>
-                <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1.2, color:K.muted, marginBottom:6 }}>Key Requirements</div>
-                <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit, minmax(150px, 1fr))", gap:6 }}>
-                  {result.key_requirements.map((kv,i)=>(
-                    <div key={i} style={{ background:"rgba(0,0,0,0.2)", borderRadius:7, padding:"7px 11px" }}>
-                      <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1, color:K.muted, marginBottom:2 }}>{kv.label}</div>
-                      <div style={{ fontSize:12, color:K.head, fontWeight:500 }}>{kv.value}</div>
+            {result.key_requirements?.length>0&&(
+              <div style={{marginBottom:11}}>
+                <div style={{fontSize:10,textTransform:"uppercase",letterSpacing:1.2,color:K.muted,marginBottom:5}}>Key Requirements</div>
+                <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(145px,1fr))",gap:5}}>
+                  {[...result.key_requirements,{label:"Monthly Levy",value:result.levy_amount||"None"},{label:"Quota",value:result.quota_applicable?result.quota_info:"None"},{label:"Validity",value:result.validity}].map((kv,i)=>(
+                    <div key={i} style={{background:"rgba(0,0,0,0.2)",borderRadius:6,padding:"7px 10px"}}>
+                      <div style={{fontSize:10,textTransform:"uppercase",letterSpacing:0.8,color:K.muted,marginBottom:2}}>{kv.label}</div>
+                      <div style={{fontSize:12,color:kv.label==="Monthly Levy"?(result.levy_applicable?K.accent:K.green):kv.label==="Quota"?(result.quota_applicable?K.accent:K.green):K.head,fontWeight:500}}>{kv.value}</div>
                     </div>
                   ))}
-                  <div style={{ background:"rgba(0,0,0,0.2)", borderRadius:7, padding:"7px 11px" }}>
-                    <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1, color:K.muted, marginBottom:2 }}>Monthly Levy</div>
-                    <div style={{ fontSize:12, fontWeight:600, color:result.levy_applicable?K.accent:K.green }}>{result.levy_amount||"None"}</div>
-                  </div>
-                  <div style={{ background:"rgba(0,0,0,0.2)", borderRadius:7, padding:"7px 11px" }}>
-                    <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1, color:K.muted, marginBottom:2 }}>Quota</div>
-                    <div style={{ fontSize:12, fontWeight:500, color:result.quota_applicable?K.accent:K.green }}>{result.quota_applicable?result.quota_info:"None"}</div>
-                  </div>
-                  <div style={{ background:"rgba(0,0,0,0.2)", borderRadius:7, padding:"7px 11px" }}>
-                    <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1, color:K.muted, marginBottom:2 }}>Validity</div>
-                    <div style={{ fontSize:12, fontWeight:500, color:K.head }}>{result.validity}</div>
-                  </div>
                 </div>
               </div>
             )}
-
-            {result.alternative_passes?.length>0 && (
-              <div style={{ marginBottom:10 }}>
-                <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1.2, color:K.muted, marginBottom:6 }}>Alternatives</div>
-                <div style={{ display:"flex", flexWrap:"wrap", gap:5 }}>
-                  {result.alternative_passes.map((p,i)=><span key={i} style={{ padding:"3px 11px", borderRadius:20, background:"rgba(78,163,212,0.12)", border:"1px solid rgba(78,163,212,0.25)", color:K.blue, fontSize:12, fontWeight:600 }}>◎ {p}</span>)}
+            {result.alternative_passes?.length>0&&(
+              <div style={{marginBottom:9}}>
+                <div style={{fontSize:10,textTransform:"uppercase",letterSpacing:1.2,color:K.muted,marginBottom:5}}>Alternatives</div>
+                <div style={{display:"flex",flexWrap:"wrap",gap:5}}>
+                  {result.alternative_passes.map((p,i)=><span key={i} style={{padding:"3px 10px",borderRadius:20,background:"rgba(78,163,212,0.12)",border:"1px solid rgba(78,163,212,0.25)",color:K.blue,fontSize:11,fontWeight:600}}>◎ {p}</span>)}
                 </div>
-                {result.alternative_rationale && <p style={{ fontSize:12, color:K.muted, margin:"5px 0 0" }}>{result.alternative_rationale}</p>}
+                {result.alternative_rationale&&<p style={{fontSize:12,color:K.muted,margin:"5px 0 0"}}>{result.alternative_rationale}</p>}
               </div>
             )}
-
-            {result.warnings?.map((w,i)=>(
-              <div key={i} style={{ display:"flex", gap:8, background:"rgba(232,160,60,0.07)", border:"1px solid rgba(232,160,60,0.2)", borderRadius:7, padding:"7px 11px", fontSize:12, color:K.text, marginBottom:6 }}>
-                <span>⚠️</span><span>{w}</span>
-              </div>
-            ))}
-
-            {result.next_steps?.length>0 && (
-              <div style={{ marginTop:13, paddingTop:13, borderTop:`1px solid ${K.bd}` }}>
-                <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1.2, color:K.muted, marginBottom:8 }}>Next Steps</div>
+            {result.warnings?.map((w,i)=><div key={i} style={{display:"flex",gap:7,background:"rgba(232,160,60,0.07)",border:"1px solid rgba(232,160,60,0.2)",borderRadius:6,padding:"7px 10px",fontSize:12,color:K.text,marginBottom:5}}><span>⚠️</span><span>{w}</span></div>)}
+            {result.next_steps?.length>0&&(
+              <div style={{marginTop:11,paddingTop:11,borderTop:`1px solid ${K.bd}`}}>
+                <div style={{fontSize:10,textTransform:"uppercase",letterSpacing:1.2,color:K.muted,marginBottom:7}}>Next Steps</div>
                 {result.next_steps.map((s,i)=>(
-                  <div key={i} style={{ display:"flex", gap:8, alignItems:"flex-start", marginBottom:7 }}>
-                    <div style={{ flexShrink:0, width:18, height:18, borderRadius:"50%", background:"rgba(176,127,224,0.15)", border:"1px solid rgba(176,127,224,0.3)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:10, fontWeight:700, color:K.purple, marginTop:1 }}>{i+1}</div>
-                    <div style={{ fontSize:13, color:K.text, lineHeight:1.55 }}>{s}</div>
+                  <div key={i} style={{display:"flex",gap:7,alignItems:"flex-start",marginBottom:6}}>
+                    <div style={{flexShrink:0,width:17,height:17,borderRadius:"50%",background:"rgba(176,127,224,0.15)",border:"1px solid rgba(176,127,224,0.3)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:9,fontWeight:700,color:K.purple,marginTop:1}}>{i+1}</div>
+                    <div style={{fontSize:13,color:K.text,lineHeight:1.55}}>{s}</div>
                   </div>
                 ))}
               </div>
@@ -546,39 +316,24 @@ function AdvisorTab() {
   );
 }
 
-// ── Root ───────────────────────────────────────
 export default function App() {
-  const [tab, setTab] = useState("advisor");
-  const TABS = [
-    { id:"advisor", icon:"✦", label:"AI Advisor" },
-    { id:"browse",  icon:"⊞", label:`Browse All Passes (${PASS_DATA.length})` },
-  ];
-
+  const [tab,setTab]=useState("advisor");
   return (
-    <div style={{ fontFamily:"'Segoe UI',system-ui,sans-serif", background:K.bg, minHeight:"100vh", color:K.text, fontSize:14 }}>
-      <div style={{ background:"linear-gradient(135deg,#0d1a2e,#142338,#0e1e30)", borderBottom:`1px solid ${K.bd}`, padding:"26px 26px 0" }}>
-        <div style={{ fontSize:10, letterSpacing:2.5, textTransform:"uppercase", color:K.accent, marginBottom:5 }}>Ministry of Manpower · Singapore</div>
-        <h1 style={{ fontFamily:"Georgia,serif", fontSize:22, color:K.head, margin:"0 0 3px", fontWeight:400 }}>Singapore Work Pass Advisor 2025–2026</h1>
-        <p style={{ color:K.muted, fontSize:12, margin:"0 0 18px" }}>AI-powered pass identification · Full reference for all {PASS_DATA.length} pass types</p>
-        <div style={{ display:"flex", gap:4 }}>
-          {TABS.map(t=>(
-            <button key={t.id} onClick={()=>setTab(t.id)} style={{
-              background:tab===t.id?K.bg:"transparent",
-              border:`1px solid ${tab===t.id?K.bd:"transparent"}`,
-              borderBottom:tab===t.id?`1px solid ${K.bg}`:`1px solid ${K.bd}`,
-              borderRadius:"8px 8px 0 0",
-              padding:"8px 18px", fontSize:13, fontWeight:tab===t.id?600:400,
-              color:tab===t.id?K.head:K.muted,
-              cursor:"pointer", fontFamily:"inherit", marginBottom:-1,
-              display:"flex", alignItems:"center", gap:6
-            }}>
-              <span style={{ fontSize:11 }}>{t.icon}</span>{t.label}
+    <div style={{fontFamily:"'Segoe UI',system-ui,sans-serif",background:K.bg,minHeight:"100vh",color:K.text,fontSize:14}}>
+      <div style={{background:"linear-gradient(135deg,#0d1a2e,#142338,#0e1e30)",borderBottom:`1px solid ${K.bd}`,padding:"24px 24px 0"}}>
+        <div style={{fontSize:10,letterSpacing:2.5,textTransform:"uppercase",color:K.accent,marginBottom:4}}>Ministry of Manpower · Singapore</div>
+        <h1 style={{fontFamily:"Georgia,serif",fontSize:22,color:K.head,margin:"0 0 3px",fontWeight:400}}>Singapore Work Pass Advisor 2025–2026</h1>
+        <p style={{color:K.muted,fontSize:12,margin:"0 0 16px"}}>AI-powered pass identification · Full reference for all {PASSES.length} pass types</p>
+        <div style={{display:"flex",gap:3}}>
+          {[{id:"advisor",icon:"✦",label:"AI Advisor"},{id:"browse",icon:"⊞",label:`Browse All Passes (${PASSES.length})`}].map(t=>(
+            <button key={t.id} onClick={()=>setTab(t.id)} style={{background:tab===t.id?K.bg:"transparent",border:`1px solid ${tab===t.id?K.bd:"transparent"}`,borderBottom:tab===t.id?`1px solid ${K.bg}`:`1px solid ${K.bd}`,borderRadius:"7px 7px 0 0",padding:"7px 16px",fontSize:12,fontWeight:tab===t.id?600:400,color:tab===t.id?K.head:K.muted,cursor:"pointer",fontFamily:"inherit",marginBottom:-1,display:"flex",alignItems:"center",gap:5}}>
+              <span style={{fontSize:10}}>{t.icon}</span>{t.label}
             </button>
           ))}
         </div>
       </div>
-      {tab==="advisor" ? <AdvisorTab/> : <BrowseTab/>}
-      <style>{`@keyframes pulse{0%,100%{opacity:0.3;transform:scale(0.8)}50%{opacity:1;transform:scale(1.1)}} *{box-sizing:border-box} textarea::-webkit-scrollbar{width:5px} textarea::-webkit-scrollbar-thumb{background:#243040;border-radius:3px}`}</style>
+      {tab==="advisor"?<AdvisorTab/>:<BrowseTab/>}
+      <style>{`@keyframes pulse{0%,100%{opacity:0.3;transform:scale(0.8)}50%{opacity:1;transform:scale(1.1)}}*{box-sizing:border-box}textarea::-webkit-scrollbar{width:5px}textarea::-webkit-scrollbar-thumb{background:#243040;border-radius:3px}`}</style>
     </div>
   );
 }

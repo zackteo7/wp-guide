@@ -1,1060 +1,584 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Singapore Work Pass Advisor 2025–2026</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap');
-
-  :root {
-    --bg: #0d1117;
-    --bg2: #141b24;
-    --bg3: #1c2634;
-    --border: #243040;
-    --accent: #e8a03c;
-    --accent2: #4ea3d4;
-    --accent3: #6ec98f;
-    --accent4: #e07575;
-    --accent5: #b07fe0;
-    --text: #d4dde8;
-    --text-muted: #7a8fa6;
-    --text-head: #eef3f8;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    line-height: 1.7;
-  }
-
-  /* ── HERO ── */
-  .hero {
-    background: linear-gradient(135deg, #0d1a2e 0%, #142338 50%, #0e1e30 100%);
-    border-bottom: 1px solid var(--border);
-    padding: 48px 48px 36px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -80px; right: -80px;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(232,160,60,0.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-label {
-    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
-    color: var(--accent); font-weight: 500; margin-bottom: 10px;
-  }
-  .hero h1 { font-family: 'DM Serif Display', serif; font-size: 34px; color: var(--text-head); line-height: 1.2; margin-bottom: 10px; }
-  .hero p { color: var(--text-muted); max-width: 620px; font-size: 13px; }
-  .hero-meta { display: flex; gap: 16px; margin-top: 20px; flex-wrap: wrap; }
-  .meta-chip { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 6px; padding: 5px 12px; font-size: 12px; color: var(--text-muted); }
-  .meta-chip span { color: var(--text-head); font-weight: 500; }
-
-  /* ── ADVISOR SECTION ── */
-  .advisor-wrap {
-    background: linear-gradient(180deg, #101c2e 0%, #0d1117 100%);
-    border-bottom: 1px solid var(--border);
-    padding: 40px 48px 48px;
-  }
-
-  .advisor-header {
-    display: flex; align-items: center; gap: 14px; margin-bottom: 8px;
-  }
-
-  .ai-badge {
-    display: flex; align-items: center; gap: 6px;
-    background: rgba(176,127,224,0.12);
-    border: 1px solid rgba(176,127,224,0.25);
-    border-radius: 6px;
-    padding: 4px 12px;
-    font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
-    color: var(--accent5);
-  }
-
-  .advisor-title { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--text-head); }
-  .advisor-sub { color: var(--text-muted); font-size: 13px; margin-bottom: 20px; max-width: 700px; }
-
-  .input-area {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px 18px 14px;
-    max-width: 860px;
-    transition: border-color 0.2s;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .input-area:focus-within { border-color: rgba(176,127,224,0.4); }
-
-  .input-row { display: flex; flex-direction: column; gap: 0; }
-
-  textarea {
-    width: 100%;
-    background: transparent;
-    border: none;
-    color: var(--text-head);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    line-height: 1.65;
-    resize: none;
-    outline: none;
-    min-height: 88px;
-    padding: 4px 0 10px;
-  }
-
-  textarea::placeholder { color: var(--text-muted); }
-
-  .input-actions {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 10px;
-    border-top: 1px solid var(--border);
-    gap: 12px;
-  }
-
-  .input-hint {
-    font-size: 11px;
-    color: var(--text-muted);
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  .send-btn {
-    flex-shrink: 0;
-    width: auto;
-    background: var(--accent5);
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: 9px 24px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.18s;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    white-space: nowrap;
-  }
-  .send-btn:hover { background: #c490f5; transform: translateY(-1px); }
-  .send-btn:disabled { background: #3a3a5a; color: #666; cursor: not-allowed; transform: none; }
-
-  .chips-row {
-    display: flex; gap: 7px; flex-wrap: wrap; margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid var(--border);
-    align-items: center;
-  }
-  .chip-label { font-size: 11px; color: var(--text-muted); align-self: center; margin-right: 4px; }
-
-  .example-chip {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 4px 12px;
-    font-size: 12px;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: all 0.15s;
-    white-space: nowrap;
-  }
-  .example-chip:hover { background: rgba(176,127,224,0.1); border-color: rgba(176,127,224,0.25); color: var(--text); }
-
-  /* ── RESULT CARD ── */
-  .result-area { max-width: 860px; margin-top: 20px; }
-
-  .result-card {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    animation: fadeUp 0.3s ease;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .result-head {
-    display: flex; align-items: center; gap: 12px;
-    padding: 14px 20px;
-    background: rgba(176,127,224,0.07);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .result-icon { font-size: 20px; }
-  .result-head-text { font-size: 13px; font-weight: 600; color: var(--text-head); }
-  .result-head-sub { font-size: 11px; color: var(--text-muted); }
-
-  .result-body { padding: 20px 24px; }
-
-  .result-body h3 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 18px;
-    color: var(--text-head);
-    margin-bottom: 6px;
-  }
-
-  .result-body p { color: var(--text); font-size: 13px; line-height: 1.7; margin-bottom: 12px; }
-
-  .result-passes { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-
-  .pass-pill {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 5px 14px;
-    border-radius: 20px;
-    font-size: 12px; font-weight: 700;
-    letter-spacing: 0.3px;
-  }
-
-  .pill-primary { background: rgba(176,127,224,0.18); border: 1px solid rgba(176,127,224,0.35); color: var(--accent5); }
-  .pill-alt { background: rgba(78,163,212,0.12); border: 1px solid rgba(78,163,212,0.25); color: var(--accent2); }
-  .pill-no { background: rgba(224,117,117,0.1); border: 1px solid rgba(224,117,117,0.2); color: var(--accent4); }
-
-  .result-section { margin-bottom: 14px; }
-  .result-section-label {
-    font-size: 10px; text-transform: uppercase; letter-spacing: 1.2px;
-    color: var(--text-muted); margin-bottom: 6px;
-  }
-
-  .result-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 10px;
-    margin-bottom: 16px;
-  }
-
-  .result-kv {
-    background: rgba(0,0,0,0.2);
-    border-radius: 8px;
-    padding: 10px 14px;
-  }
-  .result-kv .k { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 3px; }
-  .result-kv .v { font-size: 13px; color: var(--text-head); font-weight: 500; }
-
-  .result-warning {
-    background: rgba(232,160,60,0.07);
-    border: 1px solid rgba(232,160,60,0.2);
-    border-radius: 8px;
-    padding: 10px 14px;
-    font-size: 12px;
-    color: var(--text);
-    margin-bottom: 12px;
-    display: flex; gap: 10px;
-  }
-
-  .thinking-dots {
-    display: flex; gap: 5px; align-items: center; padding: 16px 24px;
-  }
-  .dot {
-    width: 8px; height: 8px; background: var(--accent5);
-    border-radius: 50%;
-    animation: pulse 1.2s ease-in-out infinite;
-  }
-  .dot:nth-child(2) { animation-delay: 0.2s; }
-  .dot:nth-child(3) { animation-delay: 0.4s; }
-  .thinking-label { font-size: 13px; color: var(--text-muted); margin-left: 4px; }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 0.3; transform: scale(0.8); }
-    50% { opacity: 1; transform: scale(1.1); }
-  }
-
-  /* ── TOC ── */
-  .toc { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 16px 48px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-  .toc-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-right: 8px; }
-  .toc a { font-size: 12px; color: var(--accent2); text-decoration: none; padding: 3px 10px; border-radius: 4px; background: rgba(78,163,212,0.08); border: 1px solid rgba(78,163,212,0.15); transition: all 0.15s; }
-  .toc a:hover { background: rgba(78,163,212,0.18); color: var(--text-head); }
-
-  /* ── CONTAINER ── */
-  .container { max-width: 1200px; margin: 0 auto; padding: 40px 48px 80px; }
-
-  .section-header { display: flex; align-items: center; gap: 14px; margin: 44px 0 20px; }
-  .section-icon { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-  .section-header h2 { font-family: 'DM Serif Display', serif; font-size: 21px; color: var(--text-head); }
-  .section-header p { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-
-  .pass-grid { display: grid; gap: 14px; }
-  .pass-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color 0.2s; }
-  .pass-card:hover { border-color: rgba(232,160,60,0.3); }
-
-  .pass-header { display: flex; align-items: flex-start; gap: 14px; padding: 18px 22px 14px; border-bottom: 1px solid var(--border); }
-  .pass-badge { padding: 3px 9px; border-radius: 4px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; margin-top: 3px; }
-  .badge-pro { background: rgba(232,160,60,0.15); color: var(--accent); border: 1px solid rgba(232,160,60,0.25); }
-  .badge-mid { background: rgba(78,163,212,0.15); color: var(--accent2); border: 1px solid rgba(78,163,212,0.25); }
-  .badge-wp { background: rgba(110,201,143,0.15); color: var(--accent3); border: 1px solid rgba(110,201,143,0.25); }
-  .badge-elite { background: rgba(176,127,224,0.15); color: var(--accent5); border: 1px solid rgba(176,127,224,0.25); }
-  .badge-train { background: rgba(224,117,117,0.15); color: var(--accent4); border: 1px solid rgba(224,117,117,0.25); }
-  .badge-family { background: rgba(130,200,200,0.15); color: #7dcfcf; border: 1px solid rgba(130,200,200,0.25); }
-  .badge-special { background: rgba(200,200,100,0.15); color: #c8c860; border: 1px solid rgba(200,200,100,0.25); }
-
-  .pass-title { font-size: 15px; font-weight: 700; color: var(--text-head); }
-  .pass-abbrev { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
-  .pass-tagline { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
-
-  .pass-body { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0; }
-  .pass-field { padding: 12px 18px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .pass-field:last-child { border-right: none; }
-  .field-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-muted); margin-bottom: 3px; }
-  .field-value { font-size: 13px; color: var(--text); font-weight: 400; line-height: 1.5; }
-  .field-value strong { color: var(--text-head); font-weight: 600; }
-  .field-value .highlight { color: var(--accent); font-weight: 600; }
-  .field-value .blue { color: var(--accent2); font-weight: 600; }
-  .field-value .green { color: var(--accent3); font-weight: 600; }
-  .field-value .purple { color: var(--accent5); font-weight: 600; }
-  .field-value .red { color: var(--accent4); }
-
-  .pass-notes { padding: 12px 18px; background: rgba(0,0,0,0.15); font-size: 12px; color: var(--text-muted); line-height: 1.6; border-top: 1px solid var(--border); }
-  .pass-notes strong { color: var(--text); }
-
-  .levy-table-wrap { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 16px; }
-  .levy-table-wrap h3 { padding: 14px 18px 11px; font-size: 14px; font-weight: 600; color: var(--text-head); border-bottom: 1px solid var(--border); }
-
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  thead th { background: rgba(0,0,0,0.2); padding: 9px 14px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 500; border-bottom: 1px solid var(--border); }
-  tbody tr { border-bottom: 1px solid rgba(36,48,64,0.7); }
-  tbody tr:last-child { border-bottom: none; }
-  tbody td { padding: 9px 14px; color: var(--text); vertical-align: middle; }
-  tbody tr:hover { background: rgba(255,255,255,0.02); }
-  .levy-rate { font-weight: 700; color: var(--accent); }
-
-  .tag { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 11px; font-weight: 500; background: rgba(78,163,212,0.12); color: var(--accent2); margin: 1px; }
-  .tag.green { background: rgba(110,201,143,0.12); color: var(--accent3); }
-  .tag.orange { background: rgba(232,160,60,0.12); color: var(--accent); }
-  .tag.red { background: rgba(224,117,117,0.12); color: var(--accent4); }
-  .tag.purple { background: rgba(176,127,224,0.12); color: var(--accent5); }
-
-  .alert-box { background: rgba(232,160,60,0.07); border: 1px solid rgba(232,160,60,0.2); border-radius: 10px; padding: 14px 18px; margin: 14px 0 24px; font-size: 13px; color: var(--text); display: flex; gap: 10px; align-items: flex-start; }
-  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
-
-  .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0 0; }
-
-  .compass-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 14px; }
-  .compass-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
-  .compass-card .pts { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--accent); line-height: 1; margin-bottom: 3px; }
-  .compass-card .criteria { font-size: 13px; color: var(--text-head); font-weight: 600; margin-bottom: 3px; }
-  .compass-card .desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
-
-  .source-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 7px; margin-top: 10px; }
-  .source-item { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 7px 11px; font-size: 12px; color: var(--text); display: flex; align-items: center; gap: 8px; }
-  .flag { font-size: 15px; }
-
-  footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 20px 48px; font-size: 12px; color: var(--text-muted); display: flex; gap: 24px; flex-wrap: wrap; justify-content: space-between; align-items: center; }
-  footer a { color: var(--accent2); text-decoration: none; }
-
-  @media (max-width: 768px) {
-    .hero, .advisor-wrap, .toc, .container, footer { padding-left: 18px; padding-right: 18px; }
-    .hero h1 { font-size: 24px; }
-    .pass-body { grid-template-columns: 1fr 1fr; }
-  }
-</style>
-</head>
-<body>
-
-<!-- ── HERO ── -->
-<div class="hero">
-  <div class="hero-label">Ministry of Manpower · Singapore · AI-Powered</div>
-  <h1>Singapore Work Pass<br>Advisor & Reference 2025–2026</h1>
-  <p>Describe a candidate or role below and the AI will identify the applicable pass(es), salary requirements, levy obligations, and eligibility conditions in seconds.</p>
-  <div class="hero-meta">
-    <div class="meta-chip">Source: <span>MOM Singapore</span></div>
-    <div class="meta-chip">Policy cycle: <span>2025–2026</span></div>
-    <div class="meta-chip">Pass types: <span>18</span></div>
-    <div class="meta-chip">AI model: <span>Claude Sonnet</span></div>
-  </div>
-</div>
-
-<!-- ── AI ADVISOR ── -->
-<div class="advisor-wrap">
-  <div class="advisor-header">
-    <div class="ai-badge">✦ AI Advisor</div>
-    <div class="advisor-title">Work Pass Identifier</div>
-  </div>
-  <div class="advisor-sub">Describe the candidate's role, salary, nationality, and purpose of hire. The AI will match them against all MOM-regulated pass types and explain why.</div>
-
-  <div class="input-area">
-    <div class="input-row">
-      <textarea id="query-input" placeholder="e.g. Software engineer from India, earning S$7,000/month, hired by a Singapore tech company as a full-time employee…
-
-Or: Construction foreman from Bangladesh, semi-skilled, for a building project in Toa Payoh…
-
-Or: Entrepreneur from UK wants to start a fintech startup in Singapore with S$200K seed funding…"></textarea>
-    </div>
-    <div class="input-actions">
-      <span class="input-hint">Ctrl + Enter to submit</span>
-      <button class="send-btn" id="send-btn" onclick="analyzePass()">
-        <span id="btn-text">Analyse →</span>
-      </button>
-    </div>
-    <div class="chips-row">
-      <span class="chip-label">Try:</span>
-      <span class="example-chip" onclick="fillExample(0)">Tech professional, S$6K, Filipino</span>
-      <span class="example-chip" onclick="fillExample(1)">Factory worker from Bangladesh</span>
-      <span class="example-chip" onclick="fillExample(2)">Foreign domestic helper, Indonesian</span>
-      <span class="example-chip" onclick="fillExample(3)">S'pore startup founder, British</span>
-      <span class="example-chip" onclick="fillExample(4)">Mid-level supervisor, S$3,500, Indian</span>
-      <span class="example-chip" onclick="fillExample(5)">World-class athlete joining SG team</span>
-    </div>
-  </div>
-
-  <div class="result-area" id="result-area" style="display:none;"></div>
-</div>
-
-<!-- ── TOC ── -->
-<div class="toc">
-  <span class="toc-label">Reference</span>
-  <a href="#professionals">Professionals</a>
-  <a href="#elite">Elite / Founders</a>
-  <a href="#skilled">Skilled Workers</a>
-  <a href="#domestic">Domestic & Special</a>
-  <a href="#trainees">Trainees</a>
-  <a href="#family">Family Passes</a>
-  <a href="#levy-tables">Levy Tables</a>
-  <a href="#compass">COMPASS</a>
-  <a href="#source-countries">Source Countries</a>
-  <a href="#compare">Comparison</a>
-</div>
-
-<!-- ── REFERENCE CONTENT ── -->
-<div class="container">
-
-  <div class="section-header" id="professionals">
-    <div class="section-icon" style="background:rgba(232,160,60,0.12)">🏢</div>
-    <div><h2>Professional Passes</h2><p>For managers, executives, professionals — no levy or quota</p></div>
-  </div>
-  <div class="pass-grid">
-    <div class="pass-card">
-      <div class="pass-header">
-        <div class="pass-badge badge-pro">Professional</div>
-        <div>
-          <div class="pass-title">Employment Pass (EP)</div>
-          <div class="pass-abbrev">EP</div>
-          <div class="pass-tagline">For foreign PMETs sponsored by a Singapore employer</div>
-        </div>
-      </div>
-      <div class="pass-body">
-        <div class="pass-field"><div class="field-label">Min. Salary (General)</div><div class="field-value"><span class="highlight">S$5,600/month</span><br><small>From 1 Jan 2025</small></div></div>
-        <div class="pass-field"><div class="field-label">Min. Salary (Financial Services)</div><div class="field-value"><span class="highlight">S$6,200/month</span><br><small>From 1 Jan 2025</small></div></div>
-        <div class="pass-field"><div class="field-label">Age-Progressive Max</div><div class="field-value">Up to <strong>S$10,700</strong> / <strong>S$11,800</strong> (finance) for mid-40s</div></div>
-        <div class="pass-field"><div class="field-label">Validity</div><div class="field-value"><strong>2 yrs</strong> (new) / <strong>3 yrs</strong> (renewal)</div></div>
-        <div class="pass-field"><div class="field-label">Levy</div><div class="field-value"><span class="green">None</span></div></div>
-        <div class="pass-field"><div class="field-label">Quota</div><div class="field-value"><span class="green">None (COMPASS-assessed)</span></div></div>
-        <div class="pass-field"><div class="field-label">Source Countries</div><div class="field-value">Open to <strong>all nationalities</strong></div></div>
-        <div class="pass-field"><div class="field-label">Key Framework</div><div class="field-value"><span class="blue">COMPASS</span> — must score ≥ 40 points</div></div>
-        <div class="pass-field"><div class="field-label">Dependent Privileges</div><div class="field-value">DP for spouse/children; LTVP for parents (if ≥ S$12,000/mth)</div></div>
-      </div>
-      <div class="pass-notes"><strong>Key Notes:</strong> Employer must advertise on MyCareersFuture for 28 days (FCF). All qualifications verified by MOM-approved agency. Renewal salary thresholds effective 1 Jan 2026.</div>
-    </div>
-    <div class="pass-card">
-      <div class="pass-header">
-        <div class="pass-badge badge-pro">Professional</div>
-        <div>
-          <div class="pass-title">Personalised Employment Pass (PEP)</div>
-          <div class="pass-abbrev">PEP</div>
-          <div class="pass-tagline">Employer-independent for high-earning EP holders and overseas professionals</div>
-        </div>
-      </div>
-      <div class="pass-body">
-        <div class="pass-field"><div class="field-label">Eligibility</div><div class="field-value">Last drawn / secured fixed salary ≥ <span class="highlight">S$22,500/month</span></div></div>
-        <div class="pass-field"><div class="field-label">Validity</div><div class="field-value"><strong>3 years</strong> — <span class="red">NOT renewable</span></div></div>
-        <div class="pass-field"><div class="field-label">Levy</div><div class="field-value"><span class="green">None</span></div></div>
-        <div class="pass-field"><div class="field-label">Key Flexibility</div><div class="field-value">Switch employers freely; stay in SG between jobs up to <strong>6 months</strong></div></div>
-        <div class="pass-field"><div class="field-label">Source Countries</div><div class="field-value">Open to <strong>all nationalities</strong></div></div>
-      </div>
-      <div class="pass-notes"><strong>Key Notes:</strong> Non-renewable — must transition to EP or ONE Pass afterwards. COMPASS does not apply.</div>
-    </div>
-  </div>
-
-  <hr class="divider">
-  <div class="section-header" id="elite">
-    <div class="section-icon" style="background:rgba(176,127,224,0.12)">⭐</div>
-    <div><h2>Elite & Entrepreneur Passes</h2><p>Top-tier talent, outstanding achievers, and innovative founders</p></div>
-  </div>
-  <div class="pass-grid">
-    <div class="pass-card">
-      <div class="pass-header">
-        <div class="pass-badge badge-elite">Elite</div>
-        <div>
-          <div class="pass-title">Overseas Networks & Expertise Pass (ONE Pass)</div>
-          <div class="pass-abbrev">ONE Pass</div>
-          <div class="pass-tagline">For world-class talent — simultaneous multi-employer work permitted</div>
-        </div>
-      </div>
-      <div class="pass-body">
-        <div class="pass-field"><div class="field-label">Salary Route</div><div class="field-value">Fixed monthly salary ≥ <span class="purple">S$30,000</span> for last 12 consecutive months</div></div>
-        <div class="pass-field"><div class="field-label">Achievements Route</div><div class="field-value">Outstanding track record in business, arts, sports, science, academia — salary waived</div></div>
-        <div class="pass-field"><div class="field-label">Overseas Employer</div><div class="field-value">Market cap ≥ <strong>USD 500M</strong> or revenue ≥ <strong>USD 200M</strong></div></div>
-        <div class="pass-field"><div class="field-label">Validity</div><div class="field-value"><strong>5 years</strong>, renewable for further 5-year periods</div></div>
-        <div class="pass-field"><div class="field-label">Levy</div><div class="field-value"><span class="green">None</span></div></div>
-        <div class="pass-field"><div class="field-label">Multi-Employer</div><div class="field-value"><span class="purple">Yes — can work for multiple companies simultaneously</span></div></div>
-        <div class="pass-field"><div class="field-label">Source Countries</div><div class="field-value">Open to <strong>all nationalities</strong></div></div>
-      </div>
-      <div class="pass-notes"><strong>Key Notes:</strong> No COMPASS, no quota, no levy. Ideal for senior global executives, world-class athletes, top researchers, and artists.</div>
-    </div>
-    <div class="pass-card">
-      <div class="pass-header">
-        <div class="pass-badge badge-elite">Entrepreneur</div>
-        <div>
-          <div class="pass-title">EntrePass</div>
-          <div class="pass-abbrev">EntrePass</div>
-          <div class="pass-tagline">For founders building innovative or venture-backed businesses in Singapore</div>
-        </div>
-      </div>
-      <div class="pass-body">
-        <div class="pass-field"><div class="field-label">Min. Salary</div><div class="field-value"><span class="green">None</span> — must meet innovation/funding criteria</div></div>
-        <div class="pass-field"><div class="field-label">Eligibility (meet ≥1)</div><div class="field-value">Funding ≥ S$100K from MAS-licensed VC/angel; or IP with SG institution; or R&D collaboration; or recognised by Startup SG</div></div>
-        <div class="pass-field"><div class="field-label">Validity</div><div class="field-value"><strong>1 year</strong> (new) / <strong>2 years</strong> (subsequent renewals)</div></div>
-        <div class="pass-field"><div class="field-label">Levy</div><div class="field-value"><span class="green">None</span></div></div>
-        <div class="pass-field"><div class="field-label">Source Countries</div><div class="field-value">Open to <strong>all nationalities</strong></div></div>
-      </div>
-      <div class="pass-notes"><strong>Key Notes:</strong> Company must be ACRA-registered. Renewal requires demonstrated business traction (employees, revenue, investments). Pathway to PR.</div>
-    </div>
-  </div>
-
-  <hr class="divider">
-  <div class="section-header" id="skilled">
-    <div class="section-icon" style="background:rgba(78,163,212,0.12)">⚙️</div>
-    <div><h2>Skilled & Semi-Skilled Workers</h2><p>S Pass and Work Permits — subject to quotas and monthly levies</p></div>
-  </div>
-  <div class="pass-grid">
-    <div class="pass-card">
-      <div class="pass-header">
-        <div class="pass-badge badge-mid">Mid-Skilled</div>
-        <div>
-          <div class="pass-title">S Pass</div>
-          <div class="pass-abbrev">S Pass</div>
-          <div class="pass-tagline">For Associate Professionals and Technicians — quota and levy apply</div>
-        </div>
-      </div>
-      <div class="pass-body">
-        <div class="pass-field"><div class="field-label">Min. Salary (General, from Sep 2025)</div><div class="field-value"><span class="blue">S$3,300/month</span><br><small>Age-progressive; older workers require higher salary</small></div></div>
-        <div class="pass-field"><div class="field-label">Min. Salary (Financial Services)</div><div class="field-value"><span class="blue">S$3,800/month</span><br><small>From 1 Sep 2025</small></div></div>
-        <div class="pass-field"><div class="field-label">Monthly Levy (Flat, Sep 2025)</div><div class="field-value"><span class="highlight">S$650/month</span> — uniform across all sectors</div></div>
-        <div class="pass-field"><div class="field-label">Quota</div><div class="field-value"><strong>10%</strong> (Services) / <strong>15–18%</strong> (other sectors)</div></div>
-        <div class="pass-field"><div class="field-label">Validity</div><div class="field-value"><strong>Up to 2 years</strong>, renewable</div></div>
-        <div class="pass-field"><div class="field-label">Dependent Privileges</div><div class="field-value">DP if salary ≥ <strong>S$6,000/month</strong></div></div>
-        <div class="pass-field"><div class="field-label">Typical Roles</div><div class="field-value">Technicians, supervisors, designers, cooks, specialists</div></div>
-        <div class="pass-field"><div class="field-label">Source Countries</div><div class="field-value">Open to <strong>all nationalities</strong></div></div>
-      </div>
-      <div class="pass-notes"><strong>Key Notes:</strong> Use Self-Assessment Tool (SAT) before applying — 90% approval rate with positive SAT. LQS raised to S$1,600/month. Declaring qualifications is optional but must be verified if declared.</div>
-    </div>
-    <div class="pass-card">
-      <div class="pass-header">
-        <div class="pass-badge badge-wp">Work Permit</div>
-        <div>
-          <div class="pass-title">Work Permit for Migrant Worker (WP)</div>
-          <div class="pass-abbrev">WP</div>
-          <div class="pass-tagline">Semi-skilled and basic-skilled workers in key industrial sectors</div>
-        </div>
-      </div>
-      <div class="pass-body">
-        <div class="pass-field"><div class="field-label">Eligible Sectors</div><div class="field-value"><span class="tag green">Construction</span><span class="tag green">Manufacturing</span><span class="tag green">Marine</span><span class="tag green">Process</span><span class="tag green">Services</span></div></div>
-        <div class="pass-field"><div class="field-label">Min. Salary</div><div class="field-value">No fixed minimum (sector norms apply)</div></div>
-        <div class="pass-field"><div class="field-label">Validity</div><div class="field-value"><strong>Up to 2 years</strong>, renewable<br><span class="green">From Jul 2025: no maximum employment period</span></div></div>
-        <div class="pass-field"><div class="field-label">Age Limit</div><div class="field-value">Min 18; from Jul 2025: max <strong>60 at application</strong>, max age <strong>63</strong></div></div>
-        <div class="pass-field"><div class="field-label">Security Bond</div><div class="field-value"><strong>S$5,000</strong> per non-Malaysian worker</div></div>
-        <div class="pass-field"><div class="field-label">Medical Insurance</div><div class="field-value">Employer must provide ≥ <strong>S$60,000</strong> inpatient coverage</div></div>
-        <div class="pass-field"><div class="field-label">Levy</div><div class="field-value"><span class="highlight">S$250–S$950/month</span> (varies by sector, skill level)</div></div>
-        <div class="pass-field"><div class="field-label">Source Countries</div><div class="field-value">MOM-approved list — varies by sector (Malaysia, NAS, NTS, PRC)</div></div>
-      </div>
-      <div class="pass-notes"><strong>Key Notes:</strong> Workers classified R1 (Higher-Skilled) or R2 (Basic-Skilled) — tier determines levy. Mandatory safety courses for construction, marine, process. MYE system being phased out.</div>
-    </div>
-  </div>
-
-  <hr class="divider">
-  <div class="section-header" id="domestic">
-    <div class="section-icon" style="background:rgba(110,201,143,0.12)">🏠</div>
-    <div><h2>Domestic & Specialised Sector Permits</h2><p>Migrant domestic workers, confinement nannies, and performing artistes</p></div>
-  </div>
-  <div class="pass-grid">
-    <div class="pass-card">
-      <div class="pass-header">
-        <div class="pass-badge badge-wp">Work Permit</div>
-        <div>
-          <div class="pass-title">Work Permit for Migrant Domestic Worker (MDW)</div>
-          <div class="pass-abbrev">MDW / FDW</div>
-          <div class="pass-tagline">For foreign domestic helpers working in Singapore households</div>
-        </div>
-      </div>
-      <div class="pass-body">
-        <div class="pass-field"><div class="field-label">Source Countries</div><div class="field-value">Bangladesh, Cambodia, Hong Kong, India, Indonesia, Macau, Malaysia, Myanmar, Philippines, South Korea, Sri Lanka, Taiwan, Thailand</div></div>
-        <div class="pass-field"><div class="field-label">Age</div><div class="field-value">Min <strong>23 years old</strong></div></div>
-        <div class="pass-field"><div class="field-label">Standard Levy</div><div class="field-value"><span class="highlight">S$300/month</span></div></div>
-        <div class="pass-field"><div class="field-label">Concession Levy</div><div class="field-value"><span class="green">S$60/month</span> — households with SC child &lt;16, elderly SC 67+, or PWD</div></div>
-        <div class="pass-field"><div class="field-label">Validity</div><div class="field-value"><strong>Up to 2 years</strong>, renewable</div></div>
-        <div class="pass-field"><div class="field-label">SIP</div><div class="field-value">Mandatory for first-timers; within 7 days; <strong>S$75.70 (incl. GST)</strong></div></div>
-      </div>
-    </div>
-    <div class="pass-card">
-      <div class="pass-header">
-        <div class="pass-badge badge-wp">Work Permit</div>
-        <div>
-          <div class="pass-title">Work Permit for Confinement Nanny</div>
-          <div class="pass-abbrev">CN</div>
-          <div class="pass-tagline">Short-term postnatal care — Malaysia only</div>
-        </div>
-      </div>
-      <div class="pass-body">
-        <div class="pass-field"><div class="field-label">Source Countries</div><div class="field-value"><strong>Malaysia only</strong></div></div>
-        <div class="pass-field"><div class="field-label">Duration</div><div class="field-value">Up to <strong>16 weeks</strong> from birth</div></div>
-        <div class="pass-field"><div class="field-label">Levy</div><div class="field-value"><span class="green">None</span></div></div>
-      </div>
-    </div>
-  </div>
-
-  <hr class="divider">
-  <div class="section-header" id="trainees">
-    <div class="section-icon" style="background:rgba(224,117,117,0.12)">🎓</div>
-    <div><h2>Trainees & Students</h2><p>Short-term practical training and work-holiday programmes</p></div>
-  </div>
-  <div class="pass-grid">
-    <div class="pass-card">
-      <div class="pass-header">
-        <div class="pass-badge badge-train">Training</div>
-        <div><div class="pass-title">Training Employment Pass (TEP)</div></div>
-      </div>
-      <div class="pass-body">
-        <div class="pass-field"><div class="field-label">Min. Salary</div><div class="field-value"><span class="blue">S$3,000/month</span></div></div>
-        <div class="pass-field"><div class="field-label">Validity</div><div class="field-value">Up to <strong>3 months</strong> (renewable up to 1 year)</div></div>
-        <div class="pass-field"><div class="field-label">Levy</div><div class="field-value"><span class="green">None</span></div></div>
-        <div class="pass-field"><div class="field-label">Source Countries</div><div class="field-value">All nationalities</div></div>
-      </div>
-    </div>
-    <div class="pass-card">
-      <div class="pass-header">
-        <div class="pass-badge badge-train">Training</div>
-        <div><div class="pass-title">Training Work Permit (TWP)</div></div>
-      </div>
-      <div class="pass-body">
-        <div class="pass-field"><div class="field-label">Duration</div><div class="field-value"><strong>Up to 6 months</strong></div></div>
-        <div class="pass-field"><div class="field-label">Levy</div><div class="field-value"><span class="green">None</span></div></div>
-        <div class="pass-field"><div class="field-label">Target</div><div class="field-value">Semi-skilled foreign students/trainees</div></div>
-      </div>
-    </div>
-    <div class="pass-card">
-      <div class="pass-header">
-        <div class="pass-badge badge-train">Holiday</div>
-        <div><div class="pass-title">Work Holiday Pass — Work Holiday Programme</div></div>
-      </div>
-      <div class="pass-body">
-        <div class="pass-field"><div class="field-label">Age</div><div class="field-value"><strong>18–25 years old</strong></div></div>
-        <div class="pass-field"><div class="field-label">Duration</div><div class="field-value"><strong>6 months</strong></div></div>
-        <div class="pass-field"><div class="field-label">Levy</div><div class="field-value"><span class="green">None</span></div></div>
-        <div class="pass-field"><div class="field-label">Source Countries</div><div class="field-value">Selected bilateral agreement countries</div></div>
-      </div>
-    </div>
-    <div class="pass-card">
-      <div class="pass-header">
-        <div class="pass-badge badge-train">Holiday</div>
-        <div><div class="pass-title">Work Holiday Pass — Work & Holiday Visa Programme</div></div>
-      </div>
-      <div class="pass-body">
-        <div class="pass-field"><div class="field-label">Age</div><div class="field-value"><strong>18–30 years old</strong></div></div>
-        <div class="pass-field"><div class="field-label">Duration</div><div class="field-value"><strong>12 months</strong></div></div>
-        <div class="pass-field"><div class="field-label">Source Countries</div><div class="field-value"><strong>Australia and New Zealand only</strong></div></div>
-        <div class="pass-field"><div class="field-label">Levy</div><div class="field-value"><span class="green">None</span></div></div>
-      </div>
-    </div>
-  </div>
-
-  <hr class="divider">
-  <div class="section-header" id="family">
-    <div class="section-icon" style="background:rgba(130,200,200,0.12)">👨‍👩‍👧</div>
-    <div><h2>Family & Dependent Passes</h2><p>For qualifying dependants of EP, S Pass, and PR holders</p></div>
-  </div>
-  <div class="pass-grid">
-    <div class="pass-card">
-      <div class="pass-header">
-        <div class="pass-badge badge-family">Family</div>
-        <div><div class="pass-title">Dependant's Pass (DP)</div><div class="pass-tagline">For spouses and children of eligible EP / S Pass holders</div></div>
-      </div>
-      <div class="pass-body">
-        <div class="pass-field"><div class="field-label">Sponsor (S Pass)</div><div class="field-value">Must earn ≥ <strong>S$6,000/month</strong></div></div>
-        <div class="pass-field"><div class="field-label">Work Rights</div><div class="field-value">May work with Letter of Consent (LOC) — no levy/quota</div></div>
-        <div class="pass-field"><div class="field-label">Application Fee</div><div class="field-value">S$105 + S$60 (issuance)</div></div>
-      </div>
-    </div>
-    <div class="pass-card">
-      <div class="pass-header">
-        <div class="pass-badge badge-family">Family</div>
-        <div><div class="pass-title">Long-Term Visit Pass (LTVP)</div><div class="pass-tagline">For extended family of eligible EP / S Pass holders</div></div>
-      </div>
-      <div class="pass-body">
-        <div class="pass-field"><div class="field-label">Who Qualifies</div><div class="field-value">Parents, common-law spouse, stepchildren, handicapped children</div></div>
-        <div class="pass-field"><div class="field-label">Parent Sponsorship</div><div class="field-value">EP holder must earn ≥ <strong>S$12,000/month</strong></div></div>
-        <div class="pass-field"><div class="field-label">Work Rights</div><div class="field-value">May work via LOC</div></div>
-      </div>
-    </div>
-  </div>
-
-  <hr class="divider">
-  <div class="section-header" id="levy-tables">
-    <div class="section-icon" style="background:rgba(232,160,60,0.12)">💰</div>
-    <div><h2>Foreign Worker Levy (FWL) Tables</h2><p>Monthly levy rates by sector and skill tier — Work Permit and S Pass holders only</p></div>
-  </div>
-
-  <div class="alert-box">
-    <span class="alert-icon">⚠️</span>
-    <div>Levy applies <strong>only to Work Permit and S Pass holders</strong>. EP, PEP, ONE Pass, and EntrePass holders are <strong>levy-exempt</strong>. Due by 17th of each following month via GIRO. Late payment: 2% per month (min S$20, capped at 30%). Daily rate = (monthly rate × 12) ÷ 365.</div>
-  </div>
-
-  <div class="levy-table-wrap">
-    <h3>🔵 S Pass Levy — All Sectors (From 1 Sep 2025)</h3>
-    <table><thead><tr><th>Tier</th><th>Quota Usage</th><th>Monthly Rate</th><th>Notes</th></tr></thead>
-    <tbody>
-      <tr><td>All Tiers (Harmonized)</td><td>Any</td><td class="levy-rate">S$650 / month</td><td>Flat rate across all sectors — previous tiered structure abolished Sep 2025</td></tr>
-    </tbody></table>
-  </div>
-
-  <div class="levy-table-wrap">
-    <h3>🟢 Work Permit — Manufacturing</h3>
-    <table><thead><tr><th>Skill Level</th><th>Tier 1 (Within DRC)</th><th>Tier 2</th><th>DRC</th></tr></thead>
-    <tbody>
-      <tr><td>Higher-Skilled (R1)</td><td class="levy-rate">S$250</td><td class="levy-rate">S$370</td><td rowspan="2">Max 60% of workforce</td></tr>
-      <tr><td>Basic-Skilled (R2)</td><td class="levy-rate">S$370</td><td class="levy-rate">S$650</td></tr>
-    </tbody></table>
-  </div>
-
-  <div class="levy-table-wrap">
-    <h3>🟡 Work Permit — Services</h3>
-    <table><thead><tr><th>Skill Level</th><th>Tier 1</th><th>Tier 2</th><th>Tier 3</th><th>DRC</th></tr></thead>
-    <tbody>
-      <tr><td>Higher-Skilled (R1)</td><td class="levy-rate">S$300</td><td class="levy-rate">S$450</td><td class="levy-rate">S$650</td><td rowspan="2">Max 35% of workforce</td></tr>
-      <tr><td>Basic-Skilled (R2)</td><td class="levy-rate">S$450</td><td class="levy-rate">S$650</td><td class="levy-rate">S$800</td></tr>
-    </tbody></table>
-  </div>
-
-  <div class="levy-table-wrap">
-    <h3>🟠 Work Permit — Construction</h3>
-    <table><thead><tr><th>Category</th><th>NTS &amp; PRC</th><th>Malaysia / NAS</th><th>DRC</th></tr></thead>
-    <tbody>
-      <tr><td>Higher-Skilled (R1)</td><td class="levy-rate">S$600</td><td class="levy-rate">S$300</td><td rowspan="2">Up to 7 WP per local (moving to 1:5)</td></tr>
-      <tr><td>Basic-Skilled (R2)</td><td class="levy-rate">S$950</td><td class="levy-rate">~S$300–400</td></tr>
-    </tbody></table>
-  </div>
-
-  <div class="levy-table-wrap">
-    <h3>⚓ Work Permit — Marine Shipyard</h3>
-    <table><thead><tr><th>Skill Level</th><th>Current Rate</th><th>From 2026</th></tr></thead>
-    <tbody>
-      <tr><td>Higher-Skilled (R1)</td><td class="levy-rate">S$300</td><td>No change</td></tr>
-      <tr><td>Basic-Skilled (R2)</td><td class="levy-rate">S$400</td><td class="levy-rate" style="color:var(--accent4)">S$500 (+S$100)</td></tr>
-    </tbody></table>
-  </div>
-
-  <div class="levy-table-wrap">
-    <h3>🏭 Work Permit — Process (Petroleum &amp; Petrochemical)</h3>
-    <table><thead><tr><th>Skill Level</th><th>Current Rate</th><th>From 2026</th></tr></thead>
-    <tbody>
-      <tr><td>Higher-Skilled (R1)</td><td class="levy-rate">S$300</td><td>Rate review 2026</td></tr>
-      <tr><td>Basic-Skilled (R2)</td><td class="levy-rate">S$750</td><td class="levy-rate" style="color:var(--accent4)">~S$900 (+S$150)</td></tr>
-    </tbody></table>
-  </div>
-
-  <div class="levy-table-wrap">
-    <h3>🏠 Migrant Domestic Worker (MDW) Levy</h3>
-    <table><thead><tr><th>Category</th><th>Monthly Levy</th><th>Condition</th></tr></thead>
-    <tbody>
-      <tr><td>Standard Rate</td><td class="levy-rate">S$300</td><td>All employers</td></tr>
-      <tr><td>Concessionary Rate</td><td class="levy-rate" style="color:var(--accent3)">S$60</td><td>SC child &lt;16, elderly SC 67+, or PWD — max 2 MDWs at concessionary rate</td></tr>
-    </tbody></table>
-  </div>
-
-  <hr class="divider">
-  <div class="section-header" id="compass">
-    <div class="section-icon" style="background:rgba(78,163,212,0.12)">🧭</div>
-    <div><h2>COMPASS Framework (EP)</h2><p>Complementarity Assessment — must score ≥ 40 points to pass</p></div>
-  </div>
-  <div class="alert-box">
-    <span class="alert-icon">ℹ️</span>
-    <div>COMPASS has <strong>4 foundational criteria</strong> (10 pts each) + <strong>2 bonus criteria</strong>. Meets Expectations = 10 pts, Enhanced = 20 pts, Below = 0 pts. New applications from 1 Sep 2023; renewals from 1 Sep 2024.</div>
-  </div>
-  <div class="compass-grid">
-    <div class="compass-card"><div class="pts">C1</div><div class="criteria">Salary Benchmark</div><div class="desc">Compared against local PMETs in same age and industry. Top one-third earns enhanced points.</div></div>
-    <div class="compass-card"><div class="pts">C2</div><div class="criteria">Qualifications</div><div class="desc">Top-100 world universities, Singapore universities, and highly recognised institutions score enhanced.</div></div>
-    <div class="compass-card"><div class="pts">C3</div><div class="criteria">Workforce Diversity</div><div class="desc">Firm's PMET nationality diversity — over-reliance on one nationality is penalised.</div></div>
-    <div class="compass-card"><div class="pts">C4</div><div class="criteria">Local PMET Employment</div><div class="desc">Firm's proportion of local PMETs vs industry peers — strong local hiring earns higher points.</div></div>
-    <div class="compass-card"><div class="pts">C5 🌟</div><div class="criteria">Skills Bonus (SOL)</div><div class="desc">Bonus for roles on the 30-occupation Shortage Occupation List — ICT, finance, healthcare, manufacturing.</div></div>
-    <div class="compass-card"><div class="pts">C6 🌟</div><div class="criteria">Strategic Priority Bonus</div><div class="desc">Firms in strategic sectors (GIP, Startup SG, CleanTech, EdTech, etc.) earn bonus points.</div></div>
-  </div>
-
-  <hr class="divider">
-  <div class="section-header" id="source-countries">
-    <div class="section-icon" style="background:rgba(110,201,143,0.12)">🌏</div>
-    <div><h2>Work Permit Source Country Tiers</h2><p>Approved source countries vary by sector</p></div>
-  </div>
-  <div class="levy-table-wrap">
-    <h3>Construction / Marine / Process / Manufacturing</h3>
-    <table><thead><tr><th>Tier</th><th>Countries</th><th>Levy Impact</th></tr></thead>
-    <tbody>
-      <tr><td><span class="tag green">Malaysia</span></td><td>Malaysia</td><td>Lowest levy rates; no MYE; renewable to 63</td></tr>
-      <tr><td><span class="tag">NAS (North Asian Sources)</span></td><td>Hong Kong (HKSAR), Macau, South Korea, Taiwan</td><td>Lower levy rates, similar to Malaysia tier</td></tr>
-      <tr><td><span class="tag orange">NTS (Non-Traditional Sources)</span></td><td>India, Sri Lanka, Thailand, Bangladesh, Myanmar, Philippines + (from Jun 2025) Bhutan, Cambodia, Laos</td><td>Higher levy; previously subject to MYE in construction/process</td></tr>
-      <tr><td><span class="tag red">PRC (China)</span></td><td>People's Republic of China</td><td>Manufacturing and construction only; quota-capped separately</td></tr>
-    </tbody></table>
-  </div>
-
-  <div class="levy-table-wrap">
-    <h3>MDW Approved Source Countries</h3>
-    <div style="padding:14px 18px">
-      <div class="source-grid">
-        <div class="source-item"><span class="flag">🇧🇩</span> Bangladesh</div>
-        <div class="source-item"><span class="flag">🇰🇭</span> Cambodia</div>
-        <div class="source-item"><span class="flag">🇭🇰</span> Hong Kong</div>
-        <div class="source-item"><span class="flag">🇮🇳</span> India</div>
-        <div class="source-item"><span class="flag">🇮🇩</span> Indonesia</div>
-        <div class="source-item"><span class="flag">🇲🇴</span> Macau</div>
-        <div class="source-item"><span class="flag">🇲🇾</span> Malaysia</div>
-        <div class="source-item"><span class="flag">🇲🇲</span> Myanmar</div>
-        <div class="source-item"><span class="flag">🇵🇭</span> Philippines</div>
-        <div class="source-item"><span class="flag">🇰🇷</span> South Korea</div>
-        <div class="source-item"><span class="flag">🇱🇰</span> Sri Lanka</div>
-        <div class="source-item"><span class="flag">🇹🇼</span> Taiwan</div>
-        <div class="source-item"><span class="flag">🇹🇭</span> Thailand</div>
-      </div>
-    </div>
-  </div>
-
-  <hr class="divider">
-  <div class="section-header" id="compare">
-    <div class="section-icon" style="background:rgba(176,127,224,0.12)">📊</div>
-    <div><h2>Quick Comparison</h2><p>Side-by-side view of the main pass categories</p></div>
-  </div>
-  <div class="levy-table-wrap">
-    <table>
-      <thead><tr><th>Pass</th><th>Target Profile</th><th>Min. Salary</th><th>Levy</th><th>Quota</th><th>Validity</th><th>Multi-Employer</th><th>DP Rights</th></tr></thead>
-      <tbody>
-        <tr><td><strong>ONE Pass</strong></td><td>World-class talent</td><td>S$30,000/mth</td><td style="color:var(--accent3)">None</td><td style="color:var(--accent3)">None</td><td>5 yrs</td><td style="color:var(--accent3)">✓</td><td style="color:var(--accent3)">✓</td></tr>
-        <tr><td><strong>PEP</strong></td><td>High earners</td><td>S$22,500/mth</td><td style="color:var(--accent3)">None</td><td style="color:var(--accent3)">None</td><td>3 yrs (non-renewable)</td><td>✓ (switch freely)</td><td style="color:var(--accent3)">✓</td></tr>
-        <tr><td><strong>EP</strong></td><td>Professionals / PMETs</td><td>S$5,600/mth</td><td style="color:var(--accent3)">None</td><td style="color:var(--accent3)">None (COMPASS)</td><td>2 yrs / 3 yrs renewal</td><td style="color:var(--accent4)">✗</td><td style="color:var(--accent3)">✓</td></tr>
-        <tr><td><strong>EntrePass</strong></td><td>Innovative founders</td><td>None (criteria)</td><td style="color:var(--accent3)">None</td><td style="color:var(--accent3)">None</td><td>1 yr / 2 yrs renewal</td><td style="color:var(--accent3)">✓ (own biz)</td><td>Case-based</td></tr>
-        <tr><td><strong>S Pass</strong></td><td>Mid-skilled APTs</td><td>S$3,300/mth</td><td style="color:var(--accent)">S$650/mth</td><td style="color:var(--accent)">10–15% workforce</td><td>2 years</td><td style="color:var(--accent4)">✗</td><td>If ≥ S$6,000/mth</td></tr>
-        <tr><td><strong>WP (Industrial)</strong></td><td>Semi-skilled workers</td><td>No fixed min</td><td style="color:var(--accent)">S$250–S$950/mth</td><td style="color:var(--accent)">Sector DRC</td><td>2 yrs (no max from Jul 2025)</td><td style="color:var(--accent4)">✗</td><td style="color:var(--accent4)">✗</td></tr>
-        <tr><td><strong>MDW WP</strong></td><td>Domestic helpers</td><td>No minimum</td><td style="color:var(--accent)">S$300/mth (S$60 concession)</td><td style="color:var(--accent3)">None</td><td>2 years</td><td style="color:var(--accent4)">✗</td><td style="color:var(--accent4)">✗</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-</div>
-
-<footer>
-  <div>
-    <strong style="color:var(--text-head)">Singapore Work Pass Advisor & Reference 2025–2026</strong><br>
-    Sourced from MOM official policy. Always verify at <a href="https://www.mom.gov.sg/passes-and-permits" target="_blank">mom.gov.sg</a>. For reference only.
-  </div>
-  <div style="text-align:right; font-size:11px;">
-    Governing Act: Employment of Foreign Manpower Act (EFMA)<br>
-    AI powered by Claude Sonnet · Anthropic
-  </div>
-</footer>
-
-<script>
-const EXAMPLES = [
-  "Software engineer from Philippines, earning S$7,000/month, hired full-time by a Singapore technology company in a specialist role. She has a bachelor's degree from a local university.",
-  "Construction foreman from Bangladesh, semi-skilled, hired for a building project in Singapore. He will be doing on-site supervision and manual work.",
-  "Indonesian woman, 28 years old, applying to work as a live-in domestic helper for a family in Singapore.",
-  "British entrepreneur, 35 years old, wants to start a fintech startup in Singapore. He has raised S$200,000 seed funding from a Singapore-based angel investor and intends to operate the business here.",
-  "Indian supervisor, 32 years old, working in a manufacturing plant, earning S$3,500/month. He has a diploma in mechanical engineering.",
-  "Australian former Olympian sprinter, 29 years old, wants to work with a Singapore athletics association as head coach and performance advisor. High-profile international sports career."
+import { useState, useRef } from "react";
+
+const PASS_DATA = [
+  {
+    id: "ep", name: "Employment Pass", abbr: "EP", category: "professional",
+    tagline: "For foreign PMETs sponsored by a Singapore employer",
+    badge: { label: "Professional", color: "#e8a03c", bg: "rgba(232,160,60,0.12)", border: "rgba(232,160,60,0.25)" },
+    levy: "None", quota: "None (COMPASS-assessed)", validity: "2 yrs (new) / 3 yrs (renewal)", nations: "All nationalities",
+    fields: [
+      { label: "Min. Salary (General)", value: "S$5,600/month (from 1 Jan 2025)", hi: true },
+      { label: "Min. Salary (Financial Services)", value: "S$6,200/month (from 1 Jan 2025)", hi: true },
+      { label: "Age-Progressive Max", value: "Up to S$10,700 (general) / S$11,800 (finance) for mid-40s" },
+      { label: "Key Framework", value: "COMPASS — must score ≥ 40 points" },
+      { label: "Dependent Pass", value: "DP for spouse/children; LTVP for parents (if salary ≥ S$12,000/mth)" },
+      { label: "Who Applies", value: "Employer or licensed employment agency" },
+      { label: "Processing Time", value: "~10 business days" },
+      { label: "Application Fee", value: "S$105 (application) + S$225 (issuance)" },
+    ],
+    notes: "Employer must advertise on MyCareersFuture for 28 days (FCF). All qualifications verified by MOM-approved agency. Renewal salary thresholds effective 1 Jan 2026.",
+  },
+  {
+    id: "pep", name: "Personalised Employment Pass", abbr: "PEP", category: "professional",
+    tagline: "Employer-independent pass for high-earning EP holders and overseas professionals",
+    badge: { label: "Professional", color: "#e8a03c", bg: "rgba(232,160,60,0.12)", border: "rgba(232,160,60,0.25)" },
+    levy: "None", quota: "None", validity: "3 years (NOT renewable)", nations: "All nationalities",
+    fields: [
+      { label: "Min. Salary (EP Holders)", value: "Last drawn fixed salary ≥ S$22,500/month", hi: true },
+      { label: "Min. Salary (Overseas)", value: "Fixed salary ≥ S$22,500/month or S$270,000/year", hi: true },
+      { label: "Key Flexibility", value: "Switch employers freely; stay in SG between jobs up to 6 months" },
+      { label: "Who Applies", value: "Pass candidate (self-sponsored)" },
+    ],
+    notes: "Non-renewable — must transition to EP or ONE Pass at end of 3-year validity. COMPASS does not apply. One-time pass only.",
+  },
+  {
+    id: "onepass", name: "Overseas Networks & Expertise Pass", abbr: "ONE Pass", category: "elite",
+    tagline: "World-class talent — simultaneous multi-employer work permitted",
+    badge: { label: "Elite", color: "#b07fe0", bg: "rgba(176,127,224,0.12)", border: "rgba(176,127,224,0.25)" },
+    levy: "None", quota: "None", validity: "5 years, renewable", nations: "All nationalities",
+    fields: [
+      { label: "Salary Route", value: "Fixed monthly salary ≥ S$30,000 for last 12 consecutive months", hi: true },
+      { label: "Achievements Route", value: "Outstanding track record in business, arts, sports, science or academia — salary waived" },
+      { label: "Overseas Employer", value: "Market cap ≥ USD 500M or annual revenue ≥ USD 200M" },
+      { label: "Renewal Criteria", value: "Avg salary ≥ S$30,000/mth over 5 yrs OR SG company with ≥5 locals each earning ≥ S$5,000/mth" },
+      { label: "Multi-Employer", value: "Yes — can work for multiple companies simultaneously and start/operate a business" },
+      { label: "Processing Time", value: "~4–8 weeks" },
+    ],
+    notes: "No COMPASS, no quota, no levy. Ideal for senior global executives, world-class athletes, top researchers, and artists.",
+  },
+  {
+    id: "entrepass", name: "EntrePass", abbr: "EntrePass", category: "elite",
+    tagline: "For founders building innovative or venture-backed businesses in Singapore",
+    badge: { label: "Entrepreneur", color: "#b07fe0", bg: "rgba(176,127,224,0.12)", border: "rgba(176,127,224,0.25)" },
+    levy: "None", quota: "None", validity: "1 yr (new) / 2 yrs (subsequent renewals)", nations: "All nationalities",
+    fields: [
+      { label: "Min. Salary", value: "None — must meet innovation/funding criteria instead" },
+      { label: "Eligibility (meet ≥1)", value: "Funding ≥ S$100K from MAS-licensed VC/angel; IP with SG institution; R&D collaboration; Startup SG recognition" },
+      { label: "Company Requirement", value: "Must be ACRA-registered in Singapore" },
+      { label: "Who Applies", value: "Candidate (self-sponsored)" },
+      { label: "Processing Time", value: "~4–8 weeks (holistic assessment)" },
+    ],
+    notes: "Renewal requires demonstrated business traction — employees hired, revenue generated, investments raised. Provides a pathway to Permanent Residency.",
+  },
+  {
+    id: "spass", name: "S Pass", abbr: "S Pass", category: "skilled",
+    tagline: "For Associate Professionals and Technicians — quota and levy apply",
+    badge: { label: "Mid-Skilled", color: "#4ea3d4", bg: "rgba(78,163,212,0.12)", border: "rgba(78,163,212,0.25)" },
+    levy: "S$650/month (flat, all sectors — from Sep 2025)", quota: "10% (Services) / 15–18% (other sectors)", validity: "Up to 2 years, renewable", nations: "All nationalities",
+    fields: [
+      { label: "Min. Salary (General)", value: "S$3,300/month (from 1 Sep 2025)", hi: true },
+      { label: "Min. Salary (Financial Services)", value: "S$3,800/month (from 1 Sep 2025)", hi: true },
+      { label: "Age-Progressive Max", value: "Up to ~S$4,800+ (general) / ~S$5,650+ (finance) for older workers" },
+      { label: "Levy (Flat Rate from Sep 2025)", value: "S$650/month uniform across all sectors — previous tiered structure abolished" },
+      { label: "Quota", value: "10% of workforce (Services) / 15–18% (Manufacturing, Construction, Marine, Process)" },
+      { label: "Dependent Pass", value: "DP for spouse/children if salary ≥ S$6,000/month" },
+      { label: "Typical Roles", value: "Technicians, supervisors, designers, cooks, specialists, coordinators" },
+    ],
+    notes: "Use Self-Assessment Tool (SAT) before applying — 90% approval rate with positive SAT. Declaring qualifications is optional but must be verified if declared. Renewal thresholds effective 1 Sep 2026.",
+  },
+  {
+    id: "wp", name: "Work Permit (Migrant Worker)", abbr: "WP", category: "workpermit",
+    tagline: "Semi-skilled workers in construction, manufacturing, marine, process and services",
+    badge: { label: "Work Permit", color: "#6ec98f", bg: "rgba(110,201,143,0.12)", border: "rgba(110,201,143,0.25)" },
+    levy: "S$250–S$950/month (varies by sector & skill level)", quota: "Sector-specific DRC limits apply", validity: "Up to 2 years (no max period from Jul 2025)", nations: "Malaysia, NAS, NTS countries, PRC (varies by sector)",
+    fields: [
+      { label: "Eligible Sectors", value: "Construction, Manufacturing, Marine Shipyard, Process (petroleum/petrochemical), Services" },
+      { label: "Min. Salary", value: "No fixed minimum — sector norms apply" },
+      { label: "Age Limit", value: "Min 18; from Jul 2025: max 60 at application, max working age 63" },
+      { label: "Skill Tiers", value: "R1 (Higher-Skilled) = lower levy | R2 (Basic-Skilled) = higher levy" },
+      { label: "Security Bond", value: "S$5,000 per non-Malaysian worker" },
+      { label: "Medical Insurance", value: "Employer must provide ≥ S$60,000 inpatient/day-surgery coverage" },
+      { label: "Application Fee", value: "S$35 per application" },
+      { label: "Dependent Pass", value: "Generally not eligible" },
+    ],
+    notes: "Mandatory safety courses for construction, marine, and process workers. From Jul 2025: maximum employment period removed — workers can stay indefinitely if criteria met. MYE system being phased out.",
+    levyTable: [
+      { sector: "Manufacturing — R1 (Higher-Skilled)", t1: "S$250", t2: "S$370", drc: "Max 60%" },
+      { sector: "Manufacturing — R2 (Basic-Skilled)", t1: "S$370", t2: "S$650", drc: "Max 60%" },
+      { sector: "Services — R1 (Higher-Skilled)", t1: "S$300", t2: "S$450 / S$650", drc: "Max 35%" },
+      { sector: "Services — R2 (Basic-Skilled)", t1: "S$450", t2: "S$650 / S$800", drc: "Max 35%" },
+      { sector: "Construction — R1 (NTS/PRC)", t1: "S$600", t2: "—", drc: "Up to 7:1" },
+      { sector: "Construction — R2 (NTS/PRC)", t1: "S$950", t2: "—", drc: "Up to 7:1" },
+      { sector: "Construction — Malaysia/NAS", t1: "S$300", t2: "—", drc: "Up to 7:1" },
+      { sector: "Marine Shipyard — R1", t1: "S$300", t2: "—", drc: "Sector quota" },
+      { sector: "Marine Shipyard — R2", t1: "S$400 (→S$500 from 2026)", t2: "—", drc: "Sector quota" },
+      { sector: "Process — R1", t1: "S$300", t2: "—", drc: "Max 87%" },
+      { sector: "Process — R2", t1: "S$750 (→~S$900 from 2026)", t2: "—", drc: "Max 87%" },
+    ],
+  },
+  {
+    id: "mdw", name: "Work Permit — Migrant Domestic Worker", abbr: "MDW", category: "workpermit",
+    tagline: "For foreign domestic helpers working in Singapore households",
+    badge: { label: "Work Permit", color: "#6ec98f", bg: "rgba(110,201,143,0.12)", border: "rgba(110,201,143,0.25)" },
+    levy: "S$300/month (S$60 concession for qualifying households)", quota: "None", validity: "Up to 2 years, renewable",
+    nations: "Bangladesh, Cambodia, Hong Kong, India, Indonesia, Macau, Malaysia, Myanmar, Philippines, South Korea, Sri Lanka, Taiwan, Thailand",
+    fields: [
+      { label: "Standard Monthly Levy", value: "S$300/month", hi: true },
+      { label: "Concessionary Levy", value: "S$60/month — SC child <16, elderly SC aged 67+, or PWD (max 2 MDWs)", hi: true },
+      { label: "Min. Age", value: "23 years old" },
+      { label: "Settling-In Programme (SIP)", value: "Mandatory for first-timers; within 7 days of arrival; S$75.70 (incl. GST) borne by employer" },
+      { label: "Medical Exams", value: "6-monthly medical examination required" },
+      { label: "Rest Days", value: "Entitled to 1 rest day per week" },
+      { label: "Processing Time", value: "~1 week" },
+    ],
+    notes: "MDW's work is restricted to the address on the permit — cannot work at other residences. Employer must provide accommodation, food, and pay salary within 7 days. MDW levy income tax relief removed from YA2025.",
+  },
+  {
+    id: "cn", name: "Work Permit — Confinement Nanny", abbr: "CN", category: "workpermit",
+    tagline: "Short-term postnatal care for mother and newborn — Malaysia only",
+    badge: { label: "Work Permit", color: "#6ec98f", bg: "rgba(110,201,143,0.12)", border: "rgba(110,201,143,0.25)" },
+    levy: "None", quota: "None", validity: "Up to 16 weeks from birth", nations: "Malaysia only",
+    fields: [
+      { label: "Duration", value: "Up to 16 weeks from birth of employer's child" },
+      { label: "Purpose", value: "Traditional confinement care for mother and newborn" },
+      { label: "Source Country", value: "Malaysia ONLY", hi: true },
+    ],
+    notes: "Strictly limited to Malaysian nationals. No levy, no quota. Only one confinement nanny per household per birth event.",
+  },
+  {
+    id: "pa", name: "Work Permit — Performing Artiste", abbr: "PA", category: "workpermit",
+    tagline: "For foreign performers in licensed entertainment outlets — scheme ending Jun 2026",
+    badge: { label: "Work Permit", color: "#6ec98f", bg: "rgba(110,201,143,0.12)", border: "rgba(110,201,143,0.25)" },
+    levy: "Applicable (sector rates)", quota: "Applicable", validity: "Up to 1 year",
+    nations: "Approved countries — check MOM",
+    fields: [
+      { label: "Applicable Venues", value: "Bars, hotels, nightclubs, licensed public entertainment outlets" },
+      { label: "⚠️ Scheme Ending", value: "Firm applications CEASE on 1 June 2026", hi: true },
+    ],
+    notes: "The scheme for firms to apply for Work Permit (Performing Artiste) will cease on 1 June 2026. Employers should plan alternative arrangements.",
+  },
+  {
+    id: "tep", name: "Training Employment Pass", abbr: "TEP", category: "training",
+    tagline: "For foreign professionals undergoing practical training in Singapore",
+    badge: { label: "Training", color: "#e07575", bg: "rgba(224,117,117,0.12)", border: "rgba(224,117,117,0.25)" },
+    levy: "None", quota: "None", validity: "Up to 3 months (renewable up to 1 year)", nations: "All nationalities",
+    fields: [
+      { label: "Min. Salary", value: "S$3,000/month", hi: true },
+      { label: "Who Applies", value: "Employer or training institution" },
+      { label: "Purpose", value: "Practical training attachment in Singapore" },
+    ],
+    notes: "Cannot be used for productive work beyond training purposes. Not convertible to a regular EP without a fresh application.",
+  },
+  {
+    id: "twp", name: "Training Work Permit", abbr: "TWP", category: "training",
+    tagline: "For semi-skilled foreign trainees or students undergoing practical training",
+    badge: { label: "Training", color: "#e07575", bg: "rgba(224,117,117,0.12)", border: "rgba(224,117,117,0.25)" },
+    levy: "None", quota: "None", validity: "Up to 6 months", nations: "Approved source countries",
+    fields: [
+      { label: "Duration", value: "Up to 6 months" },
+      { label: "Target", value: "Semi-skilled foreign students or trainees" },
+      { label: "Min. Salary", value: "No fixed minimum" },
+    ],
+    notes: "For practical training only. Cannot be converted to a regular Work Permit.",
+  },
+  {
+    id: "whp1", name: "Work Holiday Pass (Work Holiday Programme)", abbr: "WHP", category: "training",
+    tagline: "For students and graduates aged 18–25 to work and holiday in Singapore",
+    badge: { label: "Holiday", color: "#e07575", bg: "rgba(224,117,117,0.12)", border: "rgba(224,117,117,0.25)" },
+    levy: "None", quota: "None", validity: "6 months", nations: "Selected bilateral agreement countries",
+    fields: [
+      { label: "Age Eligibility", value: "18–25 years old" },
+      { label: "Duration", value: "6 months" },
+      { label: "Who Applies", value: "Pass candidate (self-sponsored)" },
+    ],
+    notes: "Allows students and graduates to work and holiday in Singapore for up to 6 months.",
+  },
+  {
+    id: "whp2", name: "Work Holiday Pass (Work & Holiday Visa Programme)", abbr: "WHP (AU/NZ)", category: "training",
+    tagline: "Bilateral 12-month programme for Australian and New Zealand nationals",
+    badge: { label: "Holiday", color: "#e07575", bg: "rgba(224,117,117,0.12)", border: "rgba(224,117,117,0.25)" },
+    levy: "None", quota: "None", validity: "12 months", nations: "Australia and New Zealand ONLY",
+    fields: [
+      { label: "Age Eligibility", value: "18–30 years old" },
+      { label: "Duration", value: "12 months" },
+      { label: "Source Countries", value: "Australia and New Zealand only", hi: true },
+    ],
+    notes: "Bilateral arrangement under the Work and Holiday Visa Programme. Only available to Australian and New Zealand passport holders.",
+  },
+  {
+    id: "dp", name: "Dependant's Pass", abbr: "DP", category: "family",
+    tagline: "For spouses and unmarried children of eligible EP or S Pass holders",
+    badge: { label: "Family", color: "#7dcfcf", bg: "rgba(130,200,200,0.12)", border: "rgba(130,200,200,0.25)" },
+    levy: "None", quota: "None", validity: "Tied to primary pass holder's validity", nations: "All nationalities",
+    fields: [
+      { label: "Sponsor (EP Holder)", value: "Any EP holder — no minimum salary for EP sponsor" },
+      { label: "Sponsor (S Pass)", value: "S Pass holder earning ≥ S$6,000/month", hi: true },
+      { label: "Who Qualifies", value: "Legally married spouse, unmarried children under 21" },
+      { label: "Work Rights", value: "May work with Letter of Consent (LOC) — no levy or quota applies" },
+      { label: "Application Fee", value: "S$105 (application) + S$60 (issuance)" },
+      { label: "Processing Time", value: "~3 weeks" },
+    ],
+    notes: "DP holders need a Letter of Consent (LOC) from their employer to work. No levy or quota applies to DP+LOC holders.",
+  },
+  {
+    id: "ltvp", name: "Long-Term Visit Pass", abbr: "LTVP", category: "family",
+    tagline: "For extended family members of eligible EP and S Pass holders",
+    badge: { label: "Family", color: "#7dcfcf", bg: "rgba(130,200,200,0.12)", border: "rgba(130,200,200,0.25)" },
+    levy: "None", quota: "None", validity: "Tied to primary pass holder's validity", nations: "All nationalities",
+    fields: [
+      { label: "Who Qualifies", value: "Parents, common-law spouse, stepchildren, or handicapped children" },
+      { label: "Parent Sponsorship", value: "EP holder must earn ≥ S$12,000/month to sponsor parents", hi: true },
+      { label: "Work Rights", value: "May work with Letter of Consent (LOC)" },
+      { label: "Application Fee", value: "S$105 (application) + S$60 (issuance)" },
+    ],
+    notes: "LTVP holders wishing to work must obtain a Letter of Consent through MOM from their employer.",
+  },
+  {
+    id: "mwp", name: "Miscellaneous Work Pass", abbr: "MWP", category: "special",
+    tagline: "For foreign speakers, religious workers, and journalists on short assignments",
+    badge: { label: "Special", color: "#c8c860", bg: "rgba(200,200,100,0.12)", border: "rgba(200,200,100,0.25)" },
+    levy: "None", quota: "None", validity: "Up to 60 days", nations: "All nationalities",
+    fields: [
+      { label: "Duration", value: "Up to 60 days" },
+      { label: "Eligible Activities", value: "Public speaking, religious work, journalism, other short-term assignments" },
+    ],
+    notes: "For short-term work activities only. Cannot be used for regular employment.",
+  },
 ];
 
-function fillExample(i) {
-  document.getElementById('query-input').value = EXAMPLES[i];
-  document.getElementById('query-input').focus();
-}
+const CATEGORIES = [
+  { id: "all",         label: "All Passes",         count: PASS_DATA.length },
+  { id: "professional",label: "Professionals",      count: PASS_DATA.filter(p=>p.category==="professional").length },
+  { id: "elite",       label: "Elite & Founders",   count: PASS_DATA.filter(p=>p.category==="elite").length },
+  { id: "skilled",     label: "S Pass",             count: PASS_DATA.filter(p=>p.category==="skilled").length },
+  { id: "workpermit",  label: "Work Permits",       count: PASS_DATA.filter(p=>p.category==="workpermit").length },
+  { id: "training",    label: "Training & Holiday", count: PASS_DATA.filter(p=>p.category==="training").length },
+  { id: "family",      label: "Family Passes",      count: PASS_DATA.filter(p=>p.category==="family").length },
+  { id: "special",     label: "Special",            count: PASS_DATA.filter(p=>p.category==="special").length },
+];
 
-document.getElementById('query-input').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) analyzePass();
-});
+const EXAMPLES = [
+  "Software engineer from Philippines, earning S$7,000/month, hired full-time by a Singapore technology company. She has a bachelor's degree from a local university.",
+  "Construction foreman from Bangladesh, semi-skilled, hired for a building project in Singapore. He will be doing on-site work and supervision.",
+  "Indonesian woman, 28 years old, applying to work as a live-in domestic helper for a family in Singapore.",
+  "British entrepreneur, 35, wants to start a fintech startup in Singapore. He has raised S$200,000 seed funding from a Singapore-based angel investor.",
+  "Indian supervisor, 32, working in a manufacturing plant, earning S$3,500/month with a diploma in mechanical engineering.",
+  "Australian former Olympian sprinter, 29, wants to join a Singapore athletics association as head coach.",
+];
 
-const SYSTEM_PROMPT = `You are a Singapore Ministry of Manpower (MOM) work pass expert. You will be given a description of a candidate or role, and you must identify the most appropriate Singapore work pass(es) for them based on 2025–2026 MOM policy.
+const SYSTEM_PROMPT = `You are a Singapore MOM work pass expert (2025–2026). Identify the best Singapore work pass for a given candidate/role.
+Respond ONLY with valid JSON, no markdown:
+{"primary_pass":"Full name (ABBR)","primary_rationale":"2-3 sentences","alternative_passes":["name"],"alternative_rationale":"brief or empty","eligibility_status":"eligible|likely_eligible|needs_more_info|ineligible","key_requirements":[{"label":"x","value":"y"}],"levy_applicable":true,"levy_amount":"S$X/month or None","quota_applicable":false,"quota_info":"details or None","validity":"duration","warnings":["w1"],"next_steps":["s1","s2"]}
+2025 rules: EP min S$5,600/mth (S$6,200 fin), COMPASS, no levy/quota. S Pass min S$3,300/mth (S$3,800 fin), S$650/mth flat levy, 10-15% quota. WP construction/manufacturing/marine/process/services only, approved countries, levy S$250-S$950/mth. MDW 13 countries S$300/mth levy (S$60 concession). ONE Pass S$30,000/mth or achievements, 5yr multi-employer. PEP S$22,500/mth 3yr non-renewable. EntrePass innovative startup funding/IP criteria. TEP S$3,000/mth. WHP 18-25 6mths or AU/NZ 18-30 12mths. Confinement Nanny Malaysia only 16wks.`;
 
-You must respond ONLY with a valid JSON object — no markdown, no preamble, no explanation outside the JSON.
+const SC = {
+  eligible:        { label: "✓ Eligible",        color: "#6ec98f", bg: "rgba(110,201,143,0.12)", border: "rgba(110,201,143,0.3)" },
+  likely_eligible: { label: "~ Likely Eligible",  color: "#e8a03c", bg: "rgba(232,160,60,0.12)",  border: "rgba(232,160,60,0.3)"  },
+  needs_more_info: { label: "? More Info Needed", color: "#4ea3d4", bg: "rgba(78,163,212,0.12)",  border: "rgba(78,163,212,0.3)"  },
+  ineligible:      { label: "✗ Ineligible",       color: "#e07575", bg: "rgba(224,117,117,0.1)",  border: "rgba(224,117,117,0.25)"},
+};
 
-The JSON structure must be exactly:
-{
-  "primary_pass": "Full pass name (abbreviation)",
-  "primary_rationale": "2-3 sentence explanation of why this is the primary recommended pass",
-  "alternative_passes": ["Pass name 1", "Pass name 2"],
-  "alternative_rationale": "Brief note on alternatives if any, or empty string",
-  "eligibility_status": "eligible" | "likely_eligible" | "needs_more_info" | "ineligible",
-  "key_requirements": [
-    {"label": "Requirement name", "value": "Value or status"},
-    {"label": "Requirement name", "value": "Value or status"}
-  ],
-  "levy_applicable": true | false,
-  "levy_amount": "Monthly levy amount or 'None'",
-  "quota_applicable": true | false,
-  "quota_info": "Quota details or 'None'",
-  "validity": "Duration of pass",
-  "warnings": ["Any important caveats, restrictions, or missing info needed"],
-  "next_steps": ["Step 1", "Step 2", "Step 3"]
-}
+const K = { bg:"#0d1117", bg2:"#141b24", bg3:"#1c2634", bd:"#243040", accent:"#e8a03c", blue:"#4ea3d4", green:"#6ec98f", red:"#e07575", purple:"#b07fe0", muted:"#7a8fa6", text:"#d4dde8", head:"#eef3f8" };
 
-Key 2025 rules to apply:
-- EP: min S$5,600/month (S$6,200 financial services), COMPASS framework, all nationalities, no levy/quota
-- S Pass: min S$3,300/month (S$3,800 financial services) from Sep 2025, S$650/month flat levy, 10-15% quota
-- Work Permit: construction/manufacturing/marine/process/services only, approved source countries, levy S$250-S$950/month depending on sector and skill level
-- MDW Work Permit: domestic helpers only, 13 approved countries, S$300/month levy (S$60 concession)
-- ONE Pass: min S$30,000/month OR outstanding achievements, 5-year pass, multi-employer
-- PEP: min S$22,500/month, 3-year non-renewable, employer-independent
-- EntrePass: innovative/funded startups, no salary requirement, must meet funding/IP criteria
-- Confinement Nanny WP: Malaysia only, up to 16 weeks, no levy
-- Work Holiday Pass: students/graduates 18-25 (6 months) or AU/NZ 18-30 (12 months)
-- Training EP: min S$3,000/month, short-term training
-- Training WP: semi-skilled trainees, up to 6 months
+// ── Pass Card ──────────────────────────────────
+function PassCard({ pass }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div style={{ background: K.bg2, border: `1px solid ${K.bd}`, borderRadius: 10, overflow: "hidden" }}
+      onMouseEnter={e=>e.currentTarget.style.borderColor="rgba(232,160,60,0.3)"}
+      onMouseLeave={e=>e.currentTarget.style.borderColor=K.bd}>
 
-If the description is vague, make a reasonable inference and note what additional information would help. Always give a practical, actionable answer.`;
-
-async function analyzePass() {
-  const query = document.getElementById('query-input').value.trim();
-  if (!query) return;
-
-  const btn = document.getElementById('send-btn');
-  const btnText = document.getElementById('btn-text');
-  const resultArea = document.getElementById('result-area');
-
-  btn.disabled = true;
-  btnText.textContent = 'Analysing…';
-  resultArea.style.display = 'block';
-  resultArea.innerHTML = `
-    <div class="result-card">
-      <div class="thinking-dots">
-        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-        <span class="thinking-label">Analysing against all MOM pass criteria…</span>
+      <div style={{ display:"flex", alignItems:"flex-start", gap:10, padding:"13px 15px", cursor:"pointer" }} onClick={()=>setOpen(o=>!o)}>
+        <span style={{ padding:"2px 8px", borderRadius:4, fontSize:10, fontWeight:700, letterSpacing:1, textTransform:"uppercase", color:pass.badge.color, background:pass.badge.bg, border:`1px solid ${pass.badge.border}`, flexShrink:0, marginTop:2 }}>{pass.badge.label}</span>
+        <div style={{ flex:1, minWidth:0 }}>
+          <div style={{ fontSize:14, fontWeight:700, color:K.head }}>{pass.name}</div>
+          <div style={{ fontSize:12, color:K.muted, marginTop:2 }}>{pass.tagline}</div>
+        </div>
+        <span style={{ color:K.muted, fontSize:18, flexShrink:0, transform:open?"rotate(90deg)":"none", transition:"transform 0.2s", marginTop:1 }}>›</span>
       </div>
-    </div>`;
 
-  try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: SYSTEM_PROMPT,
-        messages: [{ role: 'user', content: query }]
-      })
-    });
+      <div style={{ display:"flex", gap:6, flexWrap:"wrap", padding:"0 15px 12px" }}>
+        {[
+          { k:"Levy",      v:pass.levy,    c:pass.levy==="None"?K.green:K.accent },
+          { k:"Quota",     v:pass.quota,   c:pass.quota==="None"?K.green:K.accent },
+          { k:"Validity",  v:pass.validity,c:K.blue },
+          { k:"Countries", v:pass.nations.length>42?"Multiple approved countries":pass.nations, c:K.muted },
+        ].map((item,i)=>(
+          <div key={i} style={{ background:K.bg3, borderRadius:6, padding:"3px 9px", display:"flex", gap:5, alignItems:"center" }}>
+            <span style={{ fontSize:10, color:K.muted }}>{item.k}:</span>
+            <span style={{ fontSize:11, fontWeight:600, color:item.c }}>{item.v}</span>
+          </div>
+        ))}
+      </div>
 
-    const data = await response.json();
-    const rawText = data.content?.map(b => b.text || '').join('') || '';
+      {open && (
+        <div style={{ borderTop:`1px solid ${K.bd}`, padding:"13px 15px", background:"rgba(0,0,0,0.12)" }}>
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit, minmax(195px, 1fr))", gap:7, marginBottom:11 }}>
+            {pass.fields.map((f,i)=>(
+              <div key={i} style={{ background:K.bg2, borderRadius:7, padding:"8px 11px" }}>
+                <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1, color:K.muted, marginBottom:2 }}>{f.label}</div>
+                <div style={{ fontSize:12, color:f.hi?K.accent:K.head, fontWeight:f.hi?600:400, lineHeight:1.5 }}>{f.value}</div>
+              </div>
+            ))}
+          </div>
 
-    let result;
+          {pass.levyTable && (
+            <div style={{ marginBottom:11 }}>
+              <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1, color:K.muted, marginBottom:7 }}>Levy Rates by Sector</div>
+              <div style={{ overflowX:"auto", borderRadius:7, border:`1px solid ${K.bd}` }}>
+                <table style={{ width:"100%", borderCollapse:"collapse", fontSize:12 }}>
+                  <thead>
+                    <tr style={{ background:"rgba(0,0,0,0.25)" }}>
+                      {["Sector / Skill Level","Tier 1","Tier 2","DRC Limit"].map(h=>(
+                        <th key={h} style={{ padding:"7px 11px", textAlign:"left", fontSize:10, textTransform:"uppercase", letterSpacing:1, color:K.muted, borderBottom:`1px solid ${K.bd}`, whiteSpace:"nowrap" }}>{h}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {pass.levyTable.map((row,i)=>(
+                      <tr key={i} style={{ borderBottom:i<pass.levyTable.length-1?`1px solid rgba(36,48,64,0.5)`:"none" }}>
+                        <td style={{ padding:"7px 11px", color:K.text }}>{row.sector}</td>
+                        <td style={{ padding:"7px 11px", color:K.accent, fontWeight:700 }}>{row.t1}</td>
+                        <td style={{ padding:"7px 11px", color:row.t2==="—"?K.muted:K.accent, fontWeight:row.t2!=="—"?700:400 }}>{row.t2}</td>
+                        <td style={{ padding:"7px 11px", color:K.blue }}>{row.drc}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {pass.nations.length > 42 && (
+            <div style={{ marginBottom:11 }}>
+              <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1, color:K.muted, marginBottom:7 }}>Approved Source Countries</div>
+              <div style={{ display:"flex", flexWrap:"wrap", gap:5 }}>
+                {pass.nations.split(", ").map((c,i)=>(
+                  <span key={i} style={{ background:K.bg3, border:`1px solid ${K.bd}`, borderRadius:5, padding:"3px 9px", fontSize:11, color:K.text }}>{c}</span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {pass.notes && (
+            <div style={{ background:"rgba(232,160,60,0.06)", border:"1px solid rgba(232,160,60,0.15)", borderRadius:7, padding:"8px 11px", fontSize:12, color:K.text, lineHeight:1.6 }}>
+              <span style={{ color:K.accent, fontWeight:600 }}>Note: </span>{pass.notes}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Browse Tab ─────────────────────────────────
+function BrowseTab() {
+  const [cat, setCat]     = useState("all");
+  const [search, setSearch] = useState("");
+  const filtered = PASS_DATA.filter(p => {
+    const mc = cat === "all" || p.category === cat;
+    const q  = search.toLowerCase();
+    const ms = !q || p.name.toLowerCase().includes(q) || p.abbr.toLowerCase().includes(q) || p.tagline.toLowerCase().includes(q);
+    return mc && ms;
+  });
+
+  return (
+    <div style={{ padding:"22px 26px" }}>
+      <input value={search} onChange={e=>setSearch(e.target.value)}
+        placeholder="Search by pass name, abbreviation, or keyword…"
+        style={{ width:"100%", maxWidth:580, background:K.bg2, border:`1px solid ${K.bd}`, borderRadius:8, padding:"8px 13px", color:K.head, fontSize:13, fontFamily:"inherit", outline:"none", boxSizing:"border-box", marginBottom:14 }}
+      />
+      <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:18 }}>
+        {CATEGORIES.map(c=>(
+          <button key={c.id} onClick={()=>setCat(c.id)} style={{
+            padding:"4px 12px", borderRadius:20, fontSize:12, fontWeight:cat===c.id?700:400,
+            border:`1px solid ${cat===c.id?K.blue:K.bd}`,
+            background:cat===c.id?"rgba(78,163,212,0.15)":"transparent",
+            color:cat===c.id?K.blue:K.muted,
+            cursor:"pointer", fontFamily:"inherit"
+          }}>
+            {c.label} <span style={{ opacity:0.6, fontSize:10 }}>({c.count})</span>
+          </button>
+        ))}
+      </div>
+      <div style={{ fontSize:12, color:K.muted, marginBottom:12 }}>{filtered.length} pass{filtered.length!==1?"es":""} shown — click any card to expand full details</div>
+      <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
+        {filtered.length===0
+          ? <div style={{ color:K.muted, fontSize:13, padding:"20px 0" }}>No passes match your search.</div>
+          : filtered.map(p=><PassCard key={p.id} pass={p}/>)}
+      </div>
+    </div>
+  );
+}
+
+// ── Advisor Tab ────────────────────────────────
+function AdvisorTab() {
+  const [query,   setQuery]   = useState("");
+  const [result,  setResult]  = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error,   setError]   = useState("");
+  const ref = useRef(null);
+
+  const analyse = async () => {
+    const q = query.trim();
+    if (!q || loading) return;
+    setLoading(true); setError(""); setResult(null);
     try {
-      const clean = rawText.replace(/```json|```/g, '').trim();
-      result = JSON.parse(clean);
-    } catch(e) {
-      throw new Error('Could not parse AI response. Please try again.');
-    }
-
-    renderResult(result, query);
-
-  } catch (err) {
-    resultArea.innerHTML = `
-      <div class="result-card">
-        <div class="result-body">
-          <p style="color:var(--accent4)">⚠️ ${err.message || 'An error occurred. Please try again.'}</p>
-        </div>
-      </div>`;
-  } finally {
-    btn.disabled = false;
-    btnText.textContent = 'Analyse →';
-  }
-}
-
-function statusBadge(s) {
-  const map = {
-    'eligible': ['✓ Eligible', 'var(--accent3)', 'rgba(110,201,143,0.12)', 'rgba(110,201,143,0.25)'],
-    'likely_eligible': ['~ Likely Eligible', 'var(--accent)', 'rgba(232,160,60,0.12)', 'rgba(232,160,60,0.25)'],
-    'needs_more_info': ['? More Info Needed', 'var(--accent2)', 'rgba(78,163,212,0.12)', 'rgba(78,163,212,0.25)'],
-    'ineligible': ['✗ Ineligible', 'var(--accent4)', 'rgba(224,117,117,0.1)', 'rgba(224,117,117,0.2)']
+      const res  = await fetch("https://api.anthropic.com/v1/messages", {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({ model:"claude-sonnet-4-20250514", max_tokens:1000, system:SYSTEM_PROMPT, messages:[{role:"user",content:q}] })
+      });
+      const data = await res.json();
+      const raw  = data.content?.map(b=>b.text||"").join("")||"";
+      setResult(JSON.parse(raw.replace(/```json|```/g,"").trim()));
+    } catch { setError("Something went wrong. Please try again."); }
+    finally { setLoading(false); }
   };
-  const [label, color, bg, border] = map[s] || map['needs_more_info'];
-  return `<span style="display:inline-block;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;color:${color};background:${bg};border:1px solid ${border}">${label}</span>`;
+
+  const sc = result ? (SC[result.eligibility_status]||SC.needs_more_info) : null;
+
+  return (
+    <div style={{ padding:"22px 26px" }}>
+      <p style={{ color:K.muted, fontSize:13, margin:"0 0 16px", maxWidth:600 }}>Describe the candidate's role, salary, nationality, and purpose of hire. The AI will match them against all 18 MOM-regulated pass types.</p>
+
+      <div style={{ background:K.bg2, border:`1px solid ${K.bd}`, borderRadius:12, maxWidth:740, overflow:"hidden", marginBottom:14 }}>
+        <textarea ref={ref} value={query} onChange={e=>setQuery(e.target.value)}
+          onKeyDown={e=>{if(e.key==="Enter"&&(e.ctrlKey||e.metaKey))analyse();}}
+          placeholder={"e.g. Software engineer from India, S$7,000/month, hired by a Singapore tech firm…\n\nOr: Construction worker from Bangladesh for a project in Toa Payoh…"}
+          style={{ width:"100%", background:"transparent", border:"none", outline:"none", color:K.head, fontFamily:"inherit", fontSize:14, lineHeight:1.65, resize:"none", padding:"13px 15px 10px", minHeight:92, display:"block", boxSizing:"border-box" }}
+        />
+        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"8px 15px 12px", borderTop:`1px solid ${K.bd}` }}>
+          <span style={{ fontSize:11, color:K.muted }}>Ctrl + Enter to submit</span>
+          <button onClick={analyse} disabled={loading||!query.trim()} style={{
+            background:loading||!query.trim()?"#3a3a5a":K.purple,
+            color:loading||!query.trim()?"#555":"#fff",
+            border:"none", borderRadius:8, padding:"7px 20px", fontSize:13, fontWeight:600,
+            cursor:loading||!query.trim()?"not-allowed":"pointer", fontFamily:"inherit", whiteSpace:"nowrap"
+          }}>{loading?"Analysing…":"Analyse →"}</button>
+        </div>
+        <div style={{ display:"flex", flexWrap:"wrap", gap:6, padding:"8px 15px 12px", borderTop:`1px solid ${K.bd}`, alignItems:"center" }}>
+          <span style={{ fontSize:11, color:K.muted, marginRight:2 }}>Try:</span>
+          {["Tech pro, S$6K, Filipino","Factory worker, Bangladesh","Domestic helper, Indonesian","Startup founder, British","Supervisor S$3.5K, Indian","Olympic athlete, Australian"].map((label,i)=>(
+            <button key={i} onClick={()=>{setQuery(EXAMPLES[i]);ref.current?.focus();}} style={{
+              background:"rgba(255,255,255,0.04)", border:`1px solid ${K.bd}`, borderRadius:20,
+              padding:"3px 10px", fontSize:11, color:K.muted, cursor:"pointer", fontFamily:"inherit"
+            }}
+            onMouseEnter={e=>{e.target.style.background="rgba(176,127,224,0.1)";e.target.style.color=K.text;}}
+            onMouseLeave={e=>{e.target.style.background="rgba(255,255,255,0.04)";e.target.style.color=K.muted;}}
+            >{label}</button>
+          ))}
+        </div>
+      </div>
+
+      {loading && (
+        <div style={{ maxWidth:740, background:K.bg2, border:`1px solid ${K.bd}`, borderRadius:12, padding:"16px 18px", display:"flex", alignItems:"center", gap:10 }}>
+          {[0,1,2].map(i=><div key={i} style={{ width:7, height:7, borderRadius:"50%", background:K.purple, animation:"pulse 1.2s ease-in-out infinite", animationDelay:`${i*0.2}s` }}/>)}
+          <span style={{ color:K.muted, fontSize:13 }}>Analysing against all MOM pass criteria…</span>
+        </div>
+      )}
+
+      {error && <div style={{ maxWidth:740, background:"rgba(224,117,117,0.08)", border:"1px solid rgba(224,117,117,0.25)", borderRadius:12, padding:"13px 16px", color:K.red, fontSize:13 }}>⚠️ {error}</div>}
+
+      {result && !loading && (
+        <div style={{ maxWidth:740, background:K.bg2, border:`1px solid ${K.bd}`, borderRadius:12, overflow:"hidden" }}>
+          <div style={{ display:"flex", alignItems:"center", gap:10, padding:"12px 16px", background:"rgba(176,127,224,0.06)", borderBottom:`1px solid ${K.bd}`, flexWrap:"wrap" }}>
+            <span style={{ fontSize:18 }}>🧠</span>
+            <div style={{ flex:1, minWidth:0 }}>
+              <div style={{ fontSize:13, fontWeight:600, color:K.head }}>AI Work Pass Analysis</div>
+              <div style={{ fontSize:11, color:K.muted, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>"{query.substring(0,80)}{query.length>80?"…":""}"</div>
+            </div>
+            <span style={{ padding:"3px 10px", borderRadius:20, fontSize:12, fontWeight:700, color:sc.color, background:sc.bg, border:`1px solid ${sc.border}`, whiteSpace:"nowrap" }}>{sc.label}</span>
+          </div>
+          <div style={{ padding:"16px 18px" }}>
+            <div style={{ marginBottom:14 }}>
+              <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1.2, color:K.muted, marginBottom:6 }}>Recommended Pass</div>
+              <div style={{ display:"inline-flex", padding:"4px 13px", borderRadius:20, background:"rgba(176,127,224,0.15)", border:"1px solid rgba(176,127,224,0.35)", color:K.purple, fontWeight:700, fontSize:13, marginBottom:8 }}>★ {result.primary_pass}</div>
+              <p style={{ color:K.text, fontSize:13, lineHeight:1.7, margin:0 }}>{result.primary_rationale}</p>
+            </div>
+
+            {result.key_requirements?.length>0 && (
+              <div style={{ marginBottom:12 }}>
+                <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1.2, color:K.muted, marginBottom:6 }}>Key Requirements</div>
+                <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit, minmax(150px, 1fr))", gap:6 }}>
+                  {result.key_requirements.map((kv,i)=>(
+                    <div key={i} style={{ background:"rgba(0,0,0,0.2)", borderRadius:7, padding:"7px 11px" }}>
+                      <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1, color:K.muted, marginBottom:2 }}>{kv.label}</div>
+                      <div style={{ fontSize:12, color:K.head, fontWeight:500 }}>{kv.value}</div>
+                    </div>
+                  ))}
+                  <div style={{ background:"rgba(0,0,0,0.2)", borderRadius:7, padding:"7px 11px" }}>
+                    <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1, color:K.muted, marginBottom:2 }}>Monthly Levy</div>
+                    <div style={{ fontSize:12, fontWeight:600, color:result.levy_applicable?K.accent:K.green }}>{result.levy_amount||"None"}</div>
+                  </div>
+                  <div style={{ background:"rgba(0,0,0,0.2)", borderRadius:7, padding:"7px 11px" }}>
+                    <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1, color:K.muted, marginBottom:2 }}>Quota</div>
+                    <div style={{ fontSize:12, fontWeight:500, color:result.quota_applicable?K.accent:K.green }}>{result.quota_applicable?result.quota_info:"None"}</div>
+                  </div>
+                  <div style={{ background:"rgba(0,0,0,0.2)", borderRadius:7, padding:"7px 11px" }}>
+                    <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1, color:K.muted, marginBottom:2 }}>Validity</div>
+                    <div style={{ fontSize:12, fontWeight:500, color:K.head }}>{result.validity}</div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {result.alternative_passes?.length>0 && (
+              <div style={{ marginBottom:10 }}>
+                <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1.2, color:K.muted, marginBottom:6 }}>Alternatives</div>
+                <div style={{ display:"flex", flexWrap:"wrap", gap:5 }}>
+                  {result.alternative_passes.map((p,i)=><span key={i} style={{ padding:"3px 11px", borderRadius:20, background:"rgba(78,163,212,0.12)", border:"1px solid rgba(78,163,212,0.25)", color:K.blue, fontSize:12, fontWeight:600 }}>◎ {p}</span>)}
+                </div>
+                {result.alternative_rationale && <p style={{ fontSize:12, color:K.muted, margin:"5px 0 0" }}>{result.alternative_rationale}</p>}
+              </div>
+            )}
+
+            {result.warnings?.map((w,i)=>(
+              <div key={i} style={{ display:"flex", gap:8, background:"rgba(232,160,60,0.07)", border:"1px solid rgba(232,160,60,0.2)", borderRadius:7, padding:"7px 11px", fontSize:12, color:K.text, marginBottom:6 }}>
+                <span>⚠️</span><span>{w}</span>
+              </div>
+            ))}
+
+            {result.next_steps?.length>0 && (
+              <div style={{ marginTop:13, paddingTop:13, borderTop:`1px solid ${K.bd}` }}>
+                <div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:1.2, color:K.muted, marginBottom:8 }}>Next Steps</div>
+                {result.next_steps.map((s,i)=>(
+                  <div key={i} style={{ display:"flex", gap:8, alignItems:"flex-start", marginBottom:7 }}>
+                    <div style={{ flexShrink:0, width:18, height:18, borderRadius:"50%", background:"rgba(176,127,224,0.15)", border:"1px solid rgba(176,127,224,0.3)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:10, fontWeight:700, color:K.purple, marginTop:1 }}>{i+1}</div>
+                    <div style={{ fontSize:13, color:K.text, lineHeight:1.55 }}>{s}</div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
 
-function renderResult(r, query) {
-  const resultArea = document.getElementById('result-area');
+// ── Root ───────────────────────────────────────
+export default function App() {
+  const [tab, setTab] = useState("advisor");
+  const TABS = [
+    { id:"advisor", icon:"✦", label:"AI Advisor" },
+    { id:"browse",  icon:"⊞", label:`Browse All Passes (${PASS_DATA.length})` },
+  ];
 
-  const altHtml = r.alternative_passes?.length
-    ? r.alternative_passes.map(p => `<div class="pass-pill pill-alt">◎ ${p}</div>`).join('')
-    : '<span style="color:var(--text-muted);font-size:12px">None</span>';
-
-  const warningsHtml = r.warnings?.length
-    ? r.warnings.map(w => `<div class="result-warning"><span>⚠️</span><span>${w}</span></div>`).join('')
-    : '';
-
-  const kvHtml = r.key_requirements?.length
-    ? r.key_requirements.map(k => `<div class="result-kv"><div class="k">${k.label}</div><div class="v">${k.value}</div></div>`).join('')
-    : '';
-
-  const nextHtml = r.next_steps?.length
-    ? r.next_steps.map((s,i) => `<div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:6px"><div style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:rgba(176,127,224,0.15);border:1px solid rgba(176,127,224,0.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--accent5)">${i+1}</div><div style="font-size:13px;color:var(--text);line-height:1.5">${s}</div></div>`).join('')
-    : '';
-
-  resultArea.innerHTML = `
-    <div class="result-card">
-      <div class="result-head">
-        <span class="result-icon">🧠</span>
-        <div>
-          <div class="result-head-text">AI Work Pass Analysis</div>
-          <div class="result-head-sub">"${query.substring(0, 80)}${query.length > 80 ? '…' : ''}"</div>
+  return (
+    <div style={{ fontFamily:"'Segoe UI',system-ui,sans-serif", background:K.bg, minHeight:"100vh", color:K.text, fontSize:14 }}>
+      <div style={{ background:"linear-gradient(135deg,#0d1a2e,#142338,#0e1e30)", borderBottom:`1px solid ${K.bd}`, padding:"26px 26px 0" }}>
+        <div style={{ fontSize:10, letterSpacing:2.5, textTransform:"uppercase", color:K.accent, marginBottom:5 }}>Ministry of Manpower · Singapore</div>
+        <h1 style={{ fontFamily:"Georgia,serif", fontSize:22, color:K.head, margin:"0 0 3px", fontWeight:400 }}>Singapore Work Pass Advisor 2025–2026</h1>
+        <p style={{ color:K.muted, fontSize:12, margin:"0 0 18px" }}>AI-powered pass identification · Full reference for all {PASS_DATA.length} pass types</p>
+        <div style={{ display:"flex", gap:4 }}>
+          {TABS.map(t=>(
+            <button key={t.id} onClick={()=>setTab(t.id)} style={{
+              background:tab===t.id?K.bg:"transparent",
+              border:`1px solid ${tab===t.id?K.bd:"transparent"}`,
+              borderBottom:tab===t.id?`1px solid ${K.bg}`:`1px solid ${K.bd}`,
+              borderRadius:"8px 8px 0 0",
+              padding:"8px 18px", fontSize:13, fontWeight:tab===t.id?600:400,
+              color:tab===t.id?K.head:K.muted,
+              cursor:"pointer", fontFamily:"inherit", marginBottom:-1,
+              display:"flex", alignItems:"center", gap:6
+            }}>
+              <span style={{ fontSize:11 }}>{t.icon}</span>{t.label}
+            </button>
+          ))}
         </div>
-        <div style="margin-left:auto">${statusBadge(r.eligibility_status)}</div>
       </div>
-      <div class="result-body">
-
-        <div class="result-section" style="margin-bottom:18px">
-          <div class="result-section-label">Recommended Pass</div>
-          <div class="result-passes">
-            <div class="pass-pill pill-primary">★ ${r.primary_pass}</div>
-          </div>
-          <p style="margin-top:8px">${r.primary_rationale}</p>
-        </div>
-
-        ${kvHtml ? `
-        <div class="result-section">
-          <div class="result-section-label">Key Requirements</div>
-          <div class="result-grid">${kvHtml}</div>
-          <div class="result-grid" style="margin-top:10px">
-            <div class="result-kv"><div class="k">Monthly Levy</div><div class="v" style="color:${r.levy_applicable ? 'var(--accent)' : 'var(--accent3)'}">${r.levy_amount || 'None'}</div></div>
-            <div class="result-kv"><div class="k">Quota Applies</div><div class="v">${r.quota_applicable ? '<span style="color:var(--accent)">Yes — ' + (r.quota_info || '') + '</span>' : '<span style="color:var(--accent3)">No</span>'}</div></div>
-            <div class="result-kv"><div class="k">Pass Validity</div><div class="v">${r.validity || '—'}</div></div>
-          </div>
-        </div>` : ''}
-
-        ${r.alternative_passes?.length ? `
-        <div class="result-section" style="margin-top:16px">
-          <div class="result-section-label">Alternative Passes</div>
-          <div class="result-passes">${altHtml}</div>
-          ${r.alternative_rationale ? `<p style="margin-top:8px;font-size:12px;color:var(--text-muted)">${r.alternative_rationale}</p>` : ''}
-        </div>` : ''}
-
-        ${warningsHtml ? `<div style="margin-top:14px">${warningsHtml}</div>` : ''}
-
-        ${nextHtml ? `
-        <div class="result-section" style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border)">
-          <div class="result-section-label">Recommended Next Steps</div>
-          <div style="margin-top:10px">${nextHtml}</div>
-        </div>` : ''}
-
-      </div>
-    </div>`;
+      {tab==="advisor" ? <AdvisorTab/> : <BrowseTab/>}
+      <style>{`@keyframes pulse{0%,100%{opacity:0.3;transform:scale(0.8)}50%{opacity:1;transform:scale(1.1)}} *{box-sizing:border-box} textarea::-webkit-scrollbar{width:5px} textarea::-webkit-scrollbar-thumb{background:#243040;border-radius:3px}`}</style>
+    </div>
+  );
 }
-</script>
-</body>
-</html>

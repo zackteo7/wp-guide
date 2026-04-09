@@ -3,661 +3,944 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Singapore Work Pass Reference 2025–2026 | The Talent People</title>
+<title>Role Briefing — The Talent People</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;background:#0b0f18;color:#c8d0dc;line-height:1.6}
+  :root {
+    --ttp-blue: #1F4E96;
+    --ttp-blue-dark: #163a70;
+    --ttp-blue-light: #e8eef8;
+    --ttp-gold: #C9A84C;
+    --text-primary: #111827;
+    --text-secondary: #4B5563;
+    --text-muted: #9CA3AF;
+    --border: #D1D5DB;
+    --bg: #F9FAFB;
+    --red: #DC2626;
+    --success: #059669;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-primary); min-height: 100vh; padding: 0 0 60px; }
 
-/* ── VARIABLES ── */
-:root{
-  --navy:#0b0f18;
-  --navy2:#111827;
-  --navy3:#1a2332;
-  --navy4:#222e42;
-  --border:#1e2d42;
-  --border2:#2a3d56;
-  --orange:#f97316;
-  --orange-dim:rgba(249,115,22,0.12);
-  --orange-border:rgba(249,115,22,0.3);
-  --text:#c8d0dc;
-  --text-muted:#5a7090;
-  --text-head:#eef2f8;
-}
+  /* HEADER */
+  .site-header { background: var(--ttp-blue); padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; }
+  .logo-mark { display: flex; align-items: center; gap: 12px; }
+  .logo-svg { width: 48px; height: 48px; }
+  .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+  .logo-text .brand-name { font-weight: 700; font-size: 17px; color: white; letter-spacing: 0.01em; }
+  .logo-text .brand-sub { font-size: 11px; color: rgba(255,255,255,0.6); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
+  .confidential-badge { display: flex; align-items: center; gap: 6px; background: rgba(201,168,76,0.15); border: 1px solid var(--ttp-gold); border-radius: 4px; padding: 6px 12px; color: var(--ttp-gold); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  .confidential-badge svg { width: 14px; height: 14px; }
 
-/* ── HEADER ── */
-.header{background:var(--navy2);border-bottom:2px solid var(--orange);padding:28px 32px 24px;position:relative;overflow:hidden}
-.header::after{content:'';position:absolute;top:-60px;right:-60px;width:280px;height:280px;background:radial-gradient(circle,rgba(249,115,22,0.06) 0%,transparent 70%);pointer-events:none}
-.ttp-logo{display:flex;align-items:center;gap:10px;margin-bottom:18px}
-.ttp-mark{width:32px;height:32px;background:var(--orange);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;letter-spacing:-0.5px;flex-shrink:0}
-.ttp-name{font-size:13px;font-weight:600;color:var(--text-head);letter-spacing:.3px}
-.ttp-sub{font-size:10px;color:var(--text-muted);letter-spacing:.5px;text-transform:uppercase}
-.header-title{font-size:22px;font-weight:300;color:var(--text-head);letter-spacing:-.3px;margin-bottom:4px}
-.header-title b{font-weight:600;color:var(--orange)}
-.header-desc{font-size:12px;color:var(--text-muted);max-width:520px;margin-bottom:14px}
-.header-chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{font-size:10px;background:var(--navy3);border:1px solid var(--border);border-radius:4px;padding:3px 9px;color:var(--text-muted)}
-.chip b{color:var(--text);font-weight:500}
+  /* HERO */
+  .hero { background: linear-gradient(135deg, var(--ttp-blue) 0%, var(--ttp-blue-dark) 100%); padding: 48px 40px 40px; color: white; border-bottom: 3px solid var(--ttp-gold); }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: 32px; font-weight: 400; margin-bottom: 8px; }
+  .hero p { font-size: 15px; color: rgba(255,255,255,0.72); max-width: 560px; line-height: 1.6; }
 
-/* ── NAV TABS ── */
-.nav-tabs{background:var(--navy2);border-bottom:1px solid var(--border);padding:0 32px;display:flex;gap:2px}
-.tab-btn{padding:10px 18px;font-size:13px;font-weight:400;border:none;background:transparent;cursor:pointer;color:var(--text-muted);border-bottom:2px solid transparent;margin-bottom:-1px;font-family:inherit;transition:all .15s}
-.tab-btn:hover{color:var(--text)}
-.tab-btn.active{color:var(--orange);font-weight:500;border-bottom:2px solid var(--orange)}
+  /* PROGRESS */
+  .progress-wrap { background: white; border-bottom: 1px solid var(--border); padding: 0 40px; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 8px rgba(0,0,0,0.06); }
+  .progress-steps { display: flex; max-width: 800px; }
+  .step-tab { flex: 1; padding: 14px 6px; text-align: center; font-size: 12px; font-weight: 500; color: var(--text-muted); border-bottom: 3px solid transparent; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+  .step-tab .step-num { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: var(--border); color: var(--text-muted); font-size: 11px; font-weight: 700; margin-right: 5px; transition: all 0.2s; }
+  .step-tab.active { color: var(--ttp-blue); border-bottom-color: var(--ttp-blue); }
+  .step-tab.active .step-num { background: var(--ttp-blue); color: white; }
+  .step-tab.completed { color: var(--success); }
+  .step-tab.completed .step-num { background: var(--success); color: white; }
 
-/* ── MAIN ── */
-.main{max-width:1020px;margin:0 auto;padding:28px 32px 80px}
+  /* FORM */
+  .form-container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+  .form-page { display: none; }
+  .form-page.active { display: block; }
+  .page-header { margin-bottom: 32px; }
+  .page-tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ttp-blue); background: var(--ttp-blue-light); padding: 4px 10px; border-radius: 3px; margin-bottom: 10px; }
+  .page-tag.optional { color: var(--text-muted); background: #F3F4F6; }
+  .page-header h2 { font-family: 'DM Serif Display', serif; font-size: 26px; font-weight: 400; margin-bottom: 6px; }
+  .page-header p { font-size: 14px; color: var(--text-secondary); }
 
-/* ── CONTROLS ── */
-.search-row{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}
-.search-box{position:relative;flex:1;min-width:220px;max-width:420px}
-.search-box input{width:100%;background:var(--navy3);border:1px solid var(--border);border-radius:7px;padding:8px 12px 8px 34px;color:var(--text-head);font-size:13px;font-family:inherit;outline:none;transition:border-color .15s}
-.search-box input:focus{border-color:var(--orange)}
-.search-box input::placeholder{color:var(--text-muted)}
-.search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:13px;pointer-events:none}
-.cat-bar{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:16px}
-.cat-btn{padding:4px 12px;border-radius:20px;font-size:11px;border:1px solid var(--border);background:transparent;cursor:pointer;color:var(--text-muted);font-family:inherit;transition:all .15s}
-.cat-btn:hover{border-color:var(--border2);color:var(--text)}
-.cat-btn.active{background:var(--orange-dim);border-color:var(--orange-border);color:var(--orange);font-weight:500}
-.results-meta{font-size:11px;color:var(--text-muted);margin-bottom:14px}
+  /* CARD */
+  .card { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; }
+  .card-title { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ttp-blue); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--ttp-blue-light); }
 
-/* ── PASS CARDS ── */
-.pass-card{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:7px;transition:border-color .15s;background:var(--navy2)}
-.pass-card:hover{border-color:var(--border2)}
-.pass-card.selected-1{border-color:var(--orange)!important;box-shadow:0 0 0 1px var(--orange-border)}
-.pass-card.selected-2{border-color:#3b9fd4!important;box-shadow:0 0 0 1px rgba(59,159,212,0.3)}
+  /* FIELDS */
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
+  .field-row.full { grid-template-columns: 1fr; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  label { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+  label .opt { font-size: 11px; font-weight: 400; color: var(--text-muted); margin-left: 4px; }
 
-.pass-head{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;cursor:pointer}
-.pass-head:hover{background:rgba(255,255,255,0.02)}
-.pass-name{font-size:13px;font-weight:600;color:var(--text-head)}
-.pass-tagline{font-size:11px;color:var(--text-muted);margin-top:2px}
-.pass-arrow{color:var(--text-muted);font-size:17px;flex-shrink:0;margin-top:2px;transition:transform .2s;line-height:1}
-.pass-arrow.open{transform:rotate(90deg)}
+  input[type="text"], input[type="email"], input[type="tel"], input[type="number"], select, textarea {
+    width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 6px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text-primary);
+    background: white; transition: border-color 0.15s, box-shadow 0.15s; outline: none; -webkit-appearance: none;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--ttp-blue); box-shadow: 0 0 0 3px rgba(31,78,150,0.1); }
+  input.err, select.err, textarea.err { border-color: var(--red) !important; box-shadow: 0 0 0 3px rgba(220,38,38,0.1) !important; }
 
-/* ── COMPARE TOGGLE ── */
-.cmp-toggle{margin-left:auto;display:flex;gap:5px;align-items:center;flex-shrink:0}
-.cmp-btn{font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;border:1px solid var(--border);background:transparent;cursor:pointer;font-family:inherit;color:var(--text-muted);transition:all .15s;white-space:nowrap}
-.cmp-btn.sel1{background:var(--orange-dim);border-color:var(--orange-border);color:var(--orange)}
-.cmp-btn.sel2{background:rgba(59,159,212,0.12);border-color:rgba(59,159,212,0.3);color:#3b9fd4}
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
+  textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
 
-/* ── BADGE ── */
-.badge{display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;flex-shrink:0;margin-top:3px}
-.b-pro{background:rgba(249,115,22,0.12);color:#f97316;border:1px solid rgba(249,115,22,0.25)}
-.b-elite{background:rgba(167,139,250,0.12);color:#a78bfa;border:1px solid rgba(167,139,250,0.25)}
-.b-skilled{background:rgba(56,189,248,0.12);color:#38bdf8;border:1px solid rgba(56,189,248,0.25)}
-.b-wp{background:rgba(52,211,153,0.12);color:#34d399;border:1px solid rgba(52,211,153,0.25)}
-.b-training{background:rgba(251,146,60,0.12);color:#fb923c;border:1px solid rgba(251,146,60,0.25)}
-.b-family{background:rgba(125,211,252,0.12);color:#7dd3fc;border:1px solid rgba(125,211,252,0.25)}
-.b-special{background:rgba(250,204,21,0.12);color:#facc15;border:1px solid rgba(250,204,21,0.25)}
+  /* CHECK / RADIO GROUPS */
+  .check-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .check-item { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1.5px solid var(--border); border-radius: 6px; cursor: pointer; transition: all 0.15s; font-size: 13px; color: var(--text-secondary); user-select: none; background: white; }
+  .check-item:hover { border-color: var(--ttp-blue); color: var(--ttp-blue); }
+  .check-item input { width: 15px; height: 15px; accent-color: var(--ttp-blue); margin: 0; padding: 0; border: none; box-shadow: none; outline: none; }
+  .check-item:has(input:checked) { border-color: var(--ttp-blue); background: var(--ttp-blue-light); color: var(--ttp-blue); font-weight: 500; }
 
-/* ── PILLS ── */
-.pass-pills{display:flex;flex-wrap:wrap;gap:5px;padding:0 14px 11px}
-.pill{display:inline-flex;gap:3px;align-items:center;background:var(--navy3);border-radius:4px;padding:2px 7px}
-.pk{font-size:10px;color:var(--text-muted)}
-.pv{font-size:11px;font-weight:500}
-.pv.ok{color:#34d399}.pv.warn{color:#f97316}.pv.blue{color:#38bdf8}.pv.def{color:var(--text)}
+  /* GROUP ERROR */
+  .rg-wrap { position: relative; }
+  .rg-wrap.err .check-group { outline: 2px solid var(--red); border-radius: 8px; padding: 4px; }
+  .field-error { font-size: 12px; color: var(--red); margin-top: 6px; display: none; }
+  .field-error.show { display: block; }
 
-/* ── BODY ── */
-.pass-body{border-top:1px solid var(--border);padding:14px;background:#0d1520;display:none}
-.pass-body.open{display:block}
-.field-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:6px;margin-bottom:12px}
-.field{background:var(--navy2);border-radius:7px;padding:8px 10px;border:1px solid var(--border)}
-.fl{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--text-muted);margin-bottom:2px}
-.fv{font-size:12px;color:var(--text);line-height:1.5}
-.fv.hi{color:var(--orange);font-weight:500}
+  /* CONDITIONAL */
+  .cond { display: none; margin-top: 10px; }
+  .cond.show { display: block; }
 
-/* ── LEVY TABLE ── */
-.sec-label{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--text-muted);margin-bottom:6px}
-.levy-tbl{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:12px;border:1px solid var(--border);border-radius:7px;overflow:hidden}
-.levy-tbl th{padding:6px 10px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--text-muted);background:var(--navy3);border-bottom:1px solid var(--border);font-weight:500}
-.levy-tbl td{padding:6px 10px;border-bottom:1px solid rgba(30,45,66,0.5);color:var(--text)}
-.levy-tbl tr:last-child td{border-bottom:none}
-.levy-tbl td.amt{color:var(--orange);font-weight:500}
-.levy-tbl td.drc{color:#38bdf8}
+  /* MISC */
+  .hint { font-size: 12px; color: var(--text-muted); margin-top: 4px; font-style: italic; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+  .salary-row { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+  .salary-row span { font-size: 13px; color: var(--text-muted); white-space: nowrap; }
+  .sgd { font-size: 13px; font-weight: 600; color: var(--text-secondary); }
 
-/* ── COUNTRY TAGS ── */
-.country-list{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}
-.ctag{background:var(--navy3);border:1px solid var(--border);border-radius:4px;padding:2px 7px;font-size:11px;color:var(--text)}
+  /* NAV */
+  .form-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
+  .page-counter { font-size: 12px; color: var(--text-muted); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all 0.15s; }
+  .btn svg { width: 16px; height: 16px; }
+  .btn-primary { background: var(--ttp-blue); color: white; }
+  .btn-primary:hover { background: var(--ttp-blue-dark); transform: translateY(-1px); }
+  .btn-secondary { background: transparent; color: var(--ttp-blue); border: 1.5px solid var(--ttp-blue); }
+  .btn-secondary:hover { background: var(--ttp-blue-light); }
+  .btn-submit { background: var(--success); color: white; }
+  .btn-submit:hover { background: #047857; transform: translateY(-1px); }
+  .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
-/* ── NOTE ── */
-.note{background:rgba(249,115,22,0.06);border:1px solid rgba(249,115,22,0.18);border-radius:7px;padding:8px 11px;font-size:12px;color:var(--text);line-height:1.6}
-.note b{color:var(--orange);font-weight:500}
+  /* SUCCESS */
+  .success-screen { display: none; text-align: center; }
+  .success-screen.show { display: block; }
 
-/* ── COMPARE PANEL ── */
-.compare-bar{position:sticky;bottom:0;background:var(--navy2);border-top:2px solid var(--orange);padding:10px 32px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;z-index:100}
-.cbar-label{font-size:12px;font-weight:600;color:var(--orange);white-space:nowrap}
-.cbar-slot{flex:1;min-width:140px;background:var(--navy3);border:1px dashed var(--border2);border-radius:7px;padding:6px 10px;font-size:12px;color:var(--text-muted);position:relative}
-.cbar-slot.filled{border-style:solid;border-color:var(--border2);color:var(--text)}
-.cbar-slot .slot-remove{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:15px;line-height:1;padding:0}
-.cbar-slot .slot-remove:hover{color:var(--orange)}
-.cbar-actions{display:flex;gap:8px}
-.btn-compare{background:var(--orange);color:#fff;border:none;border-radius:7px;padding:8px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:opacity .15s}
-.btn-compare:hover{opacity:.88}
-.btn-compare:disabled{opacity:.35;cursor:not-allowed}
-.btn-clear{background:transparent;color:var(--text-muted);border:1px solid var(--border);border-radius:7px;padding:8px 14px;font-size:12px;cursor:pointer;font-family:inherit}
-.btn-clear:hover{color:var(--text);border-color:var(--border2)}
+  .required-note { font-size: 12px; color: var(--text-muted); margin-bottom: 24px; }
 
-/* ── COMPARE MODAL ── */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;overflow-y:auto;padding:32px 16px}
-.modal-overlay.open{display:block}
-.modal{background:var(--navy2);border:1px solid var(--border2);border-radius:14px;max-width:900px;margin:0 auto;overflow:hidden}
-.modal-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border);background:var(--navy3)}
-.modal-head h2{font-size:16px;font-weight:600;color:var(--text-head)}
-.modal-close{background:none;border:none;color:var(--text-muted);font-size:22px;cursor:pointer;line-height:1;padding:0 4px}
-.modal-close:hover{color:var(--text-head)}
-.cmp-grid{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
-.cmp-col{padding:16px 18px;border-right:1px solid var(--border)}
-.cmp-col:last-child{border-right:none}
-.cmp-col-head{margin-bottom:14px}
-.cmp-col-head .pass-name{font-size:14px;margin-bottom:4px}
-.cmp-table{width:100%;border-collapse:collapse;font-size:12px}
-.cmp-table tr{border-bottom:1px solid rgba(30,45,66,0.5)}
-.cmp-table tr:last-child{border-bottom:none}
-.cmp-table td{padding:7px 8px;vertical-align:top}
-.cmp-table td:first-child{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--text-muted);width:38%;padding-right:10px;white-space:nowrap}
-.cmp-table td:last-child{color:var(--text)}
-.cmp-table td.hi-val{color:var(--orange);font-weight:500}
-.cmp-table td.ok-val{color:#34d399;font-weight:500}
-.cmp-diff-row td:last-child{background:rgba(249,115,22,0.05)}
-.modal-fields{padding:16px 18px;border-top:1px solid var(--border)}
-.modal-fields .sec-label{margin-bottom:10px}
-.fields-cmp{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
-.fields-cmp-col{background:var(--navy2);padding:12px 14px}
-.fields-cmp-col .pass-name{font-size:12px;font-weight:600;color:var(--orange);margin-bottom:10px}
-.cmp-field{margin-bottom:8px}
-.cmp-field .fl{margin-bottom:2px}
-.cmp-field .fv{font-size:12px}
-
-/* ── FOOTER ── */
-.footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--border);font-size:11px;color:var(--text-muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
-.footer a{color:var(--orange);text-decoration:none}
-
-@media(max-width:600px){
-  .header{padding:20px 16px 16px}
-  .main{padding:20px 16px 80px}
-  .nav-tabs{padding:0 16px}
-  .compare-bar{padding:10px 16px}
-  .cmp-grid{grid-template-columns:1fr}
-  .cmp-col{border-right:none;border-bottom:1px solid var(--border)}
-  .fields-cmp{grid-template-columns:1fr}
-}
+  @media (max-width: 640px) {
+    .site-header { padding: 16px 20px; }
+    .hero { padding: 32px 20px; }
+    .hero h1 { font-size: 24px; }
+    .form-container { padding: 0 12px; }
+    .card { padding: 20px 18px; }
+    .field-row { grid-template-columns: 1fr; }
+    .progress-wrap { padding: 0 12px; }
+    .step-tab { font-size: 10px; padding: 12px 4px; }
+    .btn { padding: 11px 18px; font-size: 13px; }
+    .salary-row { flex-wrap: wrap; }
+  }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<div class="header">
-  <div class="ttp-logo">
-    <div class="ttp-mark">TTP</div>
-    <div>
-      <div class="ttp-name">The Talent People</div>
-      <div class="ttp-sub">Singapore · Work Pass Reference</div>
+<header class="site-header">
+  <div class="logo-mark">
+    <svg class="logo-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="14" width="8" height="8" rx="1" fill="white"/>
+      <rect x="4" y="26" width="8" height="8" rx="1" fill="rgba(255,255,255,0.4)"/>
+      <rect x="16" y="8" width="8" height="8" rx="1" fill="white"/>
+      <rect x="16" y="20" width="8" height="14" rx="1" fill="white"/>
+      <rect x="28" y="14" width="14" height="8" rx="1" fill="rgba(255,255,255,0.7)"/>
+      <rect x="28" y="26" width="14" height="8" rx="1" fill="rgba(255,255,255,0.4)"/>
+    </svg>
+    <div class="logo-text">
+      <span class="brand-name">The Talent People</span>
+      <span class="brand-sub">EA Licence 24C2589</span>
     </div>
   </div>
-  <div class="header-title">Singapore Work Pass <b>Reference Guide</b> 2025–2026</div>
-  <div class="header-desc">Complete reference for all 16 MOM-regulated pass types — eligibility, levy costs, quotas, source countries, and key employer notes.</div>
-  <div class="header-chips">
-    <div class="chip">Source: <b>MOM Singapore</b></div>
-    <div class="chip">Pass types: <b>16</b></div>
-    <div class="chip">Governing act: <b>EFMA</b></div>
-    <div class="chip">Updated: <b>Jan 2026</b></div>
+  <div class="confidential-badge">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    Confidential
+  </div>
+</header>
+
+<div class="hero">
+  <h1>Role Briefing Form</h1>
+  <p>Help us understand exactly who you're looking for. The more detail you share, the sharper our search — and the faster we'll find the right person.</p>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-steps">
+    <div class="step-tab active"><span class="step-num">1</span>About You</div>
+    <div class="step-tab"><span class="step-num">2</span>Requirements</div>
+    <div class="step-tab"><span class="step-num">3</span>Compensation</div>
+    <div class="step-tab"><span class="step-num">4</span>Interview</div>
+    <div class="step-tab"><span class="step-num">5</span>Team & Culture</div>
   </div>
 </div>
 
-<!-- TABS -->
-<div class="nav-tabs">
-  <button class="tab-btn active" onclick="switchTab('browse',this)">Browse passes</button>
-  <button class="tab-btn" onclick="switchTab('compare-direct',this)">Compare passes</button>
-</div>
+<div class="form-container">
+  <p class="required-note">All fields on compulsory pages must be completed before you can proceed.</p>
 
-<!-- MAIN -->
-<div class="main">
+  <form id="briefingForm" action="https://formspree.io/f/xykbaleg" method="POST">
+    <input type="hidden" name="_subject" value="New Role Briefing — The Talent People">
 
-  <!-- BROWSE PANE -->
-  <div id="pane-browse">
-    <div class="search-row">
-      <div class="search-box">
-        <span class="search-icon">&#9906;</span>
-        <input type="text" id="search" placeholder="Search by name, abbreviation, or keyword…" oninput="render()">
+    <!-- ===== PAGE 1 ===== -->
+    <div class="form-page active" id="page-0">
+      <div class="page-header">
+        <div class="page-tag">Page 1 of 5 · Compulsory</div>
+        <h2>About You & the Role</h2>
+        <p>Tell us who you are and give us a high-level view of the position.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Your Contact Information</div>
+        <div class="field-row">
+          <div class="field">
+            <label for="p1_name">Full Name</label>
+            <input type="text" id="p1_name" name="contact_name" placeholder="e.g. Sarah Tan">
+          </div>
+          <div class="field">
+            <label for="p1_title">Your Job Title</label>
+            <input type="text" id="p1_title" name="contact_title" placeholder="e.g. Head of HR">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="p1_company">Company Name</label>
+            <input type="text" id="p1_company" name="company_name">
+          </div>
+          <div class="field">
+            <label for="p1_industry">Industry</label>
+            <select id="p1_industry" name="industry">
+              <option value="">Select industry</option>
+              <option>Banking & Financial Services</option>
+              <option>Technology / SaaS</option>
+              <option>E-commerce / Retail</option>
+              <option>Logistics & Supply Chain</option>
+              <option>Manufacturing</option>
+              <option>Healthcare / Pharmaceutical</option>
+              <option>Real Estate / Property</option>
+              <option>Hospitality & Tourism</option>
+              <option>FMCG / Consumer Goods</option>
+              <option>Professional Services / Consulting</option>
+              <option>Government / Statutory Board</option>
+              <option>Education</option>
+              <option>Energy / Oil & Gas</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="p1_email">Work Email</label>
+            <input type="email" id="p1_email" name="contact_email" placeholder="you@company.com">
+          </div>
+          <div class="field">
+            <label for="p1_phone">Contact Number</label>
+            <input type="tel" id="p1_phone" name="contact_phone" placeholder="+65 9XXX XXXX">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="p1_time">Best Time to Reach You</label>
+            <select id="p1_time" name="best_time">
+              <option value="">Select preferred time</option>
+              <option>Morning (9am – 12pm)</option>
+              <option>Afternoon (12pm – 5pm)</option>
+              <option>Evening (after 5pm)</option>
+              <option>Anytime</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="p1_role">Your Role in This Hire</label>
+            <select id="p1_role" name="your_role">
+              <option value="">Select your role</option>
+              <option>I am the Hiring Manager</option>
+              <option>I am HR / TA supporting the Hiring Manager</option>
+              <option>I am Shared Services / Procurement</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div id="hm_fields" class="cond">
+          <div class="field-row">
+            <div class="field">
+              <label for="p1_hm_name">Hiring Manager's Name <span class="opt">(optional)</span></label>
+              <input type="text" id="p1_hm_name" name="hm_name" placeholder="e.g. David Lim">
+            </div>
+            <div class="field">
+              <label for="p1_hm_email">Hiring Manager's Email <span class="opt">(optional)</span></label>
+              <input type="email" id="p1_hm_email" name="hm_email" placeholder="manager@company.com">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Role Overview</div>
+        <div class="field-row">
+          <div class="field">
+            <label for="p1_role_title">Job Title of Role</label>
+            <input type="text" id="p1_role_title" name="role_title" placeholder="e.g. Senior Finance Manager">
+          </div>
+          <div class="field">
+            <label for="p1_headcount">New Headcount or Backfill?</label>
+            <select id="p1_headcount" name="headcount_type">
+              <option value="">Select one</option>
+              <option>New position</option>
+              <option>Backfill</option>
+              <option>Unsure / TBD</option>
+            </select>
+          </div>
+        </div>
+        <div id="backfill_wrap" class="cond">
+          <div class="field" style="margin-bottom:18px;">
+            <label for="p1_backfill">Why did the previous person leave?</label>
+            <select id="p1_backfill" name="backfill_reason">
+              <option value="">Select reason</option>
+              <option>Resigned</option>
+              <option>Terminated</option>
+              <option>Promoted internally</option>
+              <option>Contract ended</option>
+              <option>Prefer not to say</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row full">
+          <div class="field">
+            <label for="p1_kpis">Key KPIs / Deliverables in the First 6–12 Months</label>
+            <textarea id="p1_kpis" name="kpis" placeholder="e.g. Establish regional audit framework, reduce close cycle by 2 days, onboard and train a team of 3..."></textarea>
+          </div>
+        </div>
+        <div class="field-row full">
+          <div class="field">
+            <label for="p1_challenges">Main Challenges in This Role</label>
+            <textarea id="p1_challenges" name="challenges" placeholder="e.g. Managing stakeholders across multiple time zones, navigating complex regulatory approvals, fast-changing business priorities..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-nav">
+        <span class="page-counter">Page 1 of 5</span>
+        <button type="button" class="btn btn-primary" onclick="nextPage(0)">
+          Next <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
       </div>
     </div>
-    <div class="cat-bar" id="cats"></div>
-    <div class="results-meta" id="count"></div>
-    <div id="cards"></div>
-  </div>
 
-  <!-- COMPARE DIRECT PANE -->
-  <div id="pane-compare-direct" style="display:none">
-    <p style="font-size:13px;color:var(--text-muted);margin-bottom:18px">Select any two passes below to compare them side by side.</p>
-    <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap">
-      <div id="slot-a-direct" style="flex:1;min-width:180px;background:var(--navy3);border:1px dashed var(--border2);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--text-muted)">Pass A — not selected</div>
-      <div style="display:flex;align-items:center;font-size:18px;color:var(--text-muted)">&#8644;</div>
-      <div id="slot-b-direct" style="flex:1;min-width:180px;background:var(--navy3);border:1px dashed var(--border2);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--text-muted)">Pass B — not selected</div>
+    <!-- ===== PAGE 2 ===== -->
+    <div class="form-page" id="page-1">
+      <div class="page-header">
+        <div class="page-tag">Page 2 of 5 · Compulsory</div>
+        <h2>Role Requirements</h2>
+        <p>Help us draw the line between must-haves and nice-to-haves.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Experience & Education</div>
+        <div class="field-row">
+          <div class="field">
+            <label for="p2_exp">Minimum Years of Experience</label>
+            <select id="p2_exp" name="min_exp">
+              <option value="">Select range</option>
+              <option>0 – 2 years</option>
+              <option>2 – 5 years</option>
+              <option>5 – 8 years</option>
+              <option>8 – 12 years</option>
+              <option>12+ years</option>
+              <option>No minimum requirement</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="p2_edu">Minimum Education Level</label>
+            <select id="p2_edu" name="min_edu">
+              <option value="">Select level</option>
+              <option>No specific requirement</option>
+              <option>ITE / N-Level / O-Level</option>
+              <option>Diploma</option>
+              <option>Bachelor's Degree</option>
+              <option>Postgraduate / Master's</option>
+              <option>Professional qualification required</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row full">
+          <div class="field">
+            <label for="p2_must">Must-Have Requirements</label>
+            <textarea id="p2_must" name="must_haves" placeholder="e.g. Minimum 5 years in internal audit, CIA certification, SAP experience, regional exposure..."></textarea>
+            <p class="hint">Non-negotiables — candidates without these will not be considered.</p>
+          </div>
+        </div>
+        <div class="field-row full">
+          <div class="field">
+            <label for="p2_nice">Good-to-Have (Not Deal-Breakers)</label>
+            <textarea id="p2_nice" name="good_to_haves" placeholder="e.g. Prior Big 4 background, experience in Japanese MNC culture, data analytics skills..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Background Fit</div>
+        <div class="field-row full">
+          <div class="field">
+            <label for="p2_fit">Industry Backgrounds That Would Fit Well</label>
+            <textarea id="p2_fit" name="industry_fit" placeholder="e.g. Candidates from Big 4 audit firms, financial services, or Japanese MNCs..."></textarea>
+          </div>
+        </div>
+        <div class="field-row full">
+          <div class="field">
+            <label for="p2_nofit">Industry Backgrounds That Would NOT Fit</label>
+            <textarea id="p2_nofit" name="industry_no_fit" placeholder="e.g. Purely operational backgrounds, no multinational exposure..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Tools, Certifications & Languages</div>
+        <div class="field-row full">
+          <div class="field">
+            <label for="p2_tools">Specific Tools / Software Used in This Role</label>
+            <textarea id="p2_tools" name="tools" style="min-height:70px;" placeholder="e.g. SAP FI/CO, Workday, PowerBI, Salesforce... or 'None specific'"></textarea>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Mandatory Certifications Required?</label>
+            <div class="rg-wrap" id="rg_cert">
+              <div class="check-group">
+                <label class="check-item"><input type="radio" name="cert_required" value="Yes" onchange="showCond('cert_detail_wrap', true)"> Yes</label>
+                <label class="check-item"><input type="radio" name="cert_required" value="No" onchange="showCond('cert_detail_wrap', false)"> No</label>
+              </div>
+              <div class="field-error" id="err_cert">Please select an option.</div>
+            </div>
+          </div>
+        </div>
+        <div id="cert_detail_wrap" class="cond">
+          <div class="field">
+            <label for="p2_cert_detail">Please specify certifications required</label>
+            <input type="text" id="p2_cert_detail" name="cert_detail" placeholder="e.g. CIA, CPA, CFA, PMP...">
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="field">
+          <label>Language Requirements <span class="opt">— select all that apply</span></label>
+          <div class="rg-wrap" id="rg_lang">
+            <div class="check-group" style="margin-top:8px;">
+              <label class="check-item"><input type="checkbox" name="lang" value="English"> English</label>
+              <label class="check-item"><input type="checkbox" name="lang" value="Mandarin"> Mandarin</label>
+              <label class="check-item"><input type="checkbox" name="lang" value="Malay"> Malay</label>
+              <label class="check-item"><input type="checkbox" name="lang" value="Tamil"> Tamil</label>
+              <label class="check-item"><input type="checkbox" name="lang_other_cb" value="Other" onchange="showCond('lang_other_wrap', this.checked)"> Other</label>
+            </div>
+            <div class="field-error" id="err_lang">Please select at least one language.</div>
+          </div>
+          <div id="lang_other_wrap" class="cond">
+            <input type="text" name="lang_other_detail" placeholder="Please specify language(s)">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-nav">
+        <button type="button" class="btn btn-secondary" onclick="prevPage(1)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back
+        </button>
+        <span class="page-counter">Page 2 of 5</span>
+        <button type="button" class="btn btn-primary" onclick="nextPage(1)">
+          Next <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;margin-bottom:20px" id="compare-picker"></div>
-    <button class="btn-compare" id="go-direct" onclick="openCompare()" disabled>Compare selected passes &#8594;</button>
-  </div>
 
-  <div class="footer">
-    <span>The Talent People · Singapore Work Pass Reference 2025–2026 · For recruitment reference only</span>
-    <span>Verify current rates at <a href="https://www.mom.gov.sg/passes-and-permits" target="_blank">mom.gov.sg</a></span>
+    <!-- ===== PAGE 3 ===== -->
+    <div class="form-page" id="page-2">
+      <div class="page-header">
+        <div class="page-tag">Page 3 of 5 · Compulsory</div>
+        <h2>Compensation & Benefits</h2>
+        <p>This helps us calibrate expectations and present competitive candidates.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Base Salary & Fixed Pay</div>
+        <div class="field">
+          <label>Monthly Base Salary Range (SGD)</label>
+          <div class="salary-row">
+            <span class="sgd">SGD</span>
+            <input type="number" name="salary_min" id="p3_sal_min" placeholder="Min" style="max-width:150px;">
+            <span>to</span>
+            <input type="number" name="salary_max" id="p3_sal_max" placeholder="Max" style="max-width:150px;">
+            <span>/ month</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <div class="field">
+          <label>Annual Wage Supplement (AWS)?</label>
+          <div class="rg-wrap" id="rg_aws">
+            <div class="check-group">
+              <label class="check-item"><input type="radio" name="aws" value="Yes — 1 month"> Yes — 1 month</label>
+              <label class="check-item"><input type="radio" name="aws" value="Yes — pro-rated"> Yes — pro-rated</label>
+              <label class="check-item"><input type="radio" name="aws" value="No"> No</label>
+              <label class="check-item"><input type="radio" name="aws" value="To discuss"> To discuss</label>
+            </div>
+            <div class="field-error" id="err_aws">Please select an option.</div>
+          </div>
+        </div>
+        <hr class="divider">
+        <div class="field">
+          <label>Monthly Allowances?</label>
+          <div class="rg-wrap" id="rg_allow">
+            <div class="check-group">
+              <label class="check-item"><input type="radio" name="allowances" value="Yes" onchange="showCond('allow_detail_wrap', true)"> Yes</label>
+              <label class="check-item"><input type="radio" name="allowances" value="No" onchange="showCond('allow_detail_wrap', false)"> No</label>
+            </div>
+            <div class="field-error" id="err_allow">Please select an option.</div>
+          </div>
+          <div id="allow_detail_wrap" class="cond">
+            <input type="text" name="allowance_detail" placeholder="e.g. Transport $200/month, Mobile $80/month">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Variable Pay & Long-Term Incentives</div>
+        <div class="field">
+          <label>Performance Bonus?</label>
+          <div class="rg-wrap" id="rg_bonus">
+            <div class="check-group">
+              <label class="check-item"><input type="radio" name="bonus" value="Yes" onchange="showCond('bonus_detail_wrap', true)"> Yes</label>
+              <label class="check-item"><input type="radio" name="bonus" value="No" onchange="showCond('bonus_detail_wrap', false)"> No</label>
+              <label class="check-item"><input type="radio" name="bonus" value="To discuss" onchange="showCond('bonus_detail_wrap', false)"> To discuss</label>
+            </div>
+            <div class="field-error" id="err_bonus">Please select an option.</div>
+          </div>
+          <div id="bonus_detail_wrap" class="cond">
+            <input type="text" name="bonus_detail" placeholder="e.g. Up to 3 months, KPI-based, discretionary">
+          </div>
+        </div>
+        <hr class="divider">
+        <div class="field">
+          <label>Long-Term Incentives / Stock Options?</label>
+          <div class="rg-wrap" id="rg_lti">
+            <div class="check-group">
+              <label class="check-item"><input type="radio" name="lti" value="Yes"> Yes</label>
+              <label class="check-item"><input type="radio" name="lti" value="No"> No</label>
+              <label class="check-item"><input type="radio" name="lti" value="Not applicable"> Not applicable</label>
+            </div>
+            <div class="field-error" id="err_lti">Please select an option.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Work Arrangement & Benefits</div>
+        <div class="field-row">
+          <div class="field">
+            <label for="p3_work">Work Arrangement</label>
+            <select id="p3_work" name="work_arrangement">
+              <option value="">Select arrangement</option>
+              <option>Fully on-site, 5 days</option>
+              <option>Hybrid — 1 day WFH per week</option>
+              <option>Hybrid — 2 days WFH per week</option>
+              <option>Hybrid — 3 days WFH per week</option>
+              <option>Flexible / ad-hoc WFH</option>
+              <option>Fully remote</option>
+            </select>
+          </div>
+        </div>
+        <hr class="divider">
+        <div class="field">
+          <label>Corporate Benefits <span class="opt">— select all that apply</span></label>
+          <div class="rg-wrap" id="rg_benefits">
+            <div class="check-group" style="margin-top:8px;">
+              <label class="check-item"><input type="checkbox" name="benefit" value="Flexible benefits wallet"> Flexi benefits / wallet</label>
+              <label class="check-item"><input type="checkbox" name="benefit" value="Medical (employee only)"> Medical (employee only)</label>
+              <label class="check-item"><input type="checkbox" name="benefit" value="Medical (employee + dependants)"> Medical + dependants</label>
+              <label class="check-item"><input type="checkbox" name="benefit" value="Dental"> Dental</label>
+              <label class="check-item"><input type="checkbox" name="benefit" value="Optical"> Optical</label>
+              <label class="check-item"><input type="checkbox" name="benefit" value="AL above statutory"> AL above statutory</label>
+              <label class="check-item"><input type="checkbox" name="benefit" value="L&D budget"> L&D budget</label>
+              <label class="check-item"><input type="checkbox" name="benefit" value="None / standard statutory only"> None / standard statutory only</label>
+              <label class="check-item"><input type="checkbox" name="benefit_other_cb" value="Other" onchange="showCond('benefit_other_wrap', this.checked)"> Other</label>
+            </div>
+            <div class="field-error" id="err_benefits">Please select at least one option.</div>
+          </div>
+          <div id="benefit_other_wrap" class="cond">
+            <input type="text" name="benefit_other_detail" placeholder="Please specify">
+          </div>
+        </div>
+        <hr class="divider">
+        <div class="field-row full">
+          <div class="field">
+            <label for="p3_growth">Growth Opportunities for This Role</label>
+            <textarea id="p3_growth" name="growth_opps" style="min-height:75px;" placeholder="e.g. Clear path to Finance Manager within 2 years, regional scope, group-level exposure... or 'None defined at this stage'"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-nav">
+        <button type="button" class="btn btn-secondary" onclick="prevPage(2)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back
+        </button>
+        <span class="page-counter">Page 3 of 5</span>
+        <button type="button" class="btn btn-primary" onclick="nextPage(2)">
+          Next <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ===== PAGE 4 ===== -->
+    <div class="form-page" id="page-3">
+      <div class="page-header">
+        <div class="page-tag">Page 4 of 5 · Compulsory</div>
+        <h2>Interview Process</h2>
+        <p>Walk us through how you hire so we can prepare candidates properly.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Interview Structure</div>
+        <div class="field-row">
+          <div class="field">
+            <label for="p4_rounds">Number of Interview Rounds</label>
+            <select id="p4_rounds" name="interview_rounds">
+              <option value="">Select</option>
+              <option>1 round</option>
+              <option>2 rounds</option>
+              <option>3 rounds</option>
+              <option>4 or more rounds</option>
+              <option>Not yet confirmed</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Case Study or Technical Assessment?</label>
+            <div class="rg-wrap" id="rg_assessment">
+              <div class="check-group" style="margin-top:4px;">
+                <label class="check-item"><input type="radio" name="assessment" value="Yes"> Yes</label>
+                <label class="check-item"><input type="radio" name="assessment" value="No"> No</label>
+                <label class="check-item"><input type="radio" name="assessment" value="Possibly"> Possibly</label>
+              </div>
+              <div class="field-error" id="err_assessment">Please select an option.</div>
+            </div>
+          </div>
+        </div>
+        <div class="field-row full">
+          <div class="field">
+            <label for="p4_interviewers">Who Are the Interviewers?</label>
+            <textarea id="p4_interviewers" name="interviewers" style="min-height:85px;" placeholder="e.g. Round 1: HR (30 min, culture fit)&#10;Round 2: Hiring Manager — Head of Finance (1hr, technical)&#10;Round 3: CFO (30 min, final)"></textarea>
+            <p class="hint">List by round. Title and function is sufficient — no names needed.</p>
+          </div>
+        </div>
+        <div class="field">
+          <label>Interview Format</label>
+          <div class="rg-wrap" id="rg_format">
+            <div class="check-group" style="margin-top:4px;">
+              <label class="check-item"><input type="radio" name="interview_format" value="All in-person"> All in-person</label>
+              <label class="check-item"><input type="radio" name="interview_format" value="Mix of in-person and virtual"> Mix of in-person & virtual</label>
+              <label class="check-item"><input type="radio" name="interview_format" value="All virtual"> All virtual</label>
+            </div>
+            <div class="field-error" id="err_format">Please select an option.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Hiring Timeline</div>
+        <div class="field-row">
+          <div class="field">
+            <label for="p4_shortlist">Target Date to Review Shortlist</label>
+            <input type="text" id="p4_shortlist" name="shortlist_date" placeholder="e.g. Within 2 weeks, by end of April">
+          </div>
+          <div class="field">
+            <label for="p4_start">Preferred Start Date for New Hire</label>
+            <input type="text" id="p4_start" name="start_date" placeholder="e.g. ASAP, June 2025, notice period okay">
+          </div>
+        </div>
+        <div class="field">
+          <label>Other Agencies or Internal TA Working This Role?</label>
+          <div class="rg-wrap" id="rg_competing">
+            <div class="check-group" style="margin-top:4px;">
+              <label class="check-item"><input type="radio" name="competing_search" value="Yes — other agencies"> Yes — other agencies</label>
+              <label class="check-item"><input type="radio" name="competing_search" value="Yes — internal TA"> Yes — internal TA</label>
+              <label class="check-item"><input type="radio" name="competing_search" value="No — exclusive to TTP"> No — exclusive to TTP</label>
+              <label class="check-item"><input type="radio" name="competing_search" value="Not sure"> Not sure</label>
+            </div>
+            <div class="field-error" id="err_competing">Please select an option.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-nav">
+        <button type="button" class="btn btn-secondary" onclick="prevPage(3)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back
+        </button>
+        <span class="page-counter">Page 4 of 5</span>
+        <button type="button" class="btn btn-primary" onclick="nextPage(3)">
+          Next <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ===== PAGE 5 ===== -->
+    <div class="form-page" id="page-4">
+      <div class="page-header">
+        <div class="page-tag optional">Page 5 of 5 · Good to Have</div>
+        <h2>Team & Culture</h2>
+        <p>This context helps us find candidates who will thrive, not just perform. All fields on this page are optional.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Reporting Structure</div>
+        <div class="field-row">
+          <div class="field">
+            <label for="p5_reports_to">This Role Reports To <span class="opt">(optional)</span></label>
+            <input type="text" id="p5_reports_to" name="reports_to" placeholder="e.g. CFO / VP Finance">
+          </div>
+          <div class="field">
+            <label>Manages a Team? <span class="opt">(optional)</span></label>
+            <div class="check-group" style="margin-top:8px;">
+              <label class="check-item"><input type="radio" name="manages_team" value="Yes" onchange="showCond('team_size_wrap', true)"> Yes</label>
+              <label class="check-item"><input type="radio" name="manages_team" value="No" onchange="showCond('team_size_wrap', false)"> No — individual contributor</label>
+            </div>
+          </div>
+        </div>
+        <div id="team_size_wrap" class="cond">
+          <div class="field-row">
+            <div class="field">
+              <label for="p5_direct">Number of Direct Reports</label>
+              <input type="number" id="p5_direct" name="direct_reports" placeholder="e.g. 3" style="max-width:120px;">
+            </div>
+            <div class="field">
+              <label for="p5_team">Total Team Size (including this role)</label>
+              <input type="number" id="p5_team" name="total_team_size" placeholder="e.g. 8" style="max-width:120px;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Culture & Working Style</div>
+        <div class="field">
+          <label>Team Culture <span class="opt">(optional — select all that apply)</span></label>
+          <div class="check-group" style="margin-top:8px;">
+            <label class="check-item"><input type="checkbox" name="culture" value="Fast-paced and dynamic"> Fast-paced & dynamic</label>
+            <label class="check-item"><input type="checkbox" name="culture" value="Process-driven and structured"> Process-driven</label>
+            <label class="check-item"><input type="checkbox" name="culture" value="Collaborative and flat hierarchy"> Collaborative & flat</label>
+            <label class="check-item"><input type="checkbox" name="culture" value="Entrepreneurial / startup-like"> Entrepreneurial</label>
+            <label class="check-item"><input type="checkbox" name="culture" value="Traditional / hierarchical"> Traditional / hierarchical</label>
+            <label class="check-item"><input type="checkbox" name="culture_other_cb" value="Other" onchange="showCond('culture_other_wrap', this.checked)"> Other</label>
+          </div>
+          <div id="culture_other_wrap" class="cond">
+            <input type="text" name="culture_other_detail" placeholder="Describe the culture" style="margin-top:0;">
+          </div>
+        </div>
+        <hr class="divider">
+        <div class="field-row">
+          <div class="field">
+            <label for="p5_travel">Expected Travel Frequency <span class="opt">(optional)</span></label>
+            <select id="p5_travel" name="travel_freq">
+              <option value="">Select</option>
+              <option>No travel required</option>
+              <option>Occasional — less than 10%</option>
+              <option>Regular — 10 to 30%</option>
+              <option>Frequent — more than 30%</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Anything Else?</div>
+        <div class="field">
+          <label for="p5_other">Additional Context <span class="opt">(optional)</span></label>
+          <textarea id="p5_other" name="other_info" style="min-height:100px;" placeholder="Anything else that would help us — internal dynamics, recent restructuring, red flags to screen for, JD to attach, etc."></textarea>
+        </div>
+      </div>
+
+      <div class="form-nav">
+        <button type="button" class="btn btn-secondary" onclick="prevPage(4)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back
+        </button>
+        <span class="page-counter">Page 5 of 5</span>
+        <button type="submit" class="btn btn-submit" id="submitBtn">
+          Submit Briefing <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </form>
+
+  <!-- SUCCESS SCREEN -->
+  <div class="success-screen" id="successScreen">
+    <div class="card" style="padding:60px 40px; text-align:center;">
+      <div style="width:64px;height:64px;background:#D1FAE5;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h2 style="font-family:'DM Serif Display',serif;font-size:26px;margin-bottom:12px;">Briefing Received</h2>
+      <p style="color:#4B5563;font-size:15px;max-width:420px;margin:0 auto;line-height:1.6;">
+        Thank you — one of our team will be in touch within one business day to confirm the brief and discuss next steps.
+      </p>
+      <p style="margin-top:20px;font-size:13px;color:#9CA3AF;">The Talent People · EA Licence 24C2589 · <a href="https://TheTalentPeople.co" style="color:#1F4E96;">TheTalentPeople.co</a></p>
+    </div>
   </div>
 </div>
 
-<!-- COMPARE BAR (browse mode) -->
-<div class="compare-bar" id="compare-bar" style="display:none">
-  <span class="cbar-label">&#9776; Compare</span>
-  <div class="cbar-slot" id="slot-a">
-    <span id="slot-a-name">Select a pass (1 of 2)</span>
-    <button class="slot-remove" id="slot-a-clear" onclick="clearSlot('a')" style="display:none">&#215;</button>
-  </div>
-  <div class="cbar-slot" id="slot-b">
-    <span id="slot-b-name">Select a pass (2 of 2)</span>
-    <button class="slot-remove" id="slot-b-clear" onclick="clearSlot('b')" style="display:none">&#215;</button>
-  </div>
-  <div class="cbar-actions">
-    <button class="btn-compare" id="btn-go" onclick="openCompare()" disabled>Compare &#8594;</button>
-    <button class="btn-clear" onclick="clearAll()">Clear</button>
-  </div>
-</div>
-
-<!-- COMPARE MODAL -->
-<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
-  <div class="modal" id="modal-inner">
-    <div class="modal-head">
-      <h2>Pass comparison</h2>
-      <button class="modal-close" onclick="closeModal()">&#215;</button>
-    </div>
-    <div id="modal-content"></div>
-  </div>
+<div style="text-align:center;padding:24px 20px 0;border-top:1px solid #E5E7EB;margin-top:40px;">
+  <p style="font-size:12px;color:#9CA3AF;line-height:1.7;">
+    This form and its contents are strictly confidential and intended solely for use by The Talent People Pte. Ltd. (EA Licence 24C2589).<br>
+    Unauthorised sharing or distribution is prohibited. · <a href="https://TheTalentPeople.co" style="color:#1F4E96;text-decoration:none;">TheTalentPeople.co</a>
+  </p>
 </div>
 
 <script>
-const PASSES=[
-  {id:"ep",name:"Employment Pass",abbr:"EP",cat:"pro",badge:"pro",
-   tagline:"Foreign PMETs sponsored by a Singapore employer",
-   levy:"None",quota:"None (COMPASS)",validity:"2 yrs / 3 yrs renewal",nations:"All nationalities",
-   fields:[
-     {l:"Min salary — general",v:"S$5,600 / month (from 1 Jan 2025)",hi:1},
-     {l:"Min salary — financial services",v:"S$6,200 / month (from 1 Jan 2025)",hi:1},
-     {l:"Age-progressive ceiling",v:"Up to S$10,700 (gen) or S$11,800 (fin) for mid-40s candidates"},
-     {l:"Framework",v:"COMPASS — must score ≥ 40 points across 6 criteria"},
-     {l:"Dependants",v:"DP for spouse/children; LTVP for parents (sponsor ≥ S$12,000/mth)"},
-     {l:"Who applies",v:"Employer or licensed employment agency"},
-     {l:"Processing",v:"~10 business days"},
-     {l:"Fee",v:"S$105 (application) + S$225 (issuance)"}
-   ],
-   notes:"Employer must advertise on MyCareersFuture for 28 days (FCF). All qualifications verified by MOM-approved agency. Renewal thresholds from 1 Jan 2026."},
-  {id:"pep",name:"Personalised Employment Pass",abbr:"PEP",cat:"pro",badge:"pro",
-   tagline:"Employer-independent — high-earning EP holders and overseas professionals",
-   levy:"None",quota:"None",validity:"3 years — not renewable",nations:"All nationalities",
-   fields:[
-     {l:"Min salary",v:"≥ S$22,500 / month last drawn or secured",hi:1},
-     {l:"Flexibility",v:"Switch employers freely; stay in SG up to 6 months between jobs"},
-     {l:"Who applies",v:"Candidate (self-sponsored)"}
-   ],
-   notes:"Non-renewable — holder must move to EP or ONE Pass after 3 years. COMPASS does not apply."},
-  {id:"one",name:"Overseas Networks & Expertise Pass",abbr:"ONE Pass",cat:"elite",badge:"elite",
-   tagline:"World-class talent — simultaneous work for multiple employers permitted",
-   levy:"None",quota:"None",validity:"5 years, renewable",nations:"All nationalities",
-   fields:[
-     {l:"Salary route",v:"Fixed monthly salary ≥ S$30,000 for last 12 consecutive months",hi:1},
-     {l:"Achievements route",v:"Outstanding track record in business, arts, sports, science, or academia — salary waived"},
-     {l:"Overseas employer",v:"Market cap ≥ USD 500M or annual revenue ≥ USD 200M"},
-     {l:"Renewal",v:"Avg salary ≥ S$30,000/mth over 5 yrs OR SG company with ≥5 locals earning ≥ S$5,000/mth"},
-     {l:"Multi-employer",v:"Yes — work for multiple SG companies simultaneously; can start/run own business"},
-     {l:"Processing",v:"4–8 weeks"}
-   ],
-   notes:"No COMPASS, no quota, no levy. Ideal for global executives, world-class athletes, top researchers, artists."},
-  {id:"entre",name:"EntrePass",abbr:"EntrePass",cat:"elite",badge:"elite",
-   tagline:"Foreign founders building innovative or venture-backed businesses in Singapore",
-   levy:"None",quota:"None",validity:"1 yr (new) / 2 yrs (subsequent renewals)",nations:"All nationalities",
-   fields:[
-     {l:"Min salary",v:"None — must meet innovation or funding criteria"},
-     {l:"Eligibility (meet ≥1)",v:"Funding ≥ S$100K from MAS-licensed VC/angel; IP with SG institution; R&D collab; Startup SG recognition"},
-     {l:"Company",v:"Must be ACRA-registered in Singapore"},
-     {l:"Processing",v:"~4–8 weeks (holistic assessment)"}
-   ],
-   notes:"Renewal requires demonstrated traction: employees, revenue, or investments raised. Pathway to Permanent Residency."},
-  {id:"spass",name:"S Pass",abbr:"S Pass",cat:"skilled",badge:"skilled",
-   tagline:"Associate Professionals and Technicians — quota and levy apply",
-   levy:"S$650 / month (flat, all sectors — Sep 2025)",quota:"10% services / 15–18% others",validity:"Up to 2 years, renewable",nations:"All nationalities",
-   fields:[
-     {l:"Min salary — general",v:"S$3,300 / month (from 1 Sep 2025)",hi:1},
-     {l:"Min salary — financial services",v:"S$3,800 / month (from 1 Sep 2025)",hi:1},
-     {l:"Age-progressive ceiling",v:"Up to ~S$4,800+ (general) or ~S$5,650+ (fin) for older workers"},
-     {l:"Levy",v:"S$650 / month flat — previous tiered structure abolished Sep 2025"},
-     {l:"Quota",v:"10% of workforce (services) / 15–18% (manufacturing, construction, marine, process)"},
-     {l:"Dependants",v:"DP for spouse/children if salary ≥ S$6,000 / month"},
-     {l:"Typical roles",v:"Technicians, supervisors, designers, cooks, specialists, coordinators"}
-   ],
-   notes:"Use SAT before applying — 90% approval rate with positive SAT. Declaring qualifications is optional but must be verified if declared. Renewal thresholds from 1 Sep 2026."},
-  {id:"wp",name:"Work Permit — Migrant Worker",abbr:"WP",cat:"wp",badge:"wp",
-   tagline:"Semi-skilled workers in construction, manufacturing, marine, process, services",
-   levy:"S$250–S$950 / month (sector & skill)",quota:"Sector DRC limits",validity:"Up to 2 years (no max from Jul 2025)",nations:"Malaysia, NAS, NTS countries, PRC (varies by sector)",
-   fields:[
-     {l:"Eligible sectors",v:"Construction · Manufacturing · Marine Shipyard · Process · Services"},
-     {l:"Min salary",v:"No fixed minimum — sector norms apply"},
-     {l:"Age limit",v:"Min 18; from Jul 2025: max 60 at application, working max age 63"},
-     {l:"Skill tiers",v:"R1 (Higher-Skilled) = lower levy | R2 (Basic-Skilled) = higher levy"},
-     {l:"Security bond",v:"S$5,000 per non-Malaysian worker"},
-     {l:"Medical insurance",v:"Employer must provide ≥ S$60,000 inpatient coverage"},
-     {l:"Fee",v:"S$35 per application"},
-     {l:"Dependants",v:"Generally not eligible"}
-   ],
-   notes:"Mandatory safety courses for construction, marine, process workers. Max employment period removed Jul 2025. MYE system being phased out.",
-   levyRows:[
-     ["Manufacturing — R1","S$250","S$370","Max 60%"],
-     ["Manufacturing — R2","S$370","S$650","Max 60%"],
-     ["Services — R1","S$300","S$450 / S$650","Max 35%"],
-     ["Services — R2","S$450","S$650 / S$800","Max 35%"],
-     ["Construction — R1, NTS/PRC","S$600","—","Up to 7:1"],
-     ["Construction — R2, NTS/PRC","S$950","—","Up to 7:1"],
-     ["Construction — Malaysia/NAS","S$300","—","Up to 7:1"],
-     ["Marine — R1","S$300","—","Sector quota"],
-     ["Marine — R2","S$400 (→ S$500 2026)","—","Sector quota"],
-     ["Process — R1","S$300","—","Max 87%"],
-     ["Process — R2","S$750 (→ ~S$900 2026)","—","Max 87%"]
-   ]},
-  {id:"mdw",name:"Work Permit — Migrant Domestic Worker",abbr:"MDW",cat:"wp",badge:"wp",
-   tagline:"Foreign domestic helpers working in Singapore households",
-   levy:"S$300 / month (S$60 concession available)",quota:"None",validity:"Up to 2 years, renewable",
-   nations:"Bangladesh, Cambodia, Hong Kong, India, Indonesia, Macau, Malaysia, Myanmar, Philippines, South Korea, Sri Lanka, Taiwan, Thailand",
-   fields:[
-     {l:"Standard levy",v:"S$300 / month",hi:1},
-     {l:"Concessionary levy",v:"S$60 / month — SC child under 16, elderly SC 67+, or PWD (max 2 MDWs)",hi:1},
-     {l:"Min age",v:"23 years old"},
-     {l:"Settling-In Programme",v:"Mandatory for first-timers; within 7 days of arrival; S$75.70 incl. GST paid by employer"},
-     {l:"Medical exams",v:"6-monthly required throughout employment"},
-     {l:"Rest days",v:"1 rest day per week"},
-     {l:"Processing",v:"~1 week"}
-   ],
-   notes:"Work restricted to permit address. Employer provides accommodation, food, salary within 7 days. MDW levy tax relief removed from YA2025."},
-  {id:"cn",name:"Work Permit — Confinement Nanny",abbr:"CN",cat:"wp",badge:"wp",
-   tagline:"Short-term postnatal care for mother and newborn — Malaysia only",
-   levy:"None",quota:"None",validity:"Up to 16 weeks from birth",nations:"Malaysia ONLY",
-   fields:[
-     {l:"Source country",v:"Malaysia ONLY",hi:1},
-     {l:"Duration",v:"Up to 16 weeks from birth of employer's child"},
-     {l:"Purpose",v:"Traditional confinement care for mother and newborn"}
-   ],
-   notes:"Strictly limited to Malaysian nationals. No levy, no quota. One nanny per household per birth event."},
-  {id:"pa",name:"Work Permit — Performing Artiste",abbr:"PA",cat:"wp",badge:"wp",
-   tagline:"Performers in licensed entertainment outlets — scheme ending 1 June 2026",
-   levy:"Applicable",quota:"Applicable",validity:"Up to 1 year",nations:"Approved countries (check MOM)",
-   fields:[
-     {l:"Venues",v:"Bars, hotels, nightclubs, licensed public entertainment outlets"},
-     {l:"Scheme ending",v:"Firm applications CEASE on 1 June 2026",hi:1}
-   ],
-   notes:"Employers relying on this scheme should plan alternative arrangements before 1 June 2026."},
-  {id:"tep",name:"Training Employment Pass",abbr:"TEP",cat:"training",badge:"training",
-   tagline:"Foreign professionals undergoing practical training in Singapore",
-   levy:"None",quota:"None",validity:"Up to 3 months (renewable to 1 year)",nations:"All nationalities",
-   fields:[
-     {l:"Min salary",v:"S$3,000 / month",hi:1},
-     {l:"Who applies",v:"Employer or training institution"},
-     {l:"Purpose",v:"Practical training attachment only"}
-   ],
-   notes:"Cannot be used for productive work. Not convertible to EP without a fresh application."},
-  {id:"twp",name:"Training Work Permit",abbr:"TWP",cat:"training",badge:"training",
-   tagline:"Semi-skilled foreign trainees or students undergoing practical training",
-   levy:"None",quota:"None",validity:"Up to 6 months",nations:"Approved source countries",
-   fields:[
-     {l:"Duration",v:"Up to 6 months"},
-     {l:"Target",v:"Semi-skilled foreign students or trainees"},
-     {l:"Min salary",v:"No fixed minimum"}
-   ],
-   notes:"For practical training only. Cannot be converted to a regular Work Permit."},
-  {id:"whp1",name:"Work Holiday Pass — Work Holiday Programme",abbr:"WHP",cat:"training",badge:"training",
-   tagline:"Students and graduates aged 18–25 — work and holiday 6 months",
-   levy:"None",quota:"None",validity:"6 months",nations:"Selected bilateral agreement countries",
-   fields:[
-     {l:"Age",v:"18–25 years old"},
-     {l:"Duration",v:"6 months"},
-     {l:"Who applies",v:"Candidate (self-sponsored)"}
-   ],
-   notes:"For students and graduates to work and holiday in Singapore."},
-  {id:"whp2",name:"Work Holiday Pass — Work & Holiday Visa",abbr:"WHP (AU/NZ)",cat:"training",badge:"training",
-   tagline:"Bilateral programme for Australian and New Zealand nationals aged 18–30",
-   levy:"None",quota:"None",validity:"12 months",nations:"Australia and New Zealand ONLY",
-   fields:[
-     {l:"Age",v:"18–30 years old"},
-     {l:"Duration",v:"12 months"},
-     {l:"Countries",v:"Australia and New Zealand ONLY",hi:1}
-   ],
-   notes:"Bilateral arrangement. Exclusively for Australian and New Zealand passport holders."},
-  {id:"dp",name:"Dependant's Pass",abbr:"DP",cat:"family",badge:"family",
-   tagline:"Spouses and unmarried children of eligible EP or S Pass holders",
-   levy:"None",quota:"None",validity:"Tied to primary pass holder",nations:"All nationalities",
-   fields:[
-     {l:"Sponsor — EP holder",v:"Any EP holder"},
-     {l:"Sponsor — S Pass holder",v:"Must earn ≥ S$6,000 / month",hi:1},
-     {l:"Who qualifies",v:"Legally married spouse; unmarried children under 21"},
-     {l:"Work rights",v:"May work with Letter of Consent (LOC) — no levy or quota"},
-     {l:"Processing",v:"~3 weeks"}
-   ],
-   notes:"DP + LOC holders are not subject to levy or quota."},
-  {id:"ltvp",name:"Long-Term Visit Pass",abbr:"LTVP",cat:"family",badge:"family",
-   tagline:"Extended family members of eligible EP and S Pass holders",
-   levy:"None",quota:"None",validity:"Tied to primary pass holder",nations:"All nationalities",
-   fields:[
-     {l:"Who qualifies",v:"Parents, common-law spouse, stepchildren, handicapped children"},
-     {l:"Parent sponsor",v:"EP holder must earn ≥ S$12,000 / month",hi:1},
-     {l:"Work rights",v:"May work with Letter of Consent (LOC)"}
-   ],
-   notes:"LTVP holders must obtain LOC from employer to work in Singapore."},
-  {id:"mwp",name:"Miscellaneous Work Pass",abbr:"MWP",cat:"special",badge:"special",
-   tagline:"Foreign speakers, religious workers, journalists — short-term assignments up to 60 days",
-   levy:"None",quota:"None",validity:"Up to 60 days",nations:"All nationalities",
-   fields:[
-     {l:"Duration",v:"Up to 60 days"},
-     {l:"Activities",v:"Public speaking, religious work, journalism, other approved short-term work"}
-   ],
-   notes:"For approved short-term activities only. Cannot be used for regular or ongoing employment."}
-];
+let currentPage = 0;
 
-const CATS=[
-  {id:"all",label:"All passes",n:16},
-  {id:"pro",label:"Professionals",n:2},
-  {id:"elite",label:"Elite & founders",n:2},
-  {id:"skilled",label:"S Pass",n:1},
-  {id:"wp",label:"Work permits",n:5},
-  {id:"training",label:"Training & holiday",n:4},
-  {id:"family",label:"Family passes",n:2},
-  {id:"special",label:"Special",n:1}
-];
+// Define what needs validation on each compulsory page
+// type: 'text' = input/select/textarea, 'radio' = radio group, 'checkbox' = at least one checked
+const pageValidation = {
+  0: {
+    texts: ['p1_name','p1_title','p1_company','p1_industry','p1_email','p1_phone','p1_time','p1_role','p1_role_title','p1_headcount','p1_kpis','p1_challenges'],
+    radios: [],
+    checkboxGroups: []
+  },
+  1: {
+    texts: ['p2_exp','p2_edu','p2_must','p2_nice','p2_fit','p2_nofit','p2_tools'],
+    radios: [{ id:'rg_cert', name:'cert_required', errId:'err_cert' }],
+    checkboxGroups: [{ id:'rg_lang', name:'lang', errId:'err_lang' }]
+  },
+  2: {
+    texts: ['p3_sal_min','p3_sal_max','p3_work','p3_growth'],
+    radios: [
+      { id:'rg_aws',   name:'aws',        errId:'err_aws'   },
+      { id:'rg_allow', name:'allowances', errId:'err_allow' },
+      { id:'rg_bonus', name:'bonus',      errId:'err_bonus' },
+      { id:'rg_lti',   name:'lti',        errId:'err_lti'   }
+    ],
+    checkboxGroups: [{ id:'rg_benefits', name:'benefit', errId:'err_benefits' }]
+  },
+  3: {
+    texts: ['p4_rounds','p4_interviewers','p4_shortlist','p4_start'],
+    radios: [
+      { id:'rg_assessment', name:'assessment',       errId:'err_assessment' },
+      { id:'rg_format',     name:'interview_format', errId:'err_format'     },
+      { id:'rg_competing',  name:'competing_search', errId:'err_competing'  }
+    ],
+    checkboxGroups: []
+  },
+  4: { texts: [], radios: [], checkboxGroups: [] } // optional
+};
 
-const BADGE_MAP={pro:"b-pro",elite:"b-elite",skilled:"b-skilled",wp:"b-wp",training:"b-training",family:"b-family",special:"b-special"};
-
-let activeCat="all";
-let cmpA=null, cmpB=null;
-
-// ── TAB SWITCH ──
-function switchTab(tab, el){
-  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
-  el.classList.add("active");
-  document.getElementById("pane-browse").style.display = tab==="browse"?"block":"none";
-  document.getElementById("pane-compare-direct").style.display = tab==="compare-direct"?"block":"none";
-  document.getElementById("compare-bar").style.display = tab==="browse"?"flex":"none";
-  if(tab==="compare-direct") buildComparePicker();
+function showPage(n) {
+  document.querySelectorAll('.form-page').forEach((p,i) => p.classList.toggle('active', i===n));
+  document.querySelectorAll('.step-tab').forEach((t,i) => {
+    t.classList.remove('active','completed');
+    if (i===n) t.classList.add('active');
+    if (i<n) t.classList.add('completed');
+  });
+  window.scrollTo({ top:0, behavior:'smooth' });
+  currentPage = n;
 }
 
-// ── BUILD CAT BAR ──
-const catBar=document.getElementById("cats");
-CATS.forEach(c=>{
-  const b=document.createElement("button");
-  b.className="cat-btn"+(c.id==="all"?" active":"");
-  b.textContent=c.label+" ("+c.n+")";
-  b.onclick=()=>{activeCat=c.id;document.querySelectorAll(".cat-btn").forEach(x=>x.classList.remove("active"));b.classList.add("active");render();};
-  catBar.appendChild(b);
+function nextPage(n) {
+  const v = pageValidation[n];
+  let valid = true;
+  let firstErr = null;
+
+  // Text / select / textarea
+  v.texts.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (!el.value.trim()) {
+      el.classList.add('err');
+      valid = false;
+      if (!firstErr) firstErr = el;
+      el.addEventListener('input', () => el.classList.remove('err'), {once:true});
+      el.addEventListener('change', () => el.classList.remove('err'), {once:true});
+    }
+  });
+
+  // Radio groups
+  v.radios.forEach(g => {
+    const selected = document.querySelector(`input[name="${g.name}"]:checked`);
+    const wrap = document.getElementById(g.id);
+    const err  = document.getElementById(g.errId);
+    if (!selected) {
+      wrap.classList.add('err');
+      err.classList.add('show');
+      valid = false;
+      if (!firstErr) firstErr = wrap;
+      wrap.querySelectorAll('input').forEach(inp => inp.addEventListener('change', () => {
+        wrap.classList.remove('err'); err.classList.remove('show');
+      }, {once:true}));
+    }
+  });
+
+  // Checkbox groups — at least one checked
+  v.checkboxGroups.forEach(g => {
+    const checked = document.querySelectorAll(`input[name="${g.name}"]:checked, input[name="${g.name}_other_cb"]:checked, input[name="${g.name}_none"]:checked`);
+    const wrap = document.getElementById(g.id);
+    const err  = document.getElementById(g.errId);
+    if (checked.length === 0) {
+      wrap.classList.add('err');
+      err.classList.add('show');
+      valid = false;
+      if (!firstErr) firstErr = wrap;
+      wrap.querySelectorAll('input').forEach(inp => inp.addEventListener('change', () => {
+        wrap.classList.remove('err'); err.classList.remove('show');
+      }, {once:true}));
+    }
+  });
+
+  if (!valid) {
+    if (firstErr) firstErr.scrollIntoView({ behavior:'smooth', block:'center' });
+    return;
+  }
+  showPage(n + 1);
+}
+
+function prevPage(n) { showPage(n - 1); }
+
+function showCond(id, show) {
+  document.getElementById(id).classList.toggle('show', show);
+}
+
+// Conditional: hiring manager fields
+document.getElementById('p1_role').addEventListener('change', function() {
+  const show = this.value && this.value !== 'I am the Hiring Manager';
+  document.getElementById('hm_fields').classList.toggle('show', show);
 });
 
-// ── RENDER BROWSE ──
-function render(){
-  const q=(document.getElementById("search").value||"").toLowerCase().trim();
-  const list=PASSES.filter(p=>(activeCat==="all"||p.cat===activeCat)&&(!q||p.name.toLowerCase().includes(q)||p.abbr.toLowerCase().includes(q)||p.tagline.toLowerCase().includes(q)));
-  document.getElementById("count").textContent=list.length+" pass"+(list.length!==1?"es":"")+" shown — click to expand full details";
-  let html="";
-  list.forEach(p=>{
-    const lo=p.levy==="None",qo=(p.quota==="None"||p.quota==="None (COMPASS)");
-    const mc=p.nations.length>44;
-    const isA=cmpA===p.id,isB=cmpB===p.id;
-    let body=`<div class="field-grid">`+p.fields.map(f=>`<div class="field"><div class="fl">${f.l}</div><div class="fv${f.hi?" hi":""}">${f.v}</div></div>`).join("")+`</div>`;
-    if(p.levyRows){
-      body+=`<div class="sec-label">Levy rates by sector</div><table class="levy-tbl"><thead><tr><th>Sector / skill level</th><th>Tier 1</th><th>Tier 2</th><th>DRC limit</th></tr></thead><tbody>`+p.levyRows.map(r=>`<tr><td>${r[0]}</td><td class="amt">${r[1]}</td><td class="${r[2]==="—"?"":"amt"}">${r[2]}</td><td class="drc">${r[3]}</td></tr>`).join("")+`</tbody></table>`;
+// Conditional: backfill reason
+document.getElementById('p1_headcount').addEventListener('change', function() {
+  document.getElementById('backfill_wrap').classList.toggle('show', this.value === 'Backfill');
+});
+
+// Formspree AJAX submit
+document.getElementById('briefingForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  const origHTML = btn.innerHTML;
+  btn.textContent = 'Submitting…';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch(this.action, {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      document.querySelector('.form-page.active').style.display = 'none';
+      document.getElementById('successScreen').classList.add('show');
+      document.querySelector('.progress-wrap').style.display = 'none';
+      window.scrollTo({ top:0, behavior:'smooth' });
+    } else {
+      btn.innerHTML = origHTML;
+      btn.disabled = false;
+      alert('Something went wrong. Please try again or email us directly.');
     }
-    if(mc){body+=`<div class="sec-label" style="margin-bottom:6px">Approved source countries</div><div class="country-list">`+p.nations.split(", ").map(c=>`<span class="ctag">${c}</span>`).join("")+`</div>`;}
-    if(p.notes) body+=`<div class="note"><b>Note: </b>${p.notes}</div>`;
-
-    html+=`<div class="pass-card${isA?" selected-1":isB?" selected-2":""}" id="card-${p.id}">
-      <div class="pass-head" onclick="toggle('${p.id}')">
-        <span class="badge ${BADGE_MAP[p.badge]||"b-wp"}">${p.badge}</span>
-        <div style="flex:1;min-width:0"><div class="pass-name">${p.name}</div><div class="pass-tagline">${p.tagline}</div></div>
-        <div class="cmp-toggle">
-          <button class="cmp-btn${isA?" sel1":isB?" sel2":""}" onclick="event.stopPropagation();selectForCompare('${p.id}')">${isA?"A ✓":isB?"B ✓":"+ Compare"}</button>
-        </div>
-        <span class="pass-arrow" id="arr-${p.id}">&#8250;</span>
-      </div>
-      <div class="pass-pills">
-        <div class="pill"><span class="pk">Levy:</span><span class="pv ${lo?"ok":"warn"}">${p.levy}</span></div>
-        <div class="pill"><span class="pk">Quota:</span><span class="pv ${qo?"ok":"warn"}">${p.quota}</span></div>
-        <div class="pill"><span class="pk">Validity:</span><span class="pv blue">${p.validity}</span></div>
-        <div class="pill"><span class="pk">Countries:</span><span class="pv def">${mc?"13 approved countries":p.nations}</span></div>
-      </div>
-      <div class="pass-body" id="body-${p.id}">${body}</div>
-    </div>`;
-  });
-  document.getElementById("cards").innerHTML=html||`<div style="color:var(--text-muted);padding:20px 0;font-size:13px">No passes match your search.</div>`;
-}
-
-function toggle(id){
-  const b=document.getElementById("body-"+id);
-  const a=document.getElementById("arr-"+id);
-  const o=b.classList.contains("open");
-  b.classList.toggle("open",!o);
-  a.classList.toggle("open",!o);
-}
-
-// ── COMPARE SELECTION (browse mode) ──
-function selectForCompare(id){
-  if(cmpA===id){clearSlot("a");return;}
-  if(cmpB===id){clearSlot("b");return;}
-  if(!cmpA){cmpA=id;}
-  else if(!cmpB){cmpB=id;}
-  else{cmpA=cmpB;cmpB=id;}
-  updateCompareBar();
-  render();
-}
-
-function updateCompareBar(){
-  const pA=PASSES.find(p=>p.id===cmpA);
-  const pB=PASSES.find(p=>p.id===cmpB);
-  const bar=document.getElementById("compare-bar");
-  bar.style.display=(cmpA||cmpB)?"flex":"none";
-  document.getElementById("slot-a-name").textContent=pA?pA.name:"Select a pass (1 of 2)";
-  document.getElementById("slot-b-name").textContent=pB?pB.name:"Select a pass (2 of 2)";
-  document.getElementById("slot-a").className="cbar-slot"+(cmpA?" filled":"");
-  document.getElementById("slot-b").className="cbar-slot"+(cmpB?" filled":"");
-  document.getElementById("slot-a-clear").style.display=cmpA?"inline":"none";
-  document.getElementById("slot-b-clear").style.display=cmpB?"inline":"none";
-  document.getElementById("btn-go").disabled=!(cmpA&&cmpB);
-}
-
-function clearSlot(s){
-  if(s==="a")cmpA=null; else cmpB=null;
-  updateCompareBar();render();
-}
-
-function clearAll(){cmpA=null;cmpB=null;updateCompareBar();render();}
-
-// ── COMPARE PICKER (direct tab) ──
-let dpA=null,dpB=null;
-function buildComparePicker(){
-  const el=document.getElementById("compare-picker");
-  if(el.children.length) return;
-  let html="";
-  PASSES.forEach(p=>{
-    html+=`<div class="pass-card" id="dp-${p.id}" onclick="pickForCompare('${p.id}')">
-      <div class="pass-head" style="cursor:pointer">
-        <span class="badge ${BADGE_MAP[p.badge]||"b-wp"}">${p.badge}</span>
-        <div style="flex:1;min-width:0"><div class="pass-name" style="font-size:12px">${p.name}</div></div>
-      </div>
-    </div>`;
-  });
-  el.innerHTML=html;
-}
-
-function pickForCompare(id){
-  if(dpA===id){dpA=null;}
-  else if(dpB===id){dpB=null;}
-  else if(!dpA){dpA=id;}
-  else if(!dpB){dpB=id;}
-  else{dpA=dpB;dpB=id;}
-  PASSES.forEach(p=>{
-    const c=document.getElementById("dp-"+p.id);
-    if(!c)return;
-    c.style.borderColor=dpA===p.id?"var(--orange)":dpB===p.id?"#3b9fd4":"var(--border)";
-  });
-  const pA=PASSES.find(p=>p.id===dpA);
-  const pB=PASSES.find(p=>p.id===dpB);
-  document.getElementById("slot-a-direct").textContent=pA?"A: "+pA.name:"Pass A — not selected";
-  document.getElementById("slot-b-direct").textContent=pB?"B: "+pB.name:"Pass B — not selected";
-  document.getElementById("slot-a-direct").style.color=pA?"var(--text)":"var(--text-muted)";
-  document.getElementById("slot-b-direct").style.color=pB?"var(--text)":"var(--text-muted)";
-  document.getElementById("slot-a-direct").style.borderStyle=pA?"solid":"dashed";
-  document.getElementById("slot-b-direct").style.borderStyle=pB?"solid":"dashed";
-  document.getElementById("go-direct").disabled=!(dpA&&dpB);
-}
-
-// ── OPEN COMPARE MODAL ──
-function openCompare(){
-  const idA=cmpA||dpA, idB=cmpB||dpB;
-  const pA=PASSES.find(p=>p.id===idA);
-  const pB=PASSES.find(p=>p.id===idB);
-  if(!pA||!pB)return;
-  const ROWS=[
-    {k:"Levy",a:pA.levy,b:pB.levy,okFn:v=>v==="None"},
-    {k:"Quota",a:pA.quota,b:pB.quota,okFn:v=>v==="None"||v==="None (COMPASS)"},
-    {k:"Validity",a:pA.validity,b:pB.validity},
-    {k:"Source countries",a:pA.nations.length>44?"13 approved countries":pA.nations,b:pB.nations.length>44?"13 approved countries":pB.nations},
-  ];
-  let html=`<div class="cmp-grid">`;
-  [pA,pB].forEach((p,i)=>{
-    html+=`<div class="cmp-col">
-      <div class="cmp-col-head">
-        <span class="badge ${BADGE_MAP[p.badge]||"b-wp"}" style="margin-bottom:6px;display:inline-block">${p.badge}</span>
-        <div class="pass-name">${p.name}</div>
-        <div class="pass-tagline" style="margin-top:2px">${p.tagline}</div>
-      </div>
-      <table class="cmp-table">`;
-    ROWS.forEach(r=>{
-      const v=i===0?r.a:r.b;
-      const ok=r.okFn?r.okFn(v):null;
-      const cls=ok===true?"ok-val":ok===false?"hi-val":"";
-      html+=`<tr><td>${r.k}</td><td class="${cls}">${v}</td></tr>`;
-    });
-    html+=`</table></div>`;
-  });
-  html+=`</div>`;
-  html+=`<div class="modal-fields"><div class="sec-label">Field-by-field breakdown</div><div class="fields-cmp">`;
-  [pA,pB].forEach(p=>{
-    html+=`<div class="fields-cmp-col"><div class="pass-name">${p.abbr}</div>`;
-    p.fields.forEach(f=>{
-      html+=`<div class="cmp-field"><div class="fl">${f.l}</div><div class="fv${f.hi?" hi":""}">${f.v}</div></div>`;
-    });
-    if(p.notes) html+=`<div class="note" style="margin-top:8px"><b>Note: </b>${p.notes}</div>`;
-    html+=`</div>`;
-  });
-  html+=`</div></div>`;
-  document.getElementById("modal-content").innerHTML=html;
-  document.getElementById("modal").classList.add("open");
-}
-
-function closeModal(){document.getElementById("modal").classList.remove("open");}
-function closeModalOutside(e){if(e.target===document.getElementById("modal"))closeModal();}
-
-// ── INIT ──
-render();
-updateCompareBar();
+  } catch {
+    btn.innerHTML = origHTML;
+    btn.disabled = false;
+    alert('Network error. Please check your connection and try again.');
+  }
+});
 </script>
 </body>
 </html>
